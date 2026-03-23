@@ -1,12 +1,12 @@
-Fitter Status : Successful - Mon Mar 23 17:14:34 2026
+Fitter Status : Successful - Mon Mar 23 17:48:11 2026
 Quartus Prime Version : 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 Revision Name : vending_machine
 Top-level Entity Name : vending_machine
 Family : Cyclone V
 Device : 5CSEMA5F31C6
 Timing Models : Final
-Logic utilization (in ALMs) : 287 / 32,070 ( < 1 % )
-Total registers : 53
+Logic utilization (in ALMs) : 289 / 32,070 ( < 1 % )
+Total registers : 52
 Total pins : 60 / 457 ( 13 % )
 Total virtual pins : 0
 Total block memory bits : 0 / 4,065,280 ( 0 % )

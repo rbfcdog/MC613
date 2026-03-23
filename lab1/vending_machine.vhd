@@ -141,8 +141,8 @@ begin
         led_out => LEDR(0)
     );
 
-    ledr1_condition <= '1' when ((state_sig = "10" or state_sig = "11") and 
-                                  to_integer(unsigned(accumulated_value)) > to_integer(unsigned(current_value))) 
+    ledr1_condition <= '1' when ((state_sig = "11" and accumulated_value /= "0000000000") or 
+                                  (state_sig = "01" and to_integer(unsigned(accumulated_value)) > to_integer(unsigned(current_value))))
                       else '0';  -- On when there's change due (accumulated > price)
     ledr0_condition <= finish_signal;  -- On when purchase succeeded (accumulated >= price)
 

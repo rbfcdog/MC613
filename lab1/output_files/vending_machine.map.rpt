@@ -1,5 +1,5 @@
 Analysis & Synthesis report for vending_machine
-Mon Mar 23 17:13:47 2026
+Mon Mar 23 17:47:25 2026
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -54,7 +54,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Mon Mar 23 17:13:47 2026       ;
+; Analysis & Synthesis Status     ; Successful - Mon Mar 23 17:47:25 2026       ;
 ; Quartus Prime Version           ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                   ; vending_machine                             ;
 ; Top-level Entity Name           ; vending_machine                             ;
@@ -212,13 +212,13 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-------------------------------+
 ; Resource                                    ; Usage                         ;
 +---------------------------------------------+-------------------------------+
-; Estimate of Logic utilization (ALMs needed) ; 287                           ;
+; Estimate of Logic utilization (ALMs needed) ; 288                           ;
 ;                                             ;                               ;
-; Combinational ALUT usage for logic          ; 561                           ;
+; Combinational ALUT usage for logic          ; 564                           ;
 ;     -- 7 input functions                    ; 0                             ;
 ;     -- 6 input functions                    ; 12                            ;
-;     -- 5 input functions                    ; 28                            ;
-;     -- 4 input functions                    ; 147                           ;
+;     -- 5 input functions                    ; 30                            ;
+;     -- 4 input functions                    ; 148                           ;
 ;     -- <=3 input functions                  ; 374                           ;
 ;                                             ;                               ;
 ; Dedicated logic registers                   ; 52                            ;
@@ -229,8 +229,8 @@ https://fpgasoftware.intel.com/eula.
 ;                                             ;                               ;
 ; Maximum fan-out node                        ; vending_fsm:fsm_inst|state.s0 ;
 ; Maximum fan-out                             ; 72                            ;
-; Total fan-out                               ; 2060                          ;
-; Average fan-out                             ; 2.81                          ;
+; Total fan-out                               ; 2074                          ;
+; Average fan-out                             ; 2.82                          ;
 +---------------------------------------------+-------------------------------+
 
 
@@ -239,7 +239,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
 ; Compilation Hierarchy Node                ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                               ; Entity Name         ; Library Name ;
 +-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
-; |vending_machine                          ; 561 (39)            ; 52 (6)                    ; 0                 ; 0          ; 60   ; 0            ; |vending_machine                                                                                                                                  ; vending_machine     ; work         ;
+; |vending_machine                          ; 564 (43)            ; 52 (6)                    ; 0                 ; 0          ; 60   ; 0            ; |vending_machine                                                                                                                                  ; vending_machine     ; work         ;
 ;    |bin2hex:HEX2hex_inst|                 ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |vending_machine|bin2hex:HEX2hex_inst                                                                                                             ; bin2hex             ; work         ;
 ;    |payment_handler:payment_handler_inst| ; 33 (33)             ; 10 (10)                   ; 0                 ; 0          ; 0    ; 0            ; |vending_machine|payment_handler:payment_handler_inst                                                                                             ; payment_handler     ; work         ;
 ;    |selector:selector_inst|               ; 24 (24)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |vending_machine|selector:selector_inst                                                                                                           ; selector            ; work         ;
@@ -271,7 +271,7 @@ https://fpgasoftware.intel.com/eula.
 ;          |lpm_divide_u4m:auto_generated|  ; 36 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |vending_machine|value_display:value_display_inst|lpm_divide:Mod2|lpm_divide_u4m:auto_generated                                                   ; lpm_divide_u4m      ; work         ;
 ;             |sign_div_unsign_1nh:divider| ; 36 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |vending_machine|value_display:value_display_inst|lpm_divide:Mod2|lpm_divide_u4m:auto_generated|sign_div_unsign_1nh:divider                       ; sign_div_unsign_1nh ; work         ;
 ;                |alt_u_div_82f:divider|    ; 36 (36)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |vending_machine|value_display:value_display_inst|lpm_divide:Mod2|lpm_divide_u4m:auto_generated|sign_div_unsign_1nh:divider|alt_u_div_82f:divider ; alt_u_div_82f       ; work         ;
-;    |vending_fsm:fsm_inst|                 ; 48 (48)             ; 36 (36)                   ; 0                 ; 0          ; 0    ; 0            ; |vending_machine|vending_fsm:fsm_inst                                                                                                             ; vending_fsm         ; work         ;
+;    |vending_fsm:fsm_inst|                 ; 47 (47)             ; 36 (36)                   ; 0                 ; 0          ; 0    ; 0            ; |vending_machine|vending_fsm:fsm_inst                                                                                                             ; vending_fsm         ; work         ;
 +-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -522,7 +522,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; arriav_ff             ; 52                          ;
 ;     ENA SCLR          ; 42                          ;
 ;     plain             ; 10                          ;
-; arriav_lcell_comb     ; 569                         ;
+; arriav_lcell_comb     ; 572                         ;
 ;     arith             ; 274                         ;
 ;         0 data inputs ; 54                          ;
 ;         1 data inputs ; 44                          ;
@@ -530,13 +530,13 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;         3 data inputs ; 71                          ;
 ;         4 data inputs ; 82                          ;
 ;         5 data inputs ; 7                           ;
-;     normal            ; 273                         ;
+;     normal            ; 276                         ;
 ;         0 data inputs ; 2                           ;
 ;         1 data inputs ; 8                           ;
 ;         2 data inputs ; 97                          ;
 ;         3 data inputs ; 68                          ;
-;         4 data inputs ; 65                          ;
-;         5 data inputs ; 21                          ;
+;         4 data inputs ; 66                          ;
+;         5 data inputs ; 23                          ;
 ;         6 data inputs ; 12                          ;
 ;     shared            ; 22                          ;
 ;         0 data inputs ; 8                           ;
@@ -545,7 +545,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; boundary_port         ; 60                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 20.20                       ;
-; Average LUT depth     ; 13.28                       ;
+; Average LUT depth     ; 13.24                       ;
 +-----------------------+-----------------------------+
 
 
@@ -564,7 +564,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Mon Mar 23 17:13:36 2026
+    Info: Processing started: Mon Mar 23 17:47:14 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off vending_machine -c vending_machine
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 10 of the 10 processors detected
@@ -1278,14 +1278,14 @@ Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
 Warning (21074): Design contains 2 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "KEY[2]" File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 7
     Warning (15610): No output dependent on input pin "KEY[3]" File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 7
-Info (21057): Implemented 623 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 626 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 15 input pins
     Info (21059): Implemented 45 output pins
-    Info (21061): Implemented 563 logic cells
+    Info (21061): Implemented 566 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 593 warnings
-    Info: Peak virtual memory: 556 megabytes
-    Info: Processing ended: Mon Mar 23 17:13:47 2026
+    Info: Peak virtual memory: 552 megabytes
+    Info: Processing ended: Mon Mar 23 17:47:25 2026
     Info: Elapsed time: 00:00:11
-    Info: Total CPU time (on all processors): 00:00:33
+    Info: Total CPU time (on all processors): 00:00:32
 
 
