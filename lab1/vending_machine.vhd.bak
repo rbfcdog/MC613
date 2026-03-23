@@ -1,0 +1,121 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity vending_machine is
+	port(
+	  KEY1 : in std_logic;
+	  KEY0 : in std_logic;
+
+	  SW : in std_logic_vector(9 downto 0);
+	  
+	  HEX0 : out std_logic_vector(6 downto 0);
+	  HEX1 : out std_logic_vector(6 downto 0);
+	  HEX2 : out std_logic_vector(6 downto 0);
+	  HEX3 : out std_logic_vector(6 downto 0);
+	  HEX5 : out std_logic_vector(6 downto 0);
+
+	  LEDR0 : out std_logic;
+	  LEDR1 : out std_logic;
+	  
+	  CLOCK_50 : in std_logic
+	);
+end entity;
+
+architecture rtl of vending_machine is
+
+	type state_type is (s0, s1, s2, s3);
+
+	signal state : state_type := s0;
+	
+	signal product_value : std_logic_vector(9 downto 0) := (others => '0');
+	signal current_value : std_logic_vector(9 downto 0) := (others => '0');
+	
+	signal selector_value : std_logic_vector(9 downto 0);
+
+begin
+	
+	selector_inst : entity work.selector
+	port map (
+		SELECTOR => SW(3 downto 0),
+		PRICE => selector_value
+	);
+	
+	bin2hex_inst : entity work.bin2hex
+	port map (
+		BIN => product_value,
+		HEX => HEX0
+	);
+
+--	payment_handler : entity work.payment_handler
+--	port map (
+--		PRODUCT_VALUE => product_value,
+--		
+--	);
+	
+	process (CLOCK_50, KEY1)
+	begin
+		
+		if KEY1 = '0' then
+			state <= s0;
+			product_value <= (others => '0');
+			
+		elsif rising_edge(CLOCK_50) then
+		
+			case state is
+				
+				when s0 =>
+				
+					product_value <= selector_value;
+					
+					if KEY0 = '0' then
+						state <= s1;
+					end if;
+					
+				when s1 =>
+				
+					if KEY0 = '0' then
+						state <= s1;
+					end if;
+					
+				when s2 =>
+				
+					if KEY0 = '0' then
+						state <= s3;
+					end if;
+					
+				when s3 =>
+				
+					if KEY0 = '0' then
+						state <= s0;
+					end if;
+					
+			end case;
+			
+		end if;
+		
+	end process;
+
+	process(state)
+	begin
+		case state is
+		
+			when s0 =>
+				LEDR0 <= '0';
+				LEDR1 <= '0';
+				
+			when s1 =>
+				LEDR0 <= '1';
+				LEDR1 <= '0';
+				
+			when s2 =>
+				LEDR0 <= '0';
+				LEDR1 <= '1';
+				
+			when s3 =>
+				LEDR0 <= '1';
+				LEDR1 <= '1';
+				
+		end case;
+	end process;
+
+end rtl;
