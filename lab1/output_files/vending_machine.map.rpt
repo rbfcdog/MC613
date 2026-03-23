@@ -1,5 +1,5 @@
 Analysis & Synthesis report for vending_machine
-Mon Mar 23 16:35:05 2026
+Mon Mar 23 17:02:38 2026
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -25,11 +25,9 @@ Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
  17. Parameter Settings for Inferred Entity Instance: value_display:value_display_inst|lpm_divide:Mod2
  18. Parameter Settings for Inferred Entity Instance: value_display:value_display_inst|lpm_divide:Div2
  19. Parameter Settings for Inferred Entity Instance: value_display:value_display_inst|lpm_divide:Mod3
- 20. Port Connectivity Checks: "bin2hex:bin2hex_state"
- 21. Port Connectivity Checks: "payment_handler:payment_handler_inst"
- 22. Post-Synthesis Netlist Statistics for Top Partition
- 23. Elapsed Time Per Partition
- 24. Analysis & Synthesis Messages
+ 20. Post-Synthesis Netlist Statistics for Top Partition
+ 21. Elapsed Time Per Partition
+ 22. Analysis & Synthesis Messages
 
 
 
@@ -56,14 +54,14 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Mon Mar 23 16:35:05 2026       ;
+; Analysis & Synthesis Status     ; Successful - Mon Mar 23 17:02:38 2026       ;
 ; Quartus Prime Version           ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                   ; vending_machine                             ;
 ; Top-level Entity Name           ; vending_machine                             ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 50                                          ;
-; Total pins                      ; 61                                          ;
+; Total registers                 ; 52                                          ;
+; Total pins                      ; 60                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
 ; Total DSP Blocks                ; 0                                           ;
@@ -216,23 +214,23 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-------------------------------+
 ; Estimate of Logic utilization (ALMs needed) ; 284                           ;
 ;                                             ;                               ;
-; Combinational ALUT usage for logic          ; 555                           ;
+; Combinational ALUT usage for logic          ; 557                           ;
 ;     -- 7 input functions                    ; 0                             ;
-;     -- 6 input functions                    ; 12                            ;
-;     -- 5 input functions                    ; 28                            ;
+;     -- 6 input functions                    ; 11                            ;
+;     -- 5 input functions                    ; 25                            ;
 ;     -- 4 input functions                    ; 146                           ;
-;     -- <=3 input functions                  ; 369                           ;
+;     -- <=3 input functions                  ; 375                           ;
 ;                                             ;                               ;
-; Dedicated logic registers                   ; 50                            ;
+; Dedicated logic registers                   ; 52                            ;
 ;                                             ;                               ;
-; I/O pins                                    ; 61                            ;
+; I/O pins                                    ; 60                            ;
 ;                                             ;                               ;
 ; Total DSP Blocks                            ; 0                             ;
 ;                                             ;                               ;
 ; Maximum fan-out node                        ; vending_fsm:fsm_inst|state.s0 ;
-; Maximum fan-out                             ; 60                            ;
-; Total fan-out                               ; 2051                          ;
-; Average fan-out                             ; 2.82                          ;
+; Maximum fan-out                             ; 72                            ;
+; Total fan-out                               ; 2037                          ;
+; Average fan-out                             ; 2.79                          ;
 +---------------------------------------------+-------------------------------+
 
 
@@ -241,10 +239,9 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
 ; Compilation Hierarchy Node                ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                               ; Entity Name         ; Library Name ;
 +-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
-; |vending_machine                          ; 555 (39)            ; 50 (4)                    ; 0                 ; 0          ; 61   ; 0            ; |vending_machine                                                                                                                                  ; vending_machine     ; work         ;
-;    |bin2hex:bin2hex_inst|                 ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |vending_machine|bin2hex:bin2hex_inst                                                                                                             ; bin2hex             ; work         ;
-;    |bin2hex:bin2hex_state|                ; 5 (5)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |vending_machine|bin2hex:bin2hex_state                                                                                                            ; bin2hex             ; work         ;
-;    |payment_handler:payment_handler_inst| ; 22 (22)             ; 10 (10)                   ; 0                 ; 0          ; 0    ; 0            ; |vending_machine|payment_handler:payment_handler_inst                                                                                             ; payment_handler     ; work         ;
+; |vending_machine                          ; 557 (35)            ; 52 (6)                    ; 0                 ; 0          ; 60   ; 0            ; |vending_machine                                                                                                                                  ; vending_machine     ; work         ;
+;    |bin2hex:HEX2hex_inst|                 ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |vending_machine|bin2hex:HEX2hex_inst                                                                                                             ; bin2hex             ; work         ;
+;    |payment_handler:payment_handler_inst| ; 33 (33)             ; 10 (10)                   ; 0                 ; 0          ; 0    ; 0            ; |vending_machine|payment_handler:payment_handler_inst                                                                                             ; payment_handler     ; work         ;
 ;    |selector:selector_inst|               ; 24 (24)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |vending_machine|selector:selector_inst                                                                                                           ; selector            ; work         ;
 ;    |value_display:value_display_inst|     ; 410 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |vending_machine|value_display:value_display_inst                                                                                                 ; value_display       ; work         ;
 ;       |bin2hex:u_hex0|                    ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |vending_machine|value_display:value_display_inst|bin2hex:u_hex0                                                                                  ; bin2hex             ; work         ;
@@ -292,27 +289,27 @@ Encoding Type:  One-Hot
 +----------+----------+----------+----------+-----------------+
 
 
-+-----------------------------------------------------------------------------------------------------------+
-; User-Specified and Inferred Latches                                                                       ;
-+-----------------------------------------------------+----------------------------+------------------------+
-; Latch Name                                          ; Latch Enable Signal        ; Free of Timing Hazards ;
-+-----------------------------------------------------+----------------------------+------------------------+
-; selector:selector_inst|PRICE[0]                     ; bin2hex:bin2hex_state|Mux1 ; yes                    ;
-; selector:selector_inst|PRICE[1]                     ; bin2hex:bin2hex_state|Mux1 ; yes                    ;
-; selector:selector_inst|PRICE[2]                     ; bin2hex:bin2hex_state|Mux1 ; yes                    ;
-; selector:selector_inst|PRICE[3]                     ; bin2hex:bin2hex_state|Mux1 ; yes                    ;
-; selector:selector_inst|ID[0]                        ; bin2hex:bin2hex_state|Mux1 ; yes                    ;
-; selector:selector_inst|ID[1]                        ; bin2hex:bin2hex_state|Mux1 ; yes                    ;
-; selector:selector_inst|ID[2]                        ; bin2hex:bin2hex_state|Mux1 ; yes                    ;
-; selector:selector_inst|ID[3]                        ; bin2hex:bin2hex_state|Mux1 ; yes                    ;
-; selector:selector_inst|PRICE[9]                     ; bin2hex:bin2hex_state|Mux1 ; yes                    ;
-; selector:selector_inst|PRICE[8]                     ; bin2hex:bin2hex_state|Mux1 ; yes                    ;
-; selector:selector_inst|PRICE[7]                     ; bin2hex:bin2hex_state|Mux1 ; yes                    ;
-; selector:selector_inst|PRICE[6]                     ; bin2hex:bin2hex_state|Mux1 ; yes                    ;
-; selector:selector_inst|PRICE[5]                     ; bin2hex:bin2hex_state|Mux1 ; yes                    ;
-; selector:selector_inst|PRICE[4]                     ; bin2hex:bin2hex_state|Mux1 ; yes                    ;
-; Number of user-specified and inferred latches = 14  ;                            ;                        ;
-+-----------------------------------------------------+----------------------------+------------------------+
++--------------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                          ;
++-----------------------------------------------------+-------------------------------+------------------------+
+; Latch Name                                          ; Latch Enable Signal           ; Free of Timing Hazards ;
++-----------------------------------------------------+-------------------------------+------------------------+
+; selector:selector_inst|PRICE[0]                     ; vending_fsm:fsm_inst|state.s0 ; yes                    ;
+; selector:selector_inst|PRICE[1]                     ; vending_fsm:fsm_inst|state.s0 ; yes                    ;
+; selector:selector_inst|PRICE[2]                     ; vending_fsm:fsm_inst|state.s0 ; yes                    ;
+; selector:selector_inst|PRICE[3]                     ; vending_fsm:fsm_inst|state.s0 ; yes                    ;
+; selector:selector_inst|ID[0]                        ; vending_fsm:fsm_inst|state.s0 ; yes                    ;
+; selector:selector_inst|ID[1]                        ; vending_fsm:fsm_inst|state.s0 ; yes                    ;
+; selector:selector_inst|ID[2]                        ; vending_fsm:fsm_inst|state.s0 ; yes                    ;
+; selector:selector_inst|ID[3]                        ; vending_fsm:fsm_inst|state.s0 ; yes                    ;
+; selector:selector_inst|PRICE[9]                     ; vending_fsm:fsm_inst|state.s0 ; yes                    ;
+; selector:selector_inst|PRICE[8]                     ; vending_fsm:fsm_inst|state.s0 ; yes                    ;
+; selector:selector_inst|PRICE[7]                     ; vending_fsm:fsm_inst|state.s0 ; yes                    ;
+; selector:selector_inst|PRICE[6]                     ; vending_fsm:fsm_inst|state.s0 ; yes                    ;
+; selector:selector_inst|PRICE[5]                     ; vending_fsm:fsm_inst|state.s0 ; yes                    ;
+; selector:selector_inst|PRICE[4]                     ; vending_fsm:fsm_inst|state.s0 ; yes                    ;
+; Number of user-specified and inferred latches = 14  ;                               ;                        ;
++-----------------------------------------------------+-------------------------------+------------------------+
 Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
 
@@ -321,9 +318,9 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 50    ;
-; Number of registers using Synchronous Clear  ; 32    ;
-; Number of registers using Synchronous Load   ; 10    ;
+; Total registers                              ; 52    ;
+; Number of registers using Synchronous Clear  ; 42    ;
+; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 42    ;
@@ -342,17 +339,18 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------+---------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                     ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                           ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------+
-; 6:1                ; 32 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |vending_machine|vending_fsm:fsm_inst|counter[31]                    ;
-; 4:1                ; 10 bits   ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |vending_machine|Mux2                                                ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |vending_machine|payment_handler:payment_handler_inst|cash_amount[7] ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |vending_machine|payment_handler:payment_handler_inst|cash_amount[2] ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; No         ; |vending_machine|vending_fsm:fsm_inst|state                          ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                 ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------+
+; 4:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |vending_machine|payment_handler:payment_handler_inst|value_accumulator[9] ;
+; 6:1                ; 32 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |vending_machine|vending_fsm:fsm_inst|counter[21]                          ;
+; 4:1                ; 10 bits   ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |vending_machine|Mux2                                                      ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |vending_machine|payment_handler:payment_handler_inst|cash_amount[7]       ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |vending_machine|payment_handler:payment_handler_inst|cash_amount[2]       ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; No         ; |vending_machine|vending_fsm:fsm_inst|state                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------+
 
 
 +---------------------------------------------------------------------------------------------------+
@@ -516,34 +514,15 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+---------------------------------------------------+
-; Port Connectivity Checks: "bin2hex:bin2hex_state" ;
-+-----------+-------+----------+--------------------+
-; Port      ; Type  ; Severity ; Details            ;
-+-----------+-------+----------+--------------------+
-; bin[3..2] ; Input ; Info     ; Stuck at GND       ;
-+-----------+-------+----------+--------------------+
-
-
-+------------------------------------------------------------------+
-; Port Connectivity Checks: "payment_handler:payment_handler_inst" ;
-+--------------+-------+----------+--------------------------------+
-; Port         ; Type  ; Severity ; Details                        ;
-+--------------+-------+----------+--------------------------------+
-; reset_signal ; Input ; Info     ; Stuck at GND                   ;
-+--------------+-------+----------+--------------------------------+
-
-
 +-----------------------------------------------------+
 ; Post-Synthesis Netlist Statistics for Top Partition ;
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 50                          ;
-;     ENA SCLR          ; 32                          ;
-;     ENA SLD           ; 10                          ;
-;     plain             ; 8                           ;
-; arriav_lcell_comb     ; 565                         ;
+; arriav_ff             ; 52                          ;
+;     ENA SCLR          ; 42                          ;
+;     plain             ; 10                          ;
+; arriav_lcell_comb     ; 566                         ;
 ;     arith             ; 274                         ;
 ;         0 data inputs ; 54                          ;
 ;         1 data inputs ; 44                          ;
@@ -551,19 +530,19 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;         3 data inputs ; 71                          ;
 ;         4 data inputs ; 82                          ;
 ;         5 data inputs ; 7                           ;
-;     normal            ; 269                         ;
+;     normal            ; 270                         ;
 ;         0 data inputs ; 2                           ;
-;         1 data inputs ; 10                          ;
-;         2 data inputs ; 90                          ;
-;         3 data inputs ; 70                          ;
+;         1 data inputs ; 9                           ;
+;         2 data inputs ; 98                          ;
+;         3 data inputs ; 68                          ;
 ;         4 data inputs ; 64                          ;
-;         5 data inputs ; 21                          ;
-;         6 data inputs ; 12                          ;
+;         5 data inputs ; 18                          ;
+;         6 data inputs ; 11                          ;
 ;     shared            ; 22                          ;
 ;         0 data inputs ; 8                           ;
 ;         1 data inputs ; 4                           ;
 ;         2 data inputs ; 10                          ;
-; boundary_port         ; 61                          ;
+; boundary_port         ; 60                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 20.20                       ;
 ; Average LUT depth     ; 13.30                       ;
@@ -585,7 +564,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Mon Mar 23 16:34:53 2026
+    Info: Processing started: Mon Mar 23 17:02:28 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off vending_machine -c vending_machine
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 10 of the 10 processors detected
@@ -622,7 +601,7 @@ Info (12021): Found 2 design units, including 1 entities, in source file selecto
     Info (12022): Found design unit 1: selector-Behavioral File: /home/rodrigodog/MC613/lab1/selector.vhd Line: 13
     Info (12023): Found entity 1: selector File: /home/rodrigodog/MC613/lab1/selector.vhd Line: 4
 Info (12021): Found 2 design units, including 1 entities, in source file vending_machine.vhd
-    Info (12022): Found design unit 1: vending_machine-rtl File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 27
+    Info (12022): Found design unit 1: vending_machine-rtl File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 23
     Info (12023): Found entity 1: vending_machine File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file tb_bin2hex.vhd
     Info (12022): Found design unit 1: tb_bin2hex-sim File: /home/rodrigodog/MC613/lab1/tb_bin2hex.vhd Line: 8
@@ -634,9 +613,9 @@ Info (12021): Found 2 design units, including 1 entities, in source file tb_vend
     Info (12022): Found design unit 1: tb_vending_fsm-sim File: /home/rodrigodog/MC613/lab1/tb_vending_fsm.vhd Line: 7
     Info (12023): Found entity 1: tb_vending_fsm File: /home/rodrigodog/MC613/lab1/tb_vending_fsm.vhd Line: 4
 Info (12127): Elaborating entity "vending_machine" for the top level hierarchy
-Warning (10540): VHDL Signal Declaration warning at vending_machine.vhd(30): used explicit default value for signal "state_prev" because signal was never assigned a value File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 30
-Info (12128): Elaborating entity "vending_fsm" for hierarchy "vending_fsm:fsm_inst" File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 82
-Info (12128): Elaborating entity "selector" for hierarchy "selector:selector_inst" File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 92
+Warning (10873): Using initial value X (don't care) for net "LEDR[9..2]" at vending_machine.vhd(17) File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 17
+Info (12128): Elaborating entity "vending_fsm" for hierarchy "vending_fsm:fsm_inst" File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 84
+Info (12128): Elaborating entity "selector" for hierarchy "selector:selector_inst" File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 94
 Warning (10631): VHDL Process Statement warning at selector.vhd(15): inferring latch(es) for signal or variable "ID", which holds its previous value in one or more paths through the process File: /home/rodrigodog/MC613/lab1/selector.vhd Line: 15
 Warning (10631): VHDL Process Statement warning at selector.vhd(15): inferring latch(es) for signal or variable "PRICE", which holds its previous value in one or more paths through the process File: /home/rodrigodog/MC613/lab1/selector.vhd Line: 15
 Info (10041): Inferred latch for "PRICE[0]" at selector.vhd(15) File: /home/rodrigodog/MC613/lab1/selector.vhd Line: 15
@@ -653,10 +632,10 @@ Info (10041): Inferred latch for "ID[0]" at selector.vhd(15) File: /home/rodrigo
 Info (10041): Inferred latch for "ID[1]" at selector.vhd(15) File: /home/rodrigodog/MC613/lab1/selector.vhd Line: 15
 Info (10041): Inferred latch for "ID[2]" at selector.vhd(15) File: /home/rodrigodog/MC613/lab1/selector.vhd Line: 15
 Info (10041): Inferred latch for "ID[3]" at selector.vhd(15) File: /home/rodrigodog/MC613/lab1/selector.vhd Line: 15
-Info (12128): Elaborating entity "payment_handler" for hierarchy "payment_handler:payment_handler_inst" File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 100
-Info (12128): Elaborating entity "value_display" for hierarchy "value_display:value_display_inst" File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 113
+Info (12128): Elaborating entity "payment_handler" for hierarchy "payment_handler:payment_handler_inst" File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 102
+Info (12128): Elaborating entity "value_display" for hierarchy "value_display:value_display_inst" File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 115
 Info (12128): Elaborating entity "bin2hex" for hierarchy "value_display:value_display_inst|bin2hex:u_hex0" File: /home/rodrigodog/MC613/lab1/value_display.vhd Line: 36
-Info (12128): Elaborating entity "led" for hierarchy "led:led1_inst" File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 138
+Info (12128): Elaborating entity "led" for hierarchy "led:led1_inst" File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 132
 Info (278001): Inferred 7 megafunctions from design logic
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "value_display:value_display_inst|Mod0" File: /home/rodrigodog/MC613/lab1/value_display.vhd Line: 25
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "value_display:value_display_inst|Div0" File: /home/rodrigodog/MC613/lab1/value_display.vhd Line: 26
@@ -710,10 +689,17 @@ Info (12133): Instantiated megafunction "value_display:value_display_inst|lpm_di
 Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_rcm.tdf
     Info (12023): Found entity 1: lpm_divide_rcm File: /home/rodrigodog/MC613/lab1/db/lpm_divide_rcm.tdf Line: 25
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "HEX3[1]" is stuck at GND File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 16
-    Warning (13410): Pin "HEX3[2]" is stuck at GND File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 16
-    Warning (13410): Pin "HEX3[6]" is stuck at VCC File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 16
-    Warning (13410): Pin "HEX4[1]" is stuck at GND File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 17
+    Warning (13410): Pin "HEX3[1]" is stuck at GND File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 14
+    Warning (13410): Pin "HEX3[2]" is stuck at GND File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 14
+    Warning (13410): Pin "HEX3[6]" is stuck at VCC File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 14
+    Warning (13410): Pin "LEDR[2]" is stuck at GND File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 17
+    Warning (13410): Pin "LEDR[3]" is stuck at GND File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 17
+    Warning (13410): Pin "LEDR[4]" is stuck at GND File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 17
+    Warning (13410): Pin "LEDR[5]" is stuck at GND File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 17
+    Warning (13410): Pin "LEDR[6]" is stuck at GND File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 17
+    Warning (13410): Pin "LEDR[7]" is stuck at GND File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 17
+    Warning (13410): Pin "LEDR[8]" is stuck at GND File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 17
+    Warning (13410): Pin "LEDR[9]" is stuck at GND File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 17
 Info (286030): Timing-Driven Synthesis is running
 Warning (20013): Ignored 571 assignments for entity "DE1_SoC" -- entity does not exist in design
     Warning (20014): Assignment for entity set_instance_assignment -name PACKAGE_SKEW_COMPENSATION OFF -to HPS_DDR3_ADDR[0] -entity DE1_SoC was ignored
@@ -1289,19 +1275,17 @@ Warning (20013): Ignored 571 assignments for entity "DE1_SoC" -- entity does not
     Warning (20014): Assignment for entity set_instance_assignment -name D5_DELAY 2 -to HPS_DDR3_CK_P -entity DE1_SoC was ignored
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 4 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "KEY1" File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 7
-    Warning (15610): No output dependent on input pin "KEY0" File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 8
-    Warning (15610): No output dependent on input pin "KEY[2]" File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 9
-    Warning (15610): No output dependent on input pin "KEY[3]" File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 9
-Info (21057): Implemented 616 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 17 input pins
-    Info (21059): Implemented 44 output pins
-    Info (21061): Implemented 555 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 588 warnings
-    Info: Peak virtual memory: 554 megabytes
-    Info: Processing ended: Mon Mar 23 16:35:05 2026
-    Info: Elapsed time: 00:00:12
-    Info: Total CPU time (on all processors): 00:00:39
+Warning (21074): Design contains 2 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "KEY[2]" File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 7
+    Warning (15610): No output dependent on input pin "KEY[3]" File: /home/rodrigodog/MC613/lab1/vending_machine.vhd Line: 7
+Info (21057): Implemented 619 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 15 input pins
+    Info (21059): Implemented 45 output pins
+    Info (21061): Implemented 559 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 593 warnings
+    Info: Peak virtual memory: 555 megabytes
+    Info: Processing ended: Mon Mar 23 17:02:38 2026
+    Info: Elapsed time: 00:00:10
+    Info: Total CPU time (on all processors): 00:00:32
 
 

@@ -4,8 +4,6 @@ use ieee.numeric_std.all;
 
 entity vending_machine is
 	port(
-	  KEY1 : in std_logic;
-	  KEY0 : in std_logic;
 	  KEY : in std_logic_vector(3 downto 0);
 
 	  SW : in std_logic_vector(9 downto 0);
@@ -14,11 +12,9 @@ entity vending_machine is
 	  HEX1 : out std_logic_vector(6 downto 0);
 	  HEX2 : out std_logic_vector(6 downto 0);
 	  HEX3 : out std_logic_vector(6 downto 0);
-	  HEX4 : out std_logic_vector(6 downto 0);
 	  HEX5 : out std_logic_vector(6 downto 0);
 
-	  LEDR0 : out std_logic;
-	  LEDR1 : out std_logic;
+	  LEDR : out std_logic_vector(9 downto 0);
 	  
 	  CLOCK_50 : in std_logic
 	);
@@ -43,7 +39,6 @@ architecture rtl of vending_machine is
     signal key_1 : std_logic := '1';
     signal pulse_advance : std_logic := '0';
     signal pulse_reset : std_logic := '0';
-    signal state_4bit : std_logic_vector(3 downto 0);
     signal startup_counter : integer := 0;
 
 begin
@@ -72,11 +67,18 @@ begin
 		end if;
 		
 	end process;
+
+	-- Track previous state for detecting state transitions
+	process(CLOCK_50)
+	begin
+		if rising_edge(CLOCK_50) then
+			state_prev <= state_sig;
+		end if;
+	end process;
 		
-    -- Reset signal: '1' when transitioning to s0 OR leaving s1 (cancel or buy)
-    reset_values <= '1' when (state_prev /= "00" and state_sig = "00") or  -- going to s0 from any state
-                             (state_prev = "01" and state_sig /= "01")     -- leaving s1 (either cancel to s0 or buy to s2)
-                   else '0';
+    -- Reset signal: '1' only when transitioning to s0 (back to idle)
+    -- Keep accumulated_value for change calculation in s2
+    reset_values <= '1' when (state_prev /= "00" and state_sig = "00") else '0';
 
     -- FSM instance
     fsm_inst : entity work.vending_fsm
@@ -119,16 +121,8 @@ begin
         hex3 => HEX3
     );
 
-    -- State Display
-    state_4bit <= "00" & state_sig;  -- Extend 2-bit state to 4 bits
-    bin2hex_state : entity work.bin2hex
-    port map (
-        BIN => state_4bit,
-        HEX => HEX4
-    );
-
-    -- Product Display
-    bin2hex_inst : entity work.bin2hex
+    -- State Display disabled
+    HEX2hex_inst : entity work.bin2hex
     port map (
         BIN => current_product_id,
         HEX => HEX5
@@ -138,19 +132,17 @@ begin
     led1_inst : entity work.led
     port map (
         condition => ledr1_condition,
-        led_out => LEDR1
+        led_out => LEDR(1)
     );
     
     led0_inst : entity work.led
     port map (
         condition => ledr0_condition,
-        led_out => LEDR0
+        led_out => LEDR(0)
     );
 
     ledr1_condition <= '1' when state_sig = "11" else '0';
-    ledr0_condition <= '1' when (state_sig = "11" and 
-                                 to_integer(unsigned(accumulated_value)) > to_integer(unsigned(current_value))) 
-                      else '0'; 
+    ledr0_condition <= finish_signal;  -- On when purchase succeeded (accumulated >= price)
 
     process(state_sig, accumulated_value, current_value)
         variable difference : integer;

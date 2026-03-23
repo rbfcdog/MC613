@@ -1,6 +1,4 @@
 |vending_machine
-KEY1 => ~NO_FANOUT~
-KEY0 => ~NO_FANOUT~
 KEY[0] => key_0.DATAIN
 KEY[0] => process_0.IN1
 KEY[1] => key_1.DATAIN
@@ -45,23 +43,26 @@ HEX3[3] <= value_display:value_display_inst.hex3[3]
 HEX3[4] <= value_display:value_display_inst.hex3[4]
 HEX3[5] <= value_display:value_display_inst.hex3[5]
 HEX3[6] <= value_display:value_display_inst.hex3[6]
-HEX4[0] <= bin2hex:bin2hex_state.HEX[0]
-HEX4[1] <= bin2hex:bin2hex_state.HEX[1]
-HEX4[2] <= bin2hex:bin2hex_state.HEX[2]
-HEX4[3] <= bin2hex:bin2hex_state.HEX[3]
-HEX4[4] <= bin2hex:bin2hex_state.HEX[4]
-HEX4[5] <= bin2hex:bin2hex_state.HEX[5]
-HEX4[6] <= bin2hex:bin2hex_state.HEX[6]
-HEX5[0] <= bin2hex:bin2hex_inst.HEX[0]
-HEX5[1] <= bin2hex:bin2hex_inst.HEX[1]
-HEX5[2] <= bin2hex:bin2hex_inst.HEX[2]
-HEX5[3] <= bin2hex:bin2hex_inst.HEX[3]
-HEX5[4] <= bin2hex:bin2hex_inst.HEX[4]
-HEX5[5] <= bin2hex:bin2hex_inst.HEX[5]
-HEX5[6] <= bin2hex:bin2hex_inst.HEX[6]
-LEDR0 <= led:led0_inst.led_out
-LEDR1 <= led:led1_inst.led_out
+HEX5[0] <= bin2hex:HEX2hex_inst.HEX[0]
+HEX5[1] <= bin2hex:HEX2hex_inst.HEX[1]
+HEX5[2] <= bin2hex:HEX2hex_inst.HEX[2]
+HEX5[3] <= bin2hex:HEX2hex_inst.HEX[3]
+HEX5[4] <= bin2hex:HEX2hex_inst.HEX[4]
+HEX5[5] <= bin2hex:HEX2hex_inst.HEX[5]
+HEX5[6] <= bin2hex:HEX2hex_inst.HEX[6]
+LEDR[0] <= led:led0_inst.led_out
+LEDR[1] <= led:led1_inst.led_out
+LEDR[2] <= <GND>
+LEDR[3] <= <GND>
+LEDR[4] <= <GND>
+LEDR[5] <= <GND>
+LEDR[6] <= <GND>
+LEDR[7] <= <GND>
+LEDR[8] <= <GND>
+LEDR[9] <= <GND>
 CLOCK_50 => vending_fsm:fsm_inst.clk
+CLOCK_50 => state_prev[0].CLK
+CLOCK_50 => state_prev[1].CLK
 CLOCK_50 => key_1.CLK
 CLOCK_50 => key_0.CLK
 CLOCK_50 => pulse_reset.CLK
@@ -510,45 +511,7 @@ HEX[5] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
 HEX[6] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|vending_machine|bin2hex:bin2hex_state
-BIN[0] => Mux0.IN19
-BIN[0] => Mux1.IN19
-BIN[0] => Mux2.IN19
-BIN[0] => Mux3.IN19
-BIN[0] => Mux4.IN19
-BIN[0] => Mux5.IN19
-BIN[0] => Mux6.IN19
-BIN[1] => Mux0.IN18
-BIN[1] => Mux1.IN18
-BIN[1] => Mux2.IN18
-BIN[1] => Mux3.IN18
-BIN[1] => Mux4.IN18
-BIN[1] => Mux5.IN18
-BIN[1] => Mux6.IN18
-BIN[2] => Mux0.IN17
-BIN[2] => Mux1.IN17
-BIN[2] => Mux2.IN17
-BIN[2] => Mux3.IN17
-BIN[2] => Mux4.IN17
-BIN[2] => Mux5.IN17
-BIN[2] => Mux6.IN17
-BIN[3] => Mux0.IN16
-BIN[3] => Mux1.IN16
-BIN[3] => Mux2.IN16
-BIN[3] => Mux3.IN16
-BIN[3] => Mux4.IN16
-BIN[3] => Mux5.IN16
-BIN[3] => Mux6.IN16
-HEX[0] <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
-HEX[1] <= Mux5.DB_MAX_OUTPUT_PORT_TYPE
-HEX[2] <= Mux4.DB_MAX_OUTPUT_PORT_TYPE
-HEX[3] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
-HEX[4] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
-HEX[5] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
-HEX[6] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|vending_machine|bin2hex:bin2hex_inst
+|vending_machine|bin2hex:HEX2hex_inst
 BIN[0] => Mux0.IN19
 BIN[0] => Mux1.IN19
 BIN[0] => Mux2.IN19

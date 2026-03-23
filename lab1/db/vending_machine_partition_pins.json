@@ -104,30 +104,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "HEX4[0]",
-					"strict" : false
-				},
-				{
-					"name" : "HEX4[2]",
-					"strict" : false
-				},
-				{
-					"name" : "HEX4[3]",
-					"strict" : false
-				},
-				{
-					"name" : "HEX4[4]",
-					"strict" : false
-				},
-				{
-					"name" : "HEX4[5]",
-					"strict" : false
-				},
-				{
-					"name" : "HEX4[6]",
-					"strict" : false
-				},
-				{
 					"name" : "HEX5[0]",
 					"strict" : false
 				},
@@ -156,11 +132,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "LEDR0",
+					"name" : "LEDR[0]",
 					"strict" : false
 				},
 				{
-					"name" : "LEDR1",
+					"name" : "LEDR[1]",
 					"strict" : false
 				},
 				{
