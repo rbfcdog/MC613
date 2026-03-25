@@ -42,6 +42,8 @@ begin
     begin
         state <= "01";
         wait for 1 us;
+
+        product_price <= ""
         
         cash_selector <= "000001";
         confirm_signal <= '1';

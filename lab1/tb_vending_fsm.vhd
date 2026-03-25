@@ -51,24 +51,24 @@ begin
 
         wait for 40 ns;
 
-        -- Press again (s2)
+        -- Press again (go to s3)
+        finish_signal <= '0';
+        wait for 20 ns;
+        finish_signal <= '1';
+
+        wait for 1 s;
+
+        -- Press again (s0=>s1)
         proceed_key <= '0';
         wait for 20 ns;
         proceed_key <= '1';
 
         wait for 40 ns;
 
-        -- Press again (s3)
-        proceed_key <= '0';
+        -- Press again (go to s3)
+        reset_key <= '0';
         wait for 20 ns;
-        proceed_key <= '1';
-
-        wait for 40 ns;
-
-        -- Press again (back to s0)
-        proceed_key <= '0';
-        wait for 20 ns;
-        proceed_key <= '1';
+        reset_key <= '1';
 
         wait;
 
