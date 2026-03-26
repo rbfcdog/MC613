@@ -38,32 +38,31 @@ begin
 
     stim : process
     begin
-        wait for 10 us;
         
         SW(3 downto 0) <= "0001";
-        wait for 5 us;
+        wait for CLK_PERIOD;
 
         --confirmar
-        KEY(0) <= '0'; wait for 60 ns;
-        KEY(0) <= '1'; wait for 40 ns;
+        KEY(0) <= '0'; wait for CLK_PERIOD;
+        KEY(0) <= '1'; wait for CLK_PERIOD;
         
         SW(4) <= '1';
         KEY(0) <= '0';
-        wait for 30 ns;
+        wait for CLK_PERIOD;
         KEY(0) <= '1';
-        wait for 5 ns;
+        wait for CLK_PERIOD;
         
         SW(4) <= '0';
         SW(5) <= '1';
         KEY(0) <= '0';
-        wait for 30 ns;
+        wait for CLK_PERIOD;
         KEY(0) <= '1';
-        wait for 5 ns;
+        wait for CLK_PERIOD;
         
         KEY(0) <= '0';
-        wait for 30 ns;
+        wait for CLK_PERIOD;
         KEY(0) <= '1';
-        wait for 60 ns;
+        wait for CLK_PERIOD;
         
         wait;
     end process;
