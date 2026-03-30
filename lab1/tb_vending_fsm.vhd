@@ -37,38 +37,33 @@ begin
     stimulus: process
     begin
 
-        -- Reset system
-        reset_key <= '0';
-        wait for 20 ns;
-        reset_key <= '1';
-
-        wait for 20 ns;
+        reset_key<='0';
 
         -- Press button (go to s1)
+        proceed_key <= '1';
+        wait for 20 ns;
         proceed_key <= '0';
         wait for 20 ns;
+        
+        -- Press again (go to s3)
+        reset_key <= '1';
+        wait for 20 ns;
+        reset_key <= '0';
+        wait for 20 ns;
+
+        wait for 120 ns; --deveria ser 1s, mas o compilador da simu n aceita
+        
+        -- Press again (s0=>s1)
         proceed_key <= '1';
-
-        wait for 40 ns;
-
-        -- Press again (s2)
+        wait for 20 ns;
         proceed_key <= '0';
         wait for 20 ns;
-        proceed_key <= '1';
 
-        wait for 40 ns;
-
-        -- Press again (s3)
-        proceed_key <= '0';
+        -- Press again (go to s2)
+        finish_signal <= '1';
         wait for 20 ns;
-        proceed_key <= '1';
-
-        wait for 40 ns;
-
-        -- Press again (back to s0)
-        proceed_key <= '0';
+        finish_signal <= '0';
         wait for 20 ns;
-        proceed_key <= '1';
 
         wait;
 

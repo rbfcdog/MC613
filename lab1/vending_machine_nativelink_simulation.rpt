@@ -5,8 +5,8 @@ Info: NativeLink has detected VHDL design -- VHDL simulation models will be used
 
 Sim Mode              :  RTL
 Family                :  cyclonev
-Quartus root          :  /home/rodrigodog/intelFPGA_lite/20.1/quartus/linux64/
-Quartus sim root      :  /home/rodrigodog/intelFPGA_lite/20.1/quartus/eda/sim_lib
+Quartus root          :  /home/estrela/intelFPGA_lite/20.1/quartus/linux64/
+Quartus sim root      :  /home/estrela/intelFPGA_lite/20.1/quartus/eda/sim_lib
 Simulation Tool       :  modelsim-altera
 Simulation Language   :  vhdl
 Version               :  93
@@ -18,7 +18,7 @@ Sim dir               :  simulation/modelsim
 =======================================================
 
 Info: Starting NativeLink simulation with ModelSim-Altera software
-Sourced NativeLink script /home/rodrigodog/intelFPGA_lite/20.1/quartus/common/tcl/internal/nativelink/modelsim.tcl
+Sourced NativeLink script /home/estrela/intelFPGA_lite/20.1/quartus/common/tcl/internal/nativelink/modelsim.tcl
 Error: Can't launch ModelSim-Altera Simulation software -- make sure the software is properly installed and the environment variable LM_LICENSE_FILE or MGLS_LICENSE_FILE points to the correct license file.
 Error: NativeLink simulation flow was NOT successful
 

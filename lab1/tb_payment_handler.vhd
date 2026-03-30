@@ -33,38 +33,58 @@ begin
     clk_gen : process
     begin
         clk <= '0';
-        wait for CLK_PERIOD/2;
+        wait for 5 ns;
         clk <= '1';
-        wait for CLK_PERIOD/2;
+        wait for 5 ns;
     end process;
 
     stim : process
     begin
+
+        reset_signal<='1';
+        wait for 5 ns;
+        reset_signal<='0';
+        wait for 5 ns;
+
         state <= "01";
-        wait for 1 us;
+        product_price <= "0101011110";
+        wait for 10 ns;
+
         
         cash_selector <= "000001";
         confirm_signal <= '1';
-        wait for CLK_PERIOD;
+        wait for 6 ns;
         confirm_signal <= '0';
-        wait for 1 us;
+        wait for 6 ns;
         
         cash_selector <= "000010";
         confirm_signal <= '1';
-        wait for CLK_PERIOD;
+        wait for 6 ns;
         confirm_signal <= '0';
-        wait for 1 us;
+        wait for 6 ns;
         
         cash_selector <= "001000";
         confirm_signal <= '1';
-        wait for CLK_PERIOD;
+        wait for 6 ns;
         confirm_signal <= '0';
-        wait for 1 us;
+        wait for 3 ns;
+
+        cash_selector <= "010000";
+        confirm_signal <= '1';
+        wait for 6 ns;
+        confirm_signal <= '0';
+        wait for 3 ns;
+
+        cash_selector <= "100000";
+        confirm_signal <= '1';
+        wait for 6 ns;
+        confirm_signal <= '0';
+        wait for 6 ns;
         
         reset_signal <= '1';
-        wait for CLK_PERIOD;
+        wait for 6 ns;
         reset_signal <= '0';
-        wait for 1 us;
+        wait for 6 ns;
     end process;
 
 end tb;
