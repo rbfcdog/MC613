@@ -75,13 +75,12 @@ begin
         wait for CLK_PERIOD * 2;
         reset_n <= '1';
 
-        wait for 17 ms;
+        wait for CLK_PERIOD * 800 * 300;
 
-        wait until falling_edge(pixel_clk);
         r_in <= x"00";
         g_in <= x"FF"; -- Muda para verde
 
-        wait for CLK_PERIOD * 800 * 5;
+        wait for CLK_PERIOD * 800 * 224;
 
         sim_done <= true;
         wait;
