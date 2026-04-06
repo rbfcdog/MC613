@@ -56,7 +56,7 @@ architecture rtl of dinossaur_game is
       VGA_CLK      : OUT STD_LOGIC
     );
   end component VGA;
-	
+
 begin
 	clk : pll
 	port map(
@@ -66,7 +66,7 @@ begin
 		locked => lock	
 	);
 
-  r_in <= (others => '0');
+  r_in <= (others => '1');
   g_in <= (others => '0');
   b_in <= (others => '1');
 

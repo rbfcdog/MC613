@@ -1,4 +1,4 @@
-Fitter Status : Successful - Mon Apr  6 16:31:00 2026
+Fitter Status : Successful - Mon Apr  6 17:29:42 2026
 Quartus Prime Version : 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 Revision Name : dinossaur_game
 Top-level Entity Name : dinossaur_game
@@ -6,7 +6,7 @@ Family : Cyclone V
 Device : 5CSEMA5F31C6
 Timing Models : Final
 Logic utilization (in ALMs) : 19 / 32,070 ( < 1 % )
-Total registers : 21
+Total registers : 26
 Total pins : 30 / 457 ( 7 % )
 Total virtual pins : 0
 Total block memory bits : 0 / 4,065,280 ( 0 % )

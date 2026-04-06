@@ -4,8 +4,6 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Ign)
-		Device PartName(5CSEMA5F31) MfrSpec(OpMask(0) FullPath("/home/rodrigodog/MC613/lab2/output_files/dinossaur_game.sof"));
-	P ActionCode(Ign)
 		Device PartName(SOCVHPS) MfrSpec(OpMask(0));
 	P ActionCode(Cfg)
 		Device PartName(5CSEMA5F31) Path("/home/rodrigodog/MC613/lab2/output_files/") File("dinossaur_game.sof") MfrSpec(OpMask(1));

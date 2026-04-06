@@ -26,6 +26,7 @@ end VGA;
 architecture rtl of VGA is
     signal x_act : STD_LOGIC := '0';
     signal y_act : STD_LOGIC := '0';
+    signal video_active_i : STD_LOGIC := '0';
     signal count_x : integer range 0 to 1023 := 0;
     signal count_y : integer range 0 to 1023 := 0;
 begin
@@ -38,14 +39,14 @@ begin
             
         elsif rising_edge(pixel_clk) then
         
-            -- Y Sync and Porches
-            if count_y < 2 then --V sync
+            -- Y Sync and Porches (640x480@60Hz: 480/10/2/33)
+            if count_y < 2 then -- V sync
                 VGA_VS <= '0';
                 y_act  <= '0';
-            elsif count_y < 33 then --back porch Y
+            elsif count_y < 33 then -- back porch (2 + 31)
                 VGA_VS <= '1';
                 y_act  <= '0';
-            elsif count_y < 513 then --y active
+            elsif count_y < 513 then -- active (33 + 480)
                 VGA_VS <= '1';
                 y_act  <= '1';
             else -- front porch y
@@ -91,10 +92,11 @@ begin
 
     VGA_CLK<=pixel_clk;
     VGA_SYNC_N<='1';
-    video_active<=x_act and y_act; 
-    VGA_BLANK_N<= video_active;
-    VGA_R <= r_in when (video_active) else (others => '0');
-    VGA_G <= g_in when (video_active) else (others => '0');
-    VGA_B <= b_in when (video_active) else (others => '0');
+    video_active_i <= x_act and y_act;
+    video_active <= video_active_i;
+    VGA_BLANK_N <= video_active_i;
+    VGA_R <= r_in when video_active_i = '1' else (others => '0');
+    VGA_G <= g_in when video_active_i = '1' else (others => '0');
+    VGA_B <= b_in when video_active_i = '1' else (others => '0');
 
 end rtl;

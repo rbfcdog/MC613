@@ -1,5 +1,5 @@
 Fitter report for dinossaur_game
-Mon Apr  6 16:31:00 2026
+Mon Apr  6 17:29:42 2026
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -35,8 +35,10 @@ Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
  27. I/O Rules Matrix
  28. Fitter Device Options
  29. Operating Settings and Conditions
- 30. Fitter Messages
- 31. Fitter Suppressed Messages
+ 30. Estimated Delay Added for Hold Timing Summary
+ 31. Estimated Delay Added for Hold Timing Details
+ 32. Fitter Messages
+ 33. Fitter Suppressed Messages
 
 
 
@@ -63,7 +65,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Fitter Summary                                                                ;
 +---------------------------------+---------------------------------------------+
-; Fitter Status                   ; Successful - Mon Apr  6 16:31:00 2026       ;
+; Fitter Status                   ; Successful - Mon Apr  6 17:29:42 2026       ;
 ; Quartus Prime Version           ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                   ; dinossaur_game                              ;
 ; Top-level Entity Name           ; dinossaur_game                              ;
@@ -71,7 +73,7 @@ https://fpgasoftware.intel.com/eula.
 ; Device                          ; 5CSEMA5F31C6                                ;
 ; Timing Models                   ; Final                                       ;
 ; Logic utilization (in ALMs)     ; 19 / 32,070 ( < 1 % )                       ;
-; Total registers                 ; 21                                          ;
+; Total registers                 ; 26                                          ;
 ; Total pins                      ; 30 / 457 ( 7 % )                            ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0 / 4,065,280 ( 0 % )                       ;
@@ -92,6 +94,8 @@ https://fpgasoftware.intel.com/eula.
 ; Option                                                             ; Setting                               ; Default Value                         ;
 +--------------------------------------------------------------------+---------------------------------------+---------------------------------------+
 ; Device                                                             ; 5CSEMA5F31C6                          ;                                       ;
+; Minimum Core Junction Temperature                                  ; 0                                     ;                                       ;
+; Maximum Core Junction Temperature                                  ; 85                                    ;                                       ;
 ; Use smart compilation                                              ; Off                                   ; Off                                   ;
 ; Enable parallel Assembler and Timing Analyzer during compilation   ; On                                    ; On                                    ;
 ; Enable compact report table                                        ; Off                                   ; Off                                   ;
@@ -156,20 +160,21 @@ https://fpgasoftware.intel.com/eula.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.1%      ;
-;     Processor 3            ;   0.1%      ;
+;     Processor 2            ;   0.2%      ;
+;     Processor 3            ;   0.2%      ;
 ;     Processors 4-10        ;   0.1%      ;
 +----------------------------+-------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Fitter Netlist Optimizations                                                                                                                                                                                                                                          ;
-+--------------------------------------------------------------------------+------------+---------------------------------------------------+----------------------------+-----------+----------------+----------------------+------------------+-----------------------+
-; Node                                                                     ; Action     ; Operation                                         ; Reason                     ; Node Port ; Node Port Name ; Destination Node     ; Destination Port ; Destination Port Name ;
-+--------------------------------------------------------------------------+------------+---------------------------------------------------+----------------------------+-----------+----------------+----------------------+------------------+-----------------------+
-; pll:clk|pll_0002:pll_inst|altera_pll:altera_pll_i|outclk_wire[0]~CLKENA0 ; Created    ; Placement                                         ; Fitter Periphery Placement ;           ;                ;                      ;                  ;                       ;
-; v_count[3]                                                               ; Duplicated ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ;                ; v_count[3]~DUPLICATE ;                  ;                       ;
-+--------------------------------------------------------------------------+------------+---------------------------------------------------+----------------------------+-----------+----------------+----------------------+------------------+-----------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fitter Netlist Optimizations                                                                                                                                                                                                                                                       ;
++--------------------------------------------------------------------------+------------+---------------------------------------------------+----------------------------+-----------+----------------+-----------------------------------+------------------+-----------------------+
+; Node                                                                     ; Action     ; Operation                                         ; Reason                     ; Node Port ; Node Port Name ; Destination Node                  ; Destination Port ; Destination Port Name ;
++--------------------------------------------------------------------------+------------+---------------------------------------------------+----------------------------+-----------+----------------+-----------------------------------+------------------+-----------------------+
+; pll:clk|pll_0002:pll_inst|altera_pll:altera_pll_i|outclk_wire[0]~CLKENA0 ; Created    ; Placement                                         ; Fitter Periphery Placement ;           ;                ;                                   ;                  ;                       ;
+; VGA:vga_inst|count_x[9]                                                  ; Duplicated ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ;                ; VGA:vga_inst|count_x[9]~DUPLICATE ;                  ;                       ;
+; VGA:vga_inst|count_y[7]                                                  ; Duplicated ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ;                ; VGA:vga_inst|count_y[7]~DUPLICATE ;                  ;                       ;
++--------------------------------------------------------------------------+------------+---------------------------------------------------+----------------------------+-----------+----------------+-----------------------------------+------------------+-----------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -914,8 +919,8 @@ https://fpgasoftware.intel.com/eula.
 ; Type                ; Total [A + B]      ; From Design Partitions [A] ; From Rapid Recompile [B] ;
 +---------------------+--------------------+----------------------------+--------------------------+
 ; Placement (by node) ;                    ;                            ;                          ;
-;     -- Requested    ; 0.00 % ( 0 / 117 ) ; 0.00 % ( 0 / 117 )         ; 0.00 % ( 0 / 117 )       ;
-;     -- Achieved     ; 0.00 % ( 0 / 117 ) ; 0.00 % ( 0 / 117 )         ; 0.00 % ( 0 / 117 )       ;
+;     -- Requested    ; 0.00 % ( 0 / 122 ) ; 0.00 % ( 0 / 122 )         ; 0.00 % ( 0 / 122 )       ;
+;     -- Achieved     ; 0.00 % ( 0 / 122 ) ; 0.00 % ( 0 / 122 )         ; 0.00 % ( 0 / 122 )       ;
 ;                     ;                    ;                            ;                          ;
 ; Routing (by net)    ;                    ;                            ;                          ;
 ;     -- Requested    ; 0.00 % ( 0 / 0 )   ; 0.00 % ( 0 / 0 )           ; 0.00 % ( 0 / 0 )         ;
@@ -938,7 +943,7 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 ; Partition Name                 ; Preservation Achieved ; Preservation Level Used ; Netlist Type Used ; Preservation Method ; Notes ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
-; Top                            ; 0.00 % ( 0 / 108 )    ; N/A                     ; Source File       ; N/A                 ;       ;
+; Top                            ; 0.00 % ( 0 / 113 )    ; N/A                     ; Source File       ; N/A                 ;       ;
 ; hard_block:auto_generated_inst ; 0.00 % ( 0 / 9 )      ; N/A                     ; Source File       ; N/A                 ;       ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 
@@ -956,12 +961,12 @@ The pin-out file can be found in /home/rodrigodog/MC613/lab2/output_files/dinoss
 +-------------------------------------------------------------+--------------------+-------+
 ; Logic utilization (ALMs needed / total ALMs on device)      ; 19 / 32,070        ; < 1 % ;
 ; ALMs needed [=A-B+C]                                        ; 19                 ;       ;
-;     [A] ALMs used in final placement [=a+b+c+d]             ; 19 / 32,070        ; < 1 % ;
-;         [a] ALMs used for LUT logic and registers           ; 10                 ;       ;
-;         [b] ALMs used for LUT logic                         ; 9                  ;       ;
+;     [A] ALMs used in final placement [=a+b+c+d]             ; 20 / 32,070        ; < 1 % ;
+;         [a] ALMs used for LUT logic and registers           ; 12                 ;       ;
+;         [b] ALMs used for LUT logic                         ; 8                  ;       ;
 ;         [c] ALMs used for registers                         ; 0                  ;       ;
 ;         [d] ALMs used for memory (up to half of total ALMs) ; 0                  ;       ;
-;     [B] Estimate of ALMs recoverable by dense packing       ; 0 / 32,070         ; 0 %   ;
+;     [B] Estimate of ALMs recoverable by dense packing       ; 1 / 32,070         ; < 1 % ;
 ;     [C] Estimate of ALMs unavailable [=a+b+c+d]             ; 0 / 32,070         ; 0 %   ;
 ;         [a] Due to location constrained logic               ; 0                  ;       ;
 ;         [b] Due to LAB-wide signal conflicts                ; 0                  ;       ;
@@ -974,21 +979,21 @@ The pin-out file can be found in /home/rodrigodog/MC613/lab2/output_files/dinoss
 ;     -- Logic LABs                                           ; 3                  ;       ;
 ;     -- Memory LABs (up to half of total LABs)               ; 0                  ;       ;
 ;                                                             ;                    ;       ;
-; Combinational ALUT usage for logic                          ; 32                 ;       ;
+; Combinational ALUT usage for logic                          ; 33                 ;       ;
 ;     -- 7 input functions                                    ; 0                  ;       ;
-;     -- 6 input functions                                    ; 3                  ;       ;
-;     -- 5 input functions                                    ; 6                  ;       ;
-;     -- 4 input functions                                    ; 2                  ;       ;
-;     -- <=3 input functions                                  ; 21                 ;       ;
+;     -- 6 input functions                                    ; 4                  ;       ;
+;     -- 5 input functions                                    ; 3                  ;       ;
+;     -- 4 input functions                                    ; 0                  ;       ;
+;     -- <=3 input functions                                  ; 26                 ;       ;
 ; Combinational ALUT usage for route-throughs                 ; 0                  ;       ;
 ;                                                             ;                    ;       ;
-; Dedicated logic registers                                   ; 21                 ;       ;
+; Dedicated logic registers                                   ; 26                 ;       ;
 ;     -- By type:                                             ;                    ;       ;
-;         -- Primary logic registers                          ; 20 / 64,140        ; < 1 % ;
-;         -- Secondary logic registers                        ; 1 / 64,140         ; < 1 % ;
+;         -- Primary logic registers                          ; 24 / 64,140        ; < 1 % ;
+;         -- Secondary logic registers                        ; 2 / 64,140         ; < 1 % ;
 ;     -- By function:                                         ;                    ;       ;
-;         -- Design implementation registers                  ; 20                 ;       ;
-;         -- Routing optimization registers                   ; 1                  ;       ;
+;         -- Design implementation registers                  ; 24                 ;       ;
+;         -- Routing optimization registers                   ; 2                  ;       ;
 ;                                                             ;                    ;       ;
 ; Virtual pins                                                ; 0                  ;       ;
 ; I/O pins                                                    ; 30 / 457           ; 7 %   ;
@@ -1044,11 +1049,11 @@ The pin-out file can be found in /home/rodrigodog/MC613/lab2/output_files/dinoss
 ; Impedance control blocks                                    ; 0 / 4              ; 0 %   ;
 ; Hard Memory Controllers                                     ; 0 / 2              ; 0 %   ;
 ; Average interconnect usage (total/H/V)                      ; 0.0% / 0.0% / 0.0% ;       ;
-; Peak interconnect usage (total/H/V)                         ; 0.0% / 0.0% / 0.0% ;       ;
-; Maximum fan-out                                             ; 22                 ;       ;
-; Highest non-global fan-out                                  ; 11                 ;       ;
-; Total fan-out                                               ; 199                ;       ;
-; Average fan-out                                             ; 1.69               ;       ;
+; Peak interconnect usage (total/H/V)                         ; 0.1% / 0.1% / 0.1% ;       ;
+; Maximum fan-out                                             ; 27                 ;       ;
+; Highest non-global fan-out                                  ; 22                 ;       ;
+; Total fan-out                                               ; 232                ;       ;
+; Average fan-out                                             ; 1.87               ;       ;
 +-------------------------------------------------------------+--------------------+-------+
 
 
@@ -1059,12 +1064,12 @@ The pin-out file can be found in /home/rodrigodog/MC613/lab2/output_files/dinoss
 +-------------------------------------------------------------+----------------------+--------------------------------+
 ; Logic utilization (ALMs needed / total ALMs on device)      ; 19 / 32070 ( < 1 % ) ; 0 / 32070 ( 0 % )              ;
 ; ALMs needed [=A-B+C]                                        ; 19                   ; 0                              ;
-;     [A] ALMs used in final placement [=a+b+c+d]             ; 19 / 32070 ( < 1 % ) ; 0 / 32070 ( 0 % )              ;
-;         [a] ALMs used for LUT logic and registers           ; 10                   ; 0                              ;
-;         [b] ALMs used for LUT logic                         ; 9                    ; 0                              ;
+;     [A] ALMs used in final placement [=a+b+c+d]             ; 20 / 32070 ( < 1 % ) ; 0 / 32070 ( 0 % )              ;
+;         [a] ALMs used for LUT logic and registers           ; 12                   ; 0                              ;
+;         [b] ALMs used for LUT logic                         ; 8                    ; 0                              ;
 ;         [c] ALMs used for registers                         ; 0                    ; 0                              ;
 ;         [d] ALMs used for memory (up to half of total ALMs) ; 0                    ; 0                              ;
-;     [B] Estimate of ALMs recoverable by dense packing       ; 0 / 32070 ( 0 % )    ; 0 / 32070 ( 0 % )              ;
+;     [B] Estimate of ALMs recoverable by dense packing       ; 1 / 32070 ( < 1 % )  ; 0 / 32070 ( 0 % )              ;
 ;     [C] Estimate of ALMs unavailable [=a+b+c+d]             ; 0 / 32070 ( 0 % )    ; 0 / 32070 ( 0 % )              ;
 ;         [a] Due to location constrained logic               ; 0                    ; 0                              ;
 ;         [b] Due to LAB-wide signal conflicts                ; 0                    ; 0                              ;
@@ -1077,12 +1082,12 @@ The pin-out file can be found in /home/rodrigodog/MC613/lab2/output_files/dinoss
 ;     -- Logic LABs                                           ; 3                    ; 0                              ;
 ;     -- Memory LABs (up to half of total LABs)               ; 0                    ; 0                              ;
 ;                                                             ;                      ;                                ;
-; Combinational ALUT usage for logic                          ; 32                   ; 0                              ;
+; Combinational ALUT usage for logic                          ; 33                   ; 0                              ;
 ;     -- 7 input functions                                    ; 0                    ; 0                              ;
-;     -- 6 input functions                                    ; 3                    ; 0                              ;
-;     -- 5 input functions                                    ; 6                    ; 0                              ;
-;     -- 4 input functions                                    ; 2                    ; 0                              ;
-;     -- <=3 input functions                                  ; 21                   ; 0                              ;
+;     -- 6 input functions                                    ; 4                    ; 0                              ;
+;     -- 5 input functions                                    ; 3                    ; 0                              ;
+;     -- 4 input functions                                    ; 0                    ; 0                              ;
+;     -- <=3 input functions                                  ; 26                   ; 0                              ;
 ; Combinational ALUT usage for route-throughs                 ; 0                    ; 0                              ;
 ; Memory ALUT usage                                           ; 0                    ; 0                              ;
 ;     -- 64-address deep                                      ; 0                    ; 0                              ;
@@ -1090,11 +1095,11 @@ The pin-out file can be found in /home/rodrigodog/MC613/lab2/output_files/dinoss
 ;                                                             ;                      ;                                ;
 ; Dedicated logic registers                                   ; 0                    ; 0                              ;
 ;     -- By type:                                             ;                      ;                                ;
-;         -- Primary logic registers                          ; 20 / 64140 ( < 1 % ) ; 0 / 64140 ( 0 % )              ;
-;         -- Secondary logic registers                        ; 1 / 64140 ( < 1 % )  ; 0 / 64140 ( 0 % )              ;
+;         -- Primary logic registers                          ; 24 / 64140 ( < 1 % ) ; 0 / 64140 ( 0 % )              ;
+;         -- Secondary logic registers                        ; 2 / 64140 ( < 1 % )  ; 0 / 64140 ( 0 % )              ;
 ;     -- By function:                                         ;                      ;                                ;
-;         -- Design implementation registers                  ; 20                   ; 0                              ;
-;         -- Routing optimization registers                   ; 1                    ; 0                              ;
+;         -- Design implementation registers                  ; 24                   ; 0                              ;
+;         -- Routing optimization registers                   ; 2                    ; 0                              ;
 ;                                                             ;                      ;                                ;
 ;                                                             ;                      ;                                ;
 ; Virtual pins                                                ; 0                    ; 0                              ;
@@ -1109,18 +1114,18 @@ The pin-out file can be found in /home/rodrigodog/MC613/lab2/output_files/dinoss
 ; PLL Reference Clock Select Block                            ; 0 / 6 ( 0 % )        ; 1 / 6 ( 16 % )                 ;
 ;                                                             ;                      ;                                ;
 ; Connections                                                 ;                      ;                                ;
-;     -- Input Connections                                    ; 21                   ; 0                              ;
-;     -- Registered Input Connections                         ; 21                   ; 0                              ;
-;     -- Output Connections                                   ; 0                    ; 21                             ;
+;     -- Input Connections                                    ; 26                   ; 0                              ;
+;     -- Registered Input Connections                         ; 26                   ; 0                              ;
+;     -- Output Connections                                   ; 0                    ; 26                             ;
 ;     -- Registered Output Connections                        ; 0                    ; 0                              ;
 ;                                                             ;                      ;                                ;
 ; Internal Connections                                        ;                      ;                                ;
-;     -- Total Connections                                    ; 188                  ; 55                             ;
-;     -- Registered Connections                               ; 89                   ; 0                              ;
+;     -- Total Connections                                    ; 221                  ; 60                             ;
+;     -- Registered Connections                               ; 92                   ; 0                              ;
 ;                                                             ;                      ;                                ;
 ; External Connections                                        ;                      ;                                ;
-;     -- Top                                                  ; 0                    ; 21                             ;
-;     -- hard_block:auto_generated_inst                       ; 21                   ; 0                              ;
+;     -- Top                                                  ; 0                    ; 26                             ;
+;     -- hard_block:auto_generated_inst                       ; 26                   ; 0                              ;
 ;                                                             ;                      ;                                ;
 ; Partition Interface                                         ;                      ;                                ;
 ;     -- Input Ports                                          ; 1                    ; 1                              ;
@@ -2164,17 +2169,17 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 ;     -- PLL Location                                                                             ; FRACTIONALPLL_X0_Y15_N0    ;
 ;     -- PLL Feedback clock type                                                                  ; none                       ;
 ;     -- PLL Bandwidth                                                                            ; Auto                       ;
-;         -- PLL Bandwidth Range                                                                  ; 800000 to 400000 Hz        ;
-;     -- Reference Clock Frequency                                                                ; 100.0 MHz                  ;
+;         -- PLL Bandwidth Range                                                                  ; 300000 to 100000 Hz        ;
+;     -- Reference Clock Frequency                                                                ; 50.0 MHz                   ;
 ;     -- Reference Clock Sourced by                                                               ; Dedicated Pin              ;
-;     -- PLL VCO Frequency                                                                        ; 327.272727 MHz             ;
+;     -- PLL VCO Frequency                                                                        ; 1535.714285 MHz            ;
 ;     -- PLL Operation Mode                                                                       ; Direct                     ;
-;     -- PLL Freq Min Lock                                                                        ; 91.666667 MHz              ;
-;     -- PLL Freq Max Lock                                                                        ; 244.444444 MHz             ;
+;     -- PLL Freq Min Lock                                                                        ; 35.000000 MHz              ;
+;     -- PLL Freq Max Lock                                                                        ; 52.093023 MHz              ;
 ;     -- PLL Enable                                                                               ; On                         ;
 ;     -- PLL Fractional Division                                                                  ; N/A                        ;
-;     -- M Counter                                                                                ; 36                         ;
-;     -- N Counter                                                                                ; 11                         ;
+;     -- M Counter                                                                                ; 215                        ;
+;     -- N Counter                                                                                ; 7                          ;
 ;     -- PLL Refclk Select                                                                        ;                            ;
 ;             -- PLL Refclk Select Location                                                       ; PLLREFCLKSELECT_X0_Y21_N0  ;
 ;             -- PLL Reference Clock Input 0 source                                               ; clk_0                      ;
@@ -2190,12 +2195,12 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 ;             -- CLKIN(3) source                                                                  ; N/A                        ;
 ;     -- PLL Output Counter                                                                       ;                            ;
 ;         -- pll:clk|pll_0002:pll_inst|altera_pll:altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER ;                            ;
-;             -- Output Clock Frequency                                                           ; 25.174825 MHz              ;
+;             -- Output Clock Frequency                                                           ; 25.175644 MHz              ;
 ;             -- Output Clock Location                                                            ; PLLOUTPUTCOUNTER_X0_Y20_N1 ;
 ;             -- C Counter Odd Divider Even Duty Enable                                           ; On                         ;
 ;             -- Duty Cycle                                                                       ; 50.0000                    ;
 ;             -- Phase Shift                                                                      ; 0.000000 degrees           ;
-;             -- C Counter                                                                        ; 13                         ;
+;             -- C Counter                                                                        ; 61                         ;
 ;             -- C Counter PH Mux PRST                                                            ; 0                          ;
 ;             -- C Counter PRST                                                                   ; 1                          ;
 ;                                                                                                 ;                            ;
@@ -2207,7 +2212,8 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 +------------------------------------+----------------------+----------------------------------+---------------------------------------------------+----------------------------------+----------------------+---------------------+---------------------------+---------------+-------------------+-------+------------+------+--------------+-------------------------------------------------------------------+----------------+--------------+
 ; Compilation Hierarchy Node         ; ALMs needed [=A-B+C] ; [A] ALMs used in final placement ; [B] Estimate of ALMs recoverable by dense packing ; [C] Estimate of ALMs unavailable ; ALMs used for memory ; Combinational ALUTs ; Dedicated Logic Registers ; I/O Registers ; Block Memory Bits ; M10Ks ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                               ; Entity Name    ; Library Name ;
 +------------------------------------+----------------------+----------------------------------+---------------------------------------------------+----------------------------------+----------------------+---------------------+---------------------------+---------------+-------------------+-------+------------+------+--------------+-------------------------------------------------------------------+----------------+--------------+
-; |dinossaur_game                    ; 19.0 (19.0)          ; 19.0 (19.0)                      ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 32 (32)             ; 21 (21)                   ; 0 (0)         ; 0                 ; 0     ; 0          ; 30   ; 0            ; |dinossaur_game                                                   ; dinossaur_game ; work         ;
+; |dinossaur_game                    ; 18.5 (0.5)           ; 19.5 (0.5)                       ; 1.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 33 (1)              ; 26 (0)                    ; 0 (0)         ; 0                 ; 0     ; 0          ; 30   ; 0            ; |dinossaur_game                                                   ; dinossaur_game ; work         ;
+;    |VGA:vga_inst|                  ; 18.0 (18.0)          ; 19.0 (19.0)                      ; 1.0 (1.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 32 (32)             ; 26 (26)                   ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |dinossaur_game|VGA:vga_inst                                      ; VGA            ; work         ;
 ;    |pll:clk|                       ; 0.0 (0.0)            ; 0.0 (0.0)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 0 (0)               ; 0 (0)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |dinossaur_game|pll:clk                                           ; pll            ; pll          ;
 ;       |pll_0002:pll_inst|          ; 0.0 (0.0)            ; 0.0 (0.0)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 0 (0)               ; 0 (0)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |dinossaur_game|pll:clk|pll_0002:pll_inst                         ; pll_0002       ; pll          ;
 ;          |altera_pll:altera_pll_i| ; 0.0 (0.0)            ; 0.0 (0.0)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 0 (0)               ; 0 (0)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |dinossaur_game|pll:clk|pll_0002:pll_inst|altera_pll:altera_pll_i ; altera_pll     ; work         ;
@@ -2262,15 +2268,15 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------------------+-------------------+---------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Control Signals                                                                                                                                                                                      ;
-+------------------------------------------------------------------+----------------------------+---------+-------------+--------+----------------------+------------------+---------------------------+
-; Name                                                             ; Location                   ; Fan-Out ; Usage       ; Global ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
-+------------------------------------------------------------------+----------------------------+---------+-------------+--------+----------------------+------------------+---------------------------+
-; Equal0~1                                                         ; LABCELL_X29_Y80_N18        ; 10      ; Sync. clear ; no     ; --                   ; --               ; --                        ;
-; Equal1~1                                                         ; MLABCELL_X28_Y80_N12       ; 11      ; Sync. clear ; no     ; --                   ; --               ; --                        ;
-; pll:clk|pll_0002:pll_inst|altera_pll:altera_pll_i|outclk_wire[0] ; PLLOUTPUTCOUNTER_X0_Y20_N1 ; 22      ; Clock       ; yes    ; Global Clock         ; GCLK6            ; --                        ;
-+------------------------------------------------------------------+----------------------------+---------+-------------+--------+----------------------+------------------+---------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Control Signals                                                                                                                                                                                                    ;
++------------------------------------------------------------------+----------------------------+---------+---------------------------+--------+----------------------+------------------+---------------------------+
+; Name                                                             ; Location                   ; Fan-Out ; Usage                     ; Global ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
++------------------------------------------------------------------+----------------------------+---------+---------------------------+--------+----------------------+------------------+---------------------------+
+; VGA:vga_inst|Equal0~0                                            ; LABCELL_X36_Y79_N12        ; 22      ; Clock enable, Sync. clear ; no     ; --                   ; --               ; --                        ;
+; VGA:vga_inst|Equal1~2                                            ; LABCELL_X35_Y79_N18        ; 11      ; Sync. clear               ; no     ; --                   ; --               ; --                        ;
+; pll:clk|pll_0002:pll_inst|altera_pll:altera_pll_i|outclk_wire[0] ; PLLOUTPUTCOUNTER_X0_Y20_N1 ; 27      ; Clock                     ; yes    ; Global Clock         ; GCLK6            ; --                        ;
++------------------------------------------------------------------+----------------------------+---------+---------------------------+--------+----------------------+------------------+---------------------------+
 
 
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -2278,87 +2284,87 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +------------------------------------------------------------------+----------------------------+---------+----------------------+------------------+---------------------------+
 ; Name                                                             ; Location                   ; Fan-Out ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
 +------------------------------------------------------------------+----------------------------+---------+----------------------+------------------+---------------------------+
-; pll:clk|pll_0002:pll_inst|altera_pll:altera_pll_i|outclk_wire[0] ; PLLOUTPUTCOUNTER_X0_Y20_N1 ; 22      ; Global Clock         ; GCLK6            ; --                        ;
+; pll:clk|pll_0002:pll_inst|altera_pll:altera_pll_i|outclk_wire[0] ; PLLOUTPUTCOUNTER_X0_Y20_N1 ; 27      ; Global Clock         ; GCLK6            ; --                        ;
 +------------------------------------------------------------------+----------------------------+---------+----------------------+------------------+---------------------------+
 
 
-+---------------------------------------------------------------------+
-; Routing Usage Summary                                               ;
-+---------------------------------------------+-----------------------+
-; Routing Resource Type                       ; Usage                 ;
-+---------------------------------------------+-----------------------+
-; Block interconnects                         ; 9 / 289,320 ( < 1 % ) ;
-; C12 interconnects                           ; 0 / 13,420 ( 0 % )    ;
-; C2 interconnects                            ; 3 / 119,108 ( < 1 % ) ;
-; C4 interconnects                            ; 0 / 56,300 ( 0 % )    ;
-; DQS bus muxes                               ; 0 / 25 ( 0 % )        ;
-; DQS-18 I/O buses                            ; 0 / 25 ( 0 % )        ;
-; DQS-9 I/O buses                             ; 0 / 25 ( 0 % )        ;
-; Direct links                                ; 5 / 289,320 ( < 1 % ) ;
-; Global clocks                               ; 1 / 16 ( 6 % )        ;
-; HPS SDRAM PLL inputs                        ; 0 / 1 ( 0 % )         ;
-; HPS SDRAM PLL outputs                       ; 0 / 1 ( 0 % )         ;
-; HPS_INTERFACE_BOOT_FROM_FPGA_INPUTs         ; 0 / 9 ( 0 % )         ;
-; HPS_INTERFACE_CLOCKS_RESETS_INPUTs          ; 0 / 7 ( 0 % )         ;
-; HPS_INTERFACE_CLOCKS_RESETS_OUTPUTs         ; 0 / 6 ( 0 % )         ;
-; HPS_INTERFACE_CROSS_TRIGGER_INPUTs          ; 0 / 18 ( 0 % )        ;
-; HPS_INTERFACE_CROSS_TRIGGER_OUTPUTs         ; 0 / 24 ( 0 % )        ;
-; HPS_INTERFACE_DBG_APB_INPUTs                ; 0 / 37 ( 0 % )        ;
-; HPS_INTERFACE_DBG_APB_OUTPUTs               ; 0 / 55 ( 0 % )        ;
-; HPS_INTERFACE_DMA_INPUTs                    ; 0 / 16 ( 0 % )        ;
-; HPS_INTERFACE_DMA_OUTPUTs                   ; 0 / 8 ( 0 % )         ;
-; HPS_INTERFACE_FPGA2HPS_INPUTs               ; 0 / 287 ( 0 % )       ;
-; HPS_INTERFACE_FPGA2HPS_OUTPUTs              ; 0 / 154 ( 0 % )       ;
-; HPS_INTERFACE_FPGA2SDRAM_INPUTs             ; 0 / 852 ( 0 % )       ;
-; HPS_INTERFACE_FPGA2SDRAM_OUTPUTs            ; 0 / 408 ( 0 % )       ;
-; HPS_INTERFACE_HPS2FPGA_INPUTs               ; 0 / 165 ( 0 % )       ;
-; HPS_INTERFACE_HPS2FPGA_LIGHT_WEIGHT_INPUTs  ; 0 / 67 ( 0 % )        ;
-; HPS_INTERFACE_HPS2FPGA_LIGHT_WEIGHT_OUTPUTs ; 0 / 156 ( 0 % )       ;
-; HPS_INTERFACE_HPS2FPGA_OUTPUTs              ; 0 / 282 ( 0 % )       ;
-; HPS_INTERFACE_INTERRUPTS_INPUTs             ; 0 / 64 ( 0 % )        ;
-; HPS_INTERFACE_INTERRUPTS_OUTPUTs            ; 0 / 42 ( 0 % )        ;
-; HPS_INTERFACE_JTAG_OUTPUTs                  ; 0 / 5 ( 0 % )         ;
-; HPS_INTERFACE_LOAN_IO_INPUTs                ; 0 / 142 ( 0 % )       ;
-; HPS_INTERFACE_LOAN_IO_OUTPUTs               ; 0 / 85 ( 0 % )        ;
-; HPS_INTERFACE_MPU_EVENT_STANDBY_INPUTs      ; 0 / 1 ( 0 % )         ;
-; HPS_INTERFACE_MPU_EVENT_STANDBY_OUTPUTs     ; 0 / 5 ( 0 % )         ;
-; HPS_INTERFACE_MPU_GENERAL_PURPOSE_INPUTs    ; 0 / 32 ( 0 % )        ;
-; HPS_INTERFACE_MPU_GENERAL_PURPOSE_OUTPUTs   ; 0 / 32 ( 0 % )        ;
-; HPS_INTERFACE_PERIPHERAL_CAN_INPUTs         ; 0 / 2 ( 0 % )         ;
-; HPS_INTERFACE_PERIPHERAL_CAN_OUTPUTs        ; 0 / 2 ( 0 % )         ;
-; HPS_INTERFACE_PERIPHERAL_EMAC_INPUTs        ; 0 / 32 ( 0 % )        ;
-; HPS_INTERFACE_PERIPHERAL_EMAC_OUTPUTs       ; 0 / 34 ( 0 % )        ;
-; HPS_INTERFACE_PERIPHERAL_I2C_INPUTs         ; 0 / 8 ( 0 % )         ;
-; HPS_INTERFACE_PERIPHERAL_I2C_OUTPUTs        ; 0 / 8 ( 0 % )         ;
-; HPS_INTERFACE_PERIPHERAL_NAND_INPUTs        ; 0 / 12 ( 0 % )        ;
-; HPS_INTERFACE_PERIPHERAL_NAND_OUTPUTs       ; 0 / 18 ( 0 % )        ;
-; HPS_INTERFACE_PERIPHERAL_QSPI_INPUTs        ; 0 / 4 ( 0 % )         ;
-; HPS_INTERFACE_PERIPHERAL_QSPI_OUTPUTs       ; 0 / 13 ( 0 % )        ;
-; HPS_INTERFACE_PERIPHERAL_SDMMC_INPUTs       ; 0 / 13 ( 0 % )        ;
-; HPS_INTERFACE_PERIPHERAL_SDMMC_OUTPUTs      ; 0 / 22 ( 0 % )        ;
-; HPS_INTERFACE_PERIPHERAL_SPI_MASTER_INPUTs  ; 0 / 4 ( 0 % )         ;
-; HPS_INTERFACE_PERIPHERAL_SPI_MASTER_OUTPUTs ; 0 / 14 ( 0 % )        ;
-; HPS_INTERFACE_PERIPHERAL_SPI_SLAVE_INPUTs   ; 0 / 6 ( 0 % )         ;
-; HPS_INTERFACE_PERIPHERAL_SPI_SLAVE_OUTPUTs  ; 0 / 4 ( 0 % )         ;
-; HPS_INTERFACE_PERIPHERAL_UART_INPUTs        ; 0 / 10 ( 0 % )        ;
-; HPS_INTERFACE_PERIPHERAL_UART_OUTPUTs       ; 0 / 10 ( 0 % )        ;
-; HPS_INTERFACE_PERIPHERAL_USB_INPUTs         ; 0 / 22 ( 0 % )        ;
-; HPS_INTERFACE_PERIPHERAL_USB_OUTPUTs        ; 0 / 34 ( 0 % )        ;
-; HPS_INTERFACE_STM_EVENT_INPUTs              ; 0 / 28 ( 0 % )        ;
-; HPS_INTERFACE_TEST_INPUTs                   ; 0 / 610 ( 0 % )       ;
-; HPS_INTERFACE_TEST_OUTPUTs                  ; 0 / 513 ( 0 % )       ;
-; HPS_INTERFACE_TPIU_TRACE_INPUTs             ; 0 / 2 ( 0 % )         ;
-; HPS_INTERFACE_TPIU_TRACE_OUTPUTs            ; 0 / 33 ( 0 % )        ;
-; Horizontal periphery clocks                 ; 0 / 72 ( 0 % )        ;
-; Local interconnects                         ; 24 / 84,580 ( < 1 % ) ;
-; Quadrant clocks                             ; 0 / 66 ( 0 % )        ;
-; R14 interconnects                           ; 2 / 12,676 ( < 1 % )  ;
-; R14/C12 interconnect drivers                ; 2 / 20,720 ( < 1 % )  ;
-; R3 interconnects                            ; 5 / 130,992 ( < 1 % ) ;
-; R6 interconnects                            ; 0 / 266,960 ( 0 % )   ;
-; Spine clocks                                ; 1 / 360 ( < 1 % )     ;
-; Wire stub REs                               ; 0 / 15,858 ( 0 % )    ;
-+---------------------------------------------+-----------------------+
++----------------------------------------------------------------------+
+; Routing Usage Summary                                                ;
++---------------------------------------------+------------------------+
+; Routing Resource Type                       ; Usage                  ;
++---------------------------------------------+------------------------+
+; Block interconnects                         ; 30 / 289,320 ( < 1 % ) ;
+; C12 interconnects                           ; 0 / 13,420 ( 0 % )     ;
+; C2 interconnects                            ; 10 / 119,108 ( < 1 % ) ;
+; C4 interconnects                            ; 4 / 56,300 ( < 1 % )   ;
+; DQS bus muxes                               ; 0 / 25 ( 0 % )         ;
+; DQS-18 I/O buses                            ; 0 / 25 ( 0 % )         ;
+; DQS-9 I/O buses                             ; 0 / 25 ( 0 % )         ;
+; Direct links                                ; 5 / 289,320 ( < 1 % )  ;
+; Global clocks                               ; 1 / 16 ( 6 % )         ;
+; HPS SDRAM PLL inputs                        ; 0 / 1 ( 0 % )          ;
+; HPS SDRAM PLL outputs                       ; 0 / 1 ( 0 % )          ;
+; HPS_INTERFACE_BOOT_FROM_FPGA_INPUTs         ; 0 / 9 ( 0 % )          ;
+; HPS_INTERFACE_CLOCKS_RESETS_INPUTs          ; 0 / 7 ( 0 % )          ;
+; HPS_INTERFACE_CLOCKS_RESETS_OUTPUTs         ; 0 / 6 ( 0 % )          ;
+; HPS_INTERFACE_CROSS_TRIGGER_INPUTs          ; 0 / 18 ( 0 % )         ;
+; HPS_INTERFACE_CROSS_TRIGGER_OUTPUTs         ; 0 / 24 ( 0 % )         ;
+; HPS_INTERFACE_DBG_APB_INPUTs                ; 0 / 37 ( 0 % )         ;
+; HPS_INTERFACE_DBG_APB_OUTPUTs               ; 0 / 55 ( 0 % )         ;
+; HPS_INTERFACE_DMA_INPUTs                    ; 0 / 16 ( 0 % )         ;
+; HPS_INTERFACE_DMA_OUTPUTs                   ; 0 / 8 ( 0 % )          ;
+; HPS_INTERFACE_FPGA2HPS_INPUTs               ; 0 / 287 ( 0 % )        ;
+; HPS_INTERFACE_FPGA2HPS_OUTPUTs              ; 0 / 154 ( 0 % )        ;
+; HPS_INTERFACE_FPGA2SDRAM_INPUTs             ; 0 / 852 ( 0 % )        ;
+; HPS_INTERFACE_FPGA2SDRAM_OUTPUTs            ; 0 / 408 ( 0 % )        ;
+; HPS_INTERFACE_HPS2FPGA_INPUTs               ; 0 / 165 ( 0 % )        ;
+; HPS_INTERFACE_HPS2FPGA_LIGHT_WEIGHT_INPUTs  ; 0 / 67 ( 0 % )         ;
+; HPS_INTERFACE_HPS2FPGA_LIGHT_WEIGHT_OUTPUTs ; 0 / 156 ( 0 % )        ;
+; HPS_INTERFACE_HPS2FPGA_OUTPUTs              ; 0 / 282 ( 0 % )        ;
+; HPS_INTERFACE_INTERRUPTS_INPUTs             ; 0 / 64 ( 0 % )         ;
+; HPS_INTERFACE_INTERRUPTS_OUTPUTs            ; 0 / 42 ( 0 % )         ;
+; HPS_INTERFACE_JTAG_OUTPUTs                  ; 0 / 5 ( 0 % )          ;
+; HPS_INTERFACE_LOAN_IO_INPUTs                ; 0 / 142 ( 0 % )        ;
+; HPS_INTERFACE_LOAN_IO_OUTPUTs               ; 0 / 85 ( 0 % )         ;
+; HPS_INTERFACE_MPU_EVENT_STANDBY_INPUTs      ; 0 / 1 ( 0 % )          ;
+; HPS_INTERFACE_MPU_EVENT_STANDBY_OUTPUTs     ; 0 / 5 ( 0 % )          ;
+; HPS_INTERFACE_MPU_GENERAL_PURPOSE_INPUTs    ; 0 / 32 ( 0 % )         ;
+; HPS_INTERFACE_MPU_GENERAL_PURPOSE_OUTPUTs   ; 0 / 32 ( 0 % )         ;
+; HPS_INTERFACE_PERIPHERAL_CAN_INPUTs         ; 0 / 2 ( 0 % )          ;
+; HPS_INTERFACE_PERIPHERAL_CAN_OUTPUTs        ; 0 / 2 ( 0 % )          ;
+; HPS_INTERFACE_PERIPHERAL_EMAC_INPUTs        ; 0 / 32 ( 0 % )         ;
+; HPS_INTERFACE_PERIPHERAL_EMAC_OUTPUTs       ; 0 / 34 ( 0 % )         ;
+; HPS_INTERFACE_PERIPHERAL_I2C_INPUTs         ; 0 / 8 ( 0 % )          ;
+; HPS_INTERFACE_PERIPHERAL_I2C_OUTPUTs        ; 0 / 8 ( 0 % )          ;
+; HPS_INTERFACE_PERIPHERAL_NAND_INPUTs        ; 0 / 12 ( 0 % )         ;
+; HPS_INTERFACE_PERIPHERAL_NAND_OUTPUTs       ; 0 / 18 ( 0 % )         ;
+; HPS_INTERFACE_PERIPHERAL_QSPI_INPUTs        ; 0 / 4 ( 0 % )          ;
+; HPS_INTERFACE_PERIPHERAL_QSPI_OUTPUTs       ; 0 / 13 ( 0 % )         ;
+; HPS_INTERFACE_PERIPHERAL_SDMMC_INPUTs       ; 0 / 13 ( 0 % )         ;
+; HPS_INTERFACE_PERIPHERAL_SDMMC_OUTPUTs      ; 0 / 22 ( 0 % )         ;
+; HPS_INTERFACE_PERIPHERAL_SPI_MASTER_INPUTs  ; 0 / 4 ( 0 % )          ;
+; HPS_INTERFACE_PERIPHERAL_SPI_MASTER_OUTPUTs ; 0 / 14 ( 0 % )         ;
+; HPS_INTERFACE_PERIPHERAL_SPI_SLAVE_INPUTs   ; 0 / 6 ( 0 % )          ;
+; HPS_INTERFACE_PERIPHERAL_SPI_SLAVE_OUTPUTs  ; 0 / 4 ( 0 % )          ;
+; HPS_INTERFACE_PERIPHERAL_UART_INPUTs        ; 0 / 10 ( 0 % )         ;
+; HPS_INTERFACE_PERIPHERAL_UART_OUTPUTs       ; 0 / 10 ( 0 % )         ;
+; HPS_INTERFACE_PERIPHERAL_USB_INPUTs         ; 0 / 22 ( 0 % )         ;
+; HPS_INTERFACE_PERIPHERAL_USB_OUTPUTs        ; 0 / 34 ( 0 % )         ;
+; HPS_INTERFACE_STM_EVENT_INPUTs              ; 0 / 28 ( 0 % )         ;
+; HPS_INTERFACE_TEST_INPUTs                   ; 0 / 610 ( 0 % )        ;
+; HPS_INTERFACE_TEST_OUTPUTs                  ; 0 / 513 ( 0 % )        ;
+; HPS_INTERFACE_TPIU_TRACE_INPUTs             ; 0 / 2 ( 0 % )          ;
+; HPS_INTERFACE_TPIU_TRACE_OUTPUTs            ; 0 / 33 ( 0 % )         ;
+; Horizontal periphery clocks                 ; 0 / 72 ( 0 % )         ;
+; Local interconnects                         ; 25 / 84,580 ( < 1 % )  ;
+; Quadrant clocks                             ; 0 / 66 ( 0 % )         ;
+; R14 interconnects                           ; 2 / 12,676 ( < 1 % )   ;
+; R14/C12 interconnect drivers                ; 2 / 20,720 ( < 1 % )   ;
+; R3 interconnects                            ; 12 / 130,992 ( < 1 % ) ;
+; R6 interconnects                            ; 2 / 266,960 ( < 1 % )  ;
+; Spine clocks                                ; 1 / 360 ( < 1 % )      ;
+; Wire stub REs                               ; 0 / 15,858 ( 0 % )     ;
++---------------------------------------------+------------------------+
 
 
 +------------------------------------------+
@@ -2494,6 +2500,41 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Low Junction Temperature  ; 0 °C   ;
 ; High Junction Temperature ; 85 °C  ;
 +---------------------------+--------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Estimated Delay Added for Hold Timing Summary                                                                                                                 ;
++---------------------------------------------------------------------+---------------------------------------------------------------------+-------------------+
+; Source Clock(s)                                                     ; Destination Clock(s)                                                ; Delay Added in ns ;
++---------------------------------------------------------------------+---------------------------------------------------------------------+-------------------+
+; clk|pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; clk|pll_inst|altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER|divclk ; 2.5               ;
++---------------------------------------------------------------------+---------------------------------------------------------------------+-------------------+
+Note: For more information on problematic transfers, consider running the Fitter again with the Optimize hold timing option (Settings Menu) turned off.
+This will disable optimization of problematic paths and expose them for further analysis using the Timing Analyzer.
+
+
++--------------------------------------------------------------------+
+; Estimated Delay Added for Hold Timing Details                      ;
++-------------------------+----------------------+-------------------+
+; Source Register         ; Destination Register ; Delay Added in ns ;
++-------------------------+----------------------+-------------------+
+; VGA:vga_inst|count_y[7] ; VGA:vga_inst|VGA_VS  ; 0.287             ;
+; VGA:vga_inst|count_y[6] ; VGA:vga_inst|VGA_VS  ; 0.287             ;
+; VGA:vga_inst|count_y[5] ; VGA:vga_inst|VGA_VS  ; 0.287             ;
+; VGA:vga_inst|count_y[8] ; VGA:vga_inst|VGA_VS  ; 0.287             ;
+; VGA:vga_inst|count_y[2] ; VGA:vga_inst|VGA_VS  ; 0.287             ;
+; VGA:vga_inst|count_y[4] ; VGA:vga_inst|VGA_VS  ; 0.287             ;
+; VGA:vga_inst|count_x[4] ; VGA:vga_inst|x_act   ; 0.270             ;
+; VGA:vga_inst|count_x[7] ; VGA:vga_inst|x_act   ; 0.266             ;
+; VGA:vga_inst|count_x[6] ; VGA:vga_inst|VGA_HS  ; 0.249             ;
+; VGA:vga_inst|count_y[0] ; VGA:vga_inst|y_act   ; 0.247             ;
+; VGA:vga_inst|count_x[9] ; VGA:vga_inst|x_act   ; 0.142             ;
+; VGA:vga_inst|count_y[9] ; VGA:vga_inst|y_act   ; 0.077             ;
+; VGA:vga_inst|count_y[3] ; VGA:vga_inst|VGA_VS  ; 0.069             ;
+; VGA:vga_inst|count_y[1] ; VGA:vga_inst|VGA_VS  ; 0.069             ;
+; VGA:vga_inst|count_x[8] ; VGA:vga_inst|x_act   ; 0.064             ;
++-------------------------+----------------------+-------------------+
+Note: This table only shows the top 15 path(s) that have the largest delay added for hold.
 
 
 +-----------------+
@@ -3074,8 +3115,8 @@ Warning (20013): Ignored 571 assignments for entity "DE1_SoC" -- entity does not
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 10 of the 10 processors detected
 Info (119006): Selected device 5CSEMA5F31C6 for design "dinossaur_game"
-Info (21076): High junction temperature operating condition is not set. Assuming a default value of '85'.
-Info (21076): Low junction temperature operating condition is not set. Assuming a default value of '0'.
+Info (21077): Low junction temperature is 0 degrees C
+Info (21077): High junction temperature is 85 degrees C
 Warning: RST port on the PLL is not properly connected on instance pll:clk|pll_0002:pll_inst|altera_pll:altera_pll_i|general[0].gpll. The reset port on the PLL should be connected. If the PLL loses lock for any reason, you might need to manually reset the PLL in order to re-establish lock to the reference clock. File: /home/rodrigodog/intelFPGA_lite/20.1/quartus/libraries/megafunctions/altera_pll.v Line: 749
     Info: Must be connected
 Warning (21300): LOCKED port on the PLL is not properly connected on instance "pll:clk|pll_0002:pll_inst|altera_pll:altera_pll_i|general[0].gpll". The LOCKED port on the PLL should be connected when the FBOUTCLK port is connected. Although it is unnecessary to connect the LOCKED signal, any logic driven off of an output clock of the PLL will not know when the PLL is locked and ready.
@@ -3084,7 +3125,7 @@ Warning (292013): Feature LogicLock is only available with a valid subscription 
 Warning (15714): Some pins have incomplete I/O assignments. Refer to the I/O Assignment Warnings report for details
 Info (184020): Starting Fitter periphery placement operations
 Info (11178): Promoted 1 clock (1 global)
-    Info (11162): pll:clk|pll_0002:pll_inst|altera_pll:altera_pll_i|outclk_wire[0]~CLKENA0 with 21 fanout uses global clock CLKCTRL_G6
+    Info (11162): pll:clk|pll_0002:pll_inst|altera_pll:altera_pll_i|outclk_wire[0]~CLKENA0 with 25 fanout uses global clock CLKCTRL_G6
 Info (184021): Fitter periphery placement operations ending: elapsed time is 00:00:00
 Critical Warning (332012): Synopsys Design Constraints File file not found: 'dinossaur_game.sdc'. A Synopsys Design Constraints File is required by the Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
 Info (332144): No user constrained generated clocks found in the design
@@ -3329,7 +3370,7 @@ Warning (15705): Ignored locations or region assignments to the following nodes
     Warning (15706): Node "USB_SCL" is assigned to location or region, but does not exist in design
     Warning (15706): Node "USB_SDA" is assigned to location or region, but does not exist in design
     Warning (15706): Node "USB_WR_N" is assigned to location or region, but does not exist in design
-Info (11798): Fitter preparation operations ending: elapsed time is 00:00:12
+Info (11798): Fitter preparation operations ending: elapsed time is 00:00:13
 Info (170189): Fitter placement preparation operations beginning
 Info (14951): The Fitter is using Advanced Physical Optimization.
 Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:02
@@ -3338,24 +3379,24 @@ Info (170137): Fitter placement was successful
 Info (170192): Fitter placement operations ending: elapsed time is 00:00:01
 Info (170193): Fitter routing operations beginning
 Info (170195): Router estimated average interconnect usage is 0% of the available device resources
-    Info (170196): Router estimated peak interconnect usage is 0% of the available device resources in the region that extends from location X11_Y70 to location X21_Y81
+    Info (170196): Router estimated peak interconnect usage is 0% of the available device resources in the region that extends from location X33_Y70 to location X44_Y81
 Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info (170201): Optimizations that may affect the design's routability were skipped
     Info (170200): Optimizations that may affect the design's timing were skipped
 Info (170194): Fitter routing operations ending: elapsed time is 00:00:01
-Info (11888): Total time spent on timing analysis during the Fitter is 0.35 seconds.
+Info (11888): Total time spent on timing analysis during the Fitter is 0.41 seconds.
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
-Info (11801): Fitter post-fit operations ending: elapsed time is 00:00:03
+Info (11801): Fitter post-fit operations ending: elapsed time is 00:00:04
 Warning (171167): Found invalid Fitter assignments. See the Ignored Assignments panel in the Fitter Compilation Report for more information.
 Info (144001): Generated suppressed messages file /home/rodrigodog/MC613/lab2/output_files/dinossaur_game.fit.smsg
 Info: Quartus Prime Fitter was successful. 0 errors, 808 warnings
-    Info: Peak virtual memory: 2237 megabytes
-    Info: Processing ended: Mon Apr  6 16:31:00 2026
+    Info: Peak virtual memory: 2195 megabytes
+    Info: Processing ended: Mon Apr  6 17:29:42 2026
     Info: Elapsed time: 00:00:35
-    Info: Total CPU time (on all processors): 00:01:42
+    Info: Total CPU time (on all processors): 00:01:35
 
 
 +----------------------------+
