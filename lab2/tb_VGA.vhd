@@ -78,7 +78,7 @@ begin
         wait for CLK_PERIOD * 800 * 300;
 
         r_in <= x"00";
-        g_in <= x"FF"; -- Muda para verde
+        g_in <= x"FF"; -- Muda para verde prox do meio
 
         wait for CLK_PERIOD * 800 * 224;
 
