@@ -72,7 +72,7 @@ begin
                 count_x <= 0;     -- Wrap X back to 0
                 
                 --Y only increments when a full X line is drawn
-                if count_y = 524 then 
+                if count_y = 523 then 
                     count_y <= 0;
                 else
                     count_y <= count_y + 1;
