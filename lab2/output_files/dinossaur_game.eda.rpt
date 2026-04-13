@@ -1,5 +1,5 @@
 EDA Netlist Writer report for dinossaur_game
-Mon Mar 30 17:23:05 2026
+Mon Apr  6 16:54:13 2026
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -37,7 +37,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Mon Mar 30 17:23:05 2026 ;
+; EDA Netlist Writer Status ; Successful - Mon Apr  6 16:54:13 2026 ;
 ; Revision Name             ; dinossaur_game                        ;
 ; Top-level Entity Name     ; dinossaur_game                        ;
 ; Family                    ; Cyclone V                             ;
@@ -81,14 +81,14 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime EDA Netlist Writer
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Mon Mar 30 17:23:04 2026
+    Info: Processing started: Mon Apr  6 16:54:11 2026
 Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off dinossaur_game -c dinossaur_game
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (204019): Generated file dinossaur_game.vo in folder "/home/rodrigodog/MC613/lab2/simulation/modelsim/" for EDA simulation tool
 Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 679 megabytes
-    Info: Processing ended: Mon Mar 30 17:23:05 2026
-    Info: Elapsed time: 00:00:01
+    Info: Peak virtual memory: 784 megabytes
+    Info: Processing ended: Mon Apr  6 16:54:13 2026
+    Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:01
 
 
