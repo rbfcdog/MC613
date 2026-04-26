@@ -285,6 +285,12 @@ Testbenches implementados no projeto:
 - Instanciacao do DUT confirmada.
 - Sinais de saida VGA_HS, VGA_VS, VGA_BLANK_N, pixel_x, pixel_y e video_active disponiveis para inspecao em waveform.
 
+
+## Test Benches
+
+### VGA:
+![oieee](testbench_vga.png)
+
 ## Analise de Execucao
 
 Apesar do sistema funcionar na placa e a arquitetura estar modularizada, surgiram pontos importantes:

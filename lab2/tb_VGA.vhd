@@ -71,16 +71,14 @@ begin
         r_in <= x"00";
         g_in <= x"00";
         b_in <= x"FF";
-
-        wait for CLK_PERIOD * 2;
         reset_n <= '1';
 
-        wait for CLK_PERIOD * 800 * 300;
+        wait for CLK_PERIOD * 800 * 34;
 
-        r_in <= x"00";
-        g_in <= x"FF"; -- Muda para verde prox do meio
+        b_in <= x"00";
+        g_in <= x"FF";
 
-        wait for CLK_PERIOD * 800 * 224;
+        wait for CLK_PERIOD * 800 * 2;
 
         sim_done <= true;
         wait;

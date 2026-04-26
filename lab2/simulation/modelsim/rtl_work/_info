@@ -1,0 +1,378 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/f-ec2024/ra281315/Documents/MC613/lab2/simulation/modelsim
+Edinossaur_game
+Z1 w1777152876
+Z2 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z4 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+Z5 8/home/f-ec2024/ra281315/Documents/MC613/lab2/dinossaur_game.vhd
+Z6 F/home/f-ec2024/ra281315/Documents/MC613/lab2/dinossaur_game.vhd
+l0
+L5
+VY3WN9TZCH5O6AHCHd=0]I1
+!s100 XoX6=Poo`]4<<78:]J>``0
+Z7 OV;C;10.5b;63
+31
+Z8 !s110 1777167123
+!i10b 1
+Z9 !s108 1777167123.000000
+Z10 !s90 -reportprogress|300|-93|-work|work|/home/f-ec2024/ra281315/Documents/MC613/lab2/dinossaur_game.vhd|
+Z11 !s107 /home/f-ec2024/ra281315/Documents/MC613/lab2/dinossaur_game.vhd|
+!i113 1
+Z12 o-93 -work work
+Z13 tExplicit 1 CvgOpt 0
+Artl
+R2
+R3
+R4
+DEx4 work 14 dinossaur_game 0 22 Y3WN9TZCH5O6AHCHd=0]I1
+l123
+L22
+ViJZhX0bihGkoh711o8bFD0
+!s100 D@g;LbHSJ;@Y0FZ3n1Yeg2
+R7
+31
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Egame_controller
+R1
+R2
+R3
+R4
+R0
+Z14 8/home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd
+Z15 F/home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd
+l0
+L5
+V=83PMgDIZJBCmS<]_CC[R2
+!s100 mOeiP5k]Bihj:l_e^316D3
+R7
+31
+R8
+!i10b 1
+R9
+Z16 !s90 -reportprogress|300|-93|-work|work|/home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd|
+Z17 !s107 /home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd|
+!i113 1
+R12
+R13
+Abehavioral
+R2
+R3
+R4
+Z18 DEx4 work 15 game_controller 0 22 =83PMgDIZJBCmS<]_CC[R2
+l47
+L18
+Z19 Vmzh39Ma;g^K?OS?Ngj^[:2
+Z20 !s100 >b7a?fNzDHnzSolzFKP5H2
+R7
+31
+R8
+!i10b 1
+R9
+R16
+R17
+!i113 1
+R12
+R13
+Epll
+R1
+R3
+R4
+Z21 DPx12 altera_lnsim 23 altera_lnsim_components 0 22 dfin^_@l97Ngz6cK0kjS62
+R0
+Z22 8/home/f-ec2024/ra281315/Documents/MC613/lab2/pll_sim/pll.vho
+Z23 F/home/f-ec2024/ra281315/Documents/MC613/lab2/pll_sim/pll.vho
+l0
+L34
+VJ1TPO1`1ZfkUeeM;FegRk3
+!s100 Ih438?S?_^dXGB:8feaPk2
+R7
+32
+R8
+!i10b 1
+R9
+Z24 !s90 -reportprogress|300|/home/f-ec2024/ra281315/Documents/MC613/lab2/pll_sim/pll.vho|
+Z25 !s107 /home/f-ec2024/ra281315/Documents/MC613/lab2/pll_sim/pll.vho|
+!i113 1
+R13
+Artl
+R3
+R4
+R21
+DEx4 work 3 pll 0 22 J1TPO1`1ZfkUeeM;FegRk3
+l51
+L44
+VI?Pga6ObniYnjb7d3fh`62
+!s100 6oDg6j@:bkiTGi]DCeICE0
+R7
+32
+R8
+!i10b 1
+R9
+R24
+R25
+!i113 1
+R13
+Eppu
+R1
+R2
+R3
+R4
+R0
+Z26 8/home/f-ec2024/ra281315/Documents/MC613/lab2/PPU.vhd
+Z27 F/home/f-ec2024/ra281315/Documents/MC613/lab2/PPU.vhd
+l0
+L5
+VV0`[j]F`4aLfj[AK[Hf_U2
+!s100 _O<Qjk^BioU>bz6YYXMc30
+R7
+31
+R8
+!i10b 1
+R9
+Z28 !s90 -reportprogress|300|-93|-work|work|/home/f-ec2024/ra281315/Documents/MC613/lab2/PPU.vhd|
+Z29 !s107 /home/f-ec2024/ra281315/Documents/MC613/lab2/PPU.vhd|
+!i113 1
+R12
+R13
+Artl
+R2
+R3
+R4
+DEx4 work 3 ppu 0 22 V0`[j]F`4aLfj[AK[Hf_U2
+l55
+L20
+VLKDVNE]G8AaL53R=MNLfT2
+!s100 <4?5R^ASjYnFP[d]9MM<03
+R7
+31
+R8
+!i10b 1
+R9
+R28
+R29
+!i113 1
+R12
+R13
+Eram
+R1
+R2
+R3
+R4
+R0
+Z30 8/home/f-ec2024/ra281315/Documents/MC613/lab2/ram.vhd
+Z31 F/home/f-ec2024/ra281315/Documents/MC613/lab2/ram.vhd
+l0
+L5
+VnIBA7E_n8L^b2kQTD@1Fc2
+!s100 V83B;0iHlM1XW25]PzJKR2
+R7
+31
+R8
+!i10b 1
+R9
+Z32 !s90 -reportprogress|300|-93|-work|work|/home/f-ec2024/ra281315/Documents/MC613/lab2/ram.vhd|
+Z33 !s107 /home/f-ec2024/ra281315/Documents/MC613/lab2/ram.vhd|
+!i113 1
+R12
+R13
+Abehavioral
+R2
+R3
+R4
+DEx4 work 3 ram 0 22 nIBA7E_n8L^b2kQTD@1Fc2
+l44
+L15
+V]<7aF>4@g9E080zcl9AUc0
+!s100 IgEaSoWSi[zb3D2Me69T52
+R7
+31
+R8
+!i10b 1
+R9
+R32
+R33
+!i113 1
+R12
+R13
+Erom
+R1
+R2
+R3
+R4
+R0
+Z34 8/home/f-ec2024/ra281315/Documents/MC613/lab2/rom.vhd
+Z35 F/home/f-ec2024/ra281315/Documents/MC613/lab2/rom.vhd
+l0
+L5
+V6FNajdAQn8Mj;^<OE]5Em0
+!s100 d4A?eda<GJL:2FWPEN:aA3
+R7
+31
+R8
+!i10b 1
+R9
+Z36 !s90 -reportprogress|300|-93|-work|work|/home/f-ec2024/ra281315/Documents/MC613/lab2/rom.vhd|
+Z37 !s107 /home/f-ec2024/ra281315/Documents/MC613/lab2/rom.vhd|
+!i113 1
+R12
+R13
+Abehavioral
+R2
+R3
+R4
+DEx4 work 3 rom 0 22 6FNajdAQn8Mj;^<OE]5Em0
+l108
+L12
+V4CT]<X`EnnFkU:]3UFZjM0
+!s100 [m5M2Anl]?>>G=E=SBL6I2
+R7
+31
+R8
+!i10b 1
+R9
+R36
+R37
+!i113 1
+R12
+R13
+Esprite_renderer
+R1
+R2
+R3
+R4
+R0
+Z38 8/home/f-ec2024/ra281315/Documents/MC613/lab2/sprite_renderer.vhd
+Z39 F/home/f-ec2024/ra281315/Documents/MC613/lab2/sprite_renderer.vhd
+l0
+L5
+Vd@8oBnOoW_=4[FlahTJ<O0
+!s100 icTB[]OZ<IU205`YlCQ333
+R7
+31
+R8
+!i10b 1
+R9
+Z40 !s90 -reportprogress|300|-93|-work|work|/home/f-ec2024/ra281315/Documents/MC613/lab2/sprite_renderer.vhd|
+Z41 !s107 /home/f-ec2024/ra281315/Documents/MC613/lab2/sprite_renderer.vhd|
+!i113 1
+R12
+R13
+Abehavioral
+R2
+R3
+R4
+DEx4 work 15 sprite_renderer 0 22 d@8oBnOoW_=4[FlahTJ<O0
+l29
+L23
+VmR66IfizHFG5VN1XT89zg1
+!s100 Kn6jmO?i1jBAC`MHMR8_:1
+R7
+31
+R8
+!i10b 1
+R9
+R40
+R41
+!i113 1
+R12
+R13
+Etb_game_controller
+Z42 w1777167109
+R2
+R3
+R4
+R0
+Z43 8/home/f-ec2024/ra281315/Documents/MC613/lab2/tb_game_controller.vhd
+Z44 F/home/f-ec2024/ra281315/Documents/MC613/lab2/tb_game_controller.vhd
+l0
+L5
+V7YJI;cX>JVVeYU1SLg0US0
+!s100 <Zj:B=N9S^<SWM2O[ldo60
+R7
+31
+R8
+!i10b 1
+R9
+Z45 !s90 -reportprogress|300|-93|-work|work|/home/f-ec2024/ra281315/Documents/MC613/lab2/tb_game_controller.vhd|
+Z46 !s107 /home/f-ec2024/ra281315/Documents/MC613/lab2/tb_game_controller.vhd|
+!i113 1
+R12
+R13
+Atb
+R18
+R2
+R3
+R4
+DEx4 work 18 tb_game_controller 0 22 7YJI;cX>JVVeYU1SLg0US0
+l26
+L8
+VP95gRK;C_YF<CBNSQ4oe;2
+!s100 KG2[Y[7JOa>>3QWf8KfhI3
+R7
+31
+R8
+!i10b 1
+R9
+R45
+R46
+!i113 1
+R12
+R13
+Evga
+Z47 w1777157150
+R2
+R3
+R4
+R0
+Z48 8/home/f-ec2024/ra281315/Documents/MC613/lab2/VGA.vhd
+Z49 F/home/f-ec2024/ra281315/Documents/MC613/lab2/VGA.vhd
+l0
+L5
+VOLNPU;HnNK3C:][@XDGM?2
+!s100 jM28U2Fek[H5=?YjY1mo<3
+R7
+31
+R8
+!i10b 1
+R9
+Z50 !s90 -reportprogress|300|-93|-work|work|/home/f-ec2024/ra281315/Documents/MC613/lab2/VGA.vhd|
+Z51 !s107 /home/f-ec2024/ra281315/Documents/MC613/lab2/VGA.vhd|
+!i113 1
+R12
+R13
+Artl
+R2
+R3
+R4
+DEx4 work 3 vga 0 22 OLNPU;HnNK3C:][@XDGM?2
+l32
+L26
+VHiZZMLT<WB0SE[bRY^eFh0
+!s100 F<1cXUlKjZI7?<QJf]G?m3
+R7
+31
+R8
+!i10b 1
+R9
+R50
+R51
+!i113 1
+R12
+R13

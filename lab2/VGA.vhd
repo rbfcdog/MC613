@@ -15,8 +15,8 @@ entity VGA is
     VGA_R        : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
     VGA_G        : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
     VGA_B        : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
-    VGA_HS       : OUT STD_LOGIC;
-    VGA_VS       : OUT STD_LOGIC;
+    VGA_HS       : OUT STD_LOGIC :='1';
+    VGA_VS       : OUT STD_LOGIC :='1';
     VGA_BLANK_N  : OUT STD_LOGIC;
     VGA_SYNC_N   : OUT STD_LOGIC;
     VGA_CLK      : OUT STD_LOGIC

@@ -1,0 +1,163 @@
+# do dinossaur_game_run_msim_rtl_vhdl.do
+# if ![file isdirectory dinossaur_game_iputf_libs] {
+# 	file mkdir dinossaur_game_iputf_libs
+# }
+# 
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# vmap work rtl_work 
+# Copying /opt/altera/17.1/modelsim_ase/linuxaloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+###### Libraries for IPUTF cores 
+###### End libraries for IPUTF cores 
+###### MIF file copy and HDL compilation commands for IPUTF cores 
+# 
+# 
+# vcom "/home/f-ec2024/ra281315/Documents/MC613/lab2/pll_sim/pll.vho"
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:32:03 on Apr 25,2026
+# vcom -reportprogress 300 /home/f-ec2024/ra281315/Documents/MC613/lab2/pll_sim/pll.vho 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package altera_lnsim_components
+# -- Compiling entity pll
+# -- Compiling architecture RTL of pll
+# End time: 22:32:03 on Apr 25,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vcom -93 -work work {/home/f-ec2024/ra281315/Documents/MC613/lab2/sprite_renderer.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:32:03 on Apr 25,2026
+# vcom -reportprogress 300 -93 -work work /home/f-ec2024/ra281315/Documents/MC613/lab2/sprite_renderer.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity sprite_renderer
+# -- Compiling architecture behavioral of sprite_renderer
+# End time: 22:32:03 on Apr 25,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {/home/f-ec2024/ra281315/Documents/MC613/lab2/ram.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:32:03 on Apr 25,2026
+# vcom -reportprogress 300 -93 -work work /home/f-ec2024/ra281315/Documents/MC613/lab2/ram.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity ram
+# -- Compiling architecture behavioral of ram
+# End time: 22:32:03 on Apr 25,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {/home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:32:03 on Apr 25,2026
+# vcom -reportprogress 300 -93 -work work /home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity game_controller
+# -- Compiling architecture behavioral of game_controller
+# End time: 22:32:03 on Apr 25,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {/home/f-ec2024/ra281315/Documents/MC613/lab2/PPU.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:32:03 on Apr 25,2026
+# vcom -reportprogress 300 -93 -work work /home/f-ec2024/ra281315/Documents/MC613/lab2/PPU.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity PPU
+# -- Compiling architecture rtl of PPU
+# End time: 22:32:03 on Apr 25,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {/home/f-ec2024/ra281315/Documents/MC613/lab2/VGA.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:32:03 on Apr 25,2026
+# vcom -reportprogress 300 -93 -work work /home/f-ec2024/ra281315/Documents/MC613/lab2/VGA.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity VGA
+# -- Compiling architecture rtl of VGA
+# End time: 22:32:03 on Apr 25,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {/home/f-ec2024/ra281315/Documents/MC613/lab2/dinossaur_game.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:32:03 on Apr 25,2026
+# vcom -reportprogress 300 -93 -work work /home/f-ec2024/ra281315/Documents/MC613/lab2/dinossaur_game.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity dinossaur_game
+# -- Compiling architecture rtl of dinossaur_game
+# End time: 22:32:03 on Apr 25,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {/home/f-ec2024/ra281315/Documents/MC613/lab2/rom.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:32:03 on Apr 25,2026
+# vcom -reportprogress 300 -93 -work work /home/f-ec2024/ra281315/Documents/MC613/lab2/rom.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity rom
+# -- Compiling architecture behavioral of rom
+# End time: 22:32:03 on Apr 25,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vcom -93 -work work {/home/f-ec2024/ra281315/Documents/MC613/lab2/tb_game_controller.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:32:03 on Apr 25,2026
+# vcom -reportprogress 300 -93 -work work /home/f-ec2024/ra281315/Documents/MC613/lab2/tb_game_controller.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity tb_game_controller
+# -- Compiling architecture tb of tb_game_controller
+# -- Loading entity game_controller
+# End time: 22:32:03 on Apr 25,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {/home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 22:32:03 on Apr 25,2026
+# vcom -reportprogress 300 -93 -work work /home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity game_controller
+# -- Compiling architecture behavioral of game_controller
+# End time: 22:32:03 on Apr 25,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs="+acc"  tb_game_controller
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs=""+acc"" tb_game_controller 
+# Start time: 22:32:03 on Apr 25,2026
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.tb_game_controller(tb)
+# Loading work.game_controller(behavioral)
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: NUMERIC_STD.">": metavalue detected, returning FALSE
+#    Time: 0 ps  Iteration: 0  Instance: /tb_game_controller/dut
