@@ -17,8 +17,8 @@ entity VGA is
     VGA_B        : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
     VGA_HS       : OUT STD_LOGIC :='1';
     VGA_VS       : OUT STD_LOGIC :='1';
-    VGA_BLANK_N  : OUT STD_LOGIC;
-    VGA_SYNC_N   : OUT STD_LOGIC;
+    VGA_BLANK_N  : OUT STD_LOGIC :='0';
+    VGA_SYNC_N   : OUT STD_LOGIC :='1';
     VGA_CLK      : OUT STD_LOGIC
   );
 end VGA;
@@ -91,10 +91,8 @@ begin
     pixel_y <= std_logic_vector(to_unsigned(count_y, 10));
 
     VGA_CLK<=pixel_clk;
-    VGA_SYNC_N<='1';
     video_active_i <= x_act and y_act;
     video_active <= video_active_i;
-    VGA_BLANK_N <= video_active_i;
     VGA_R <= r_in when video_active_i = '1' else (others => '0');
     VGA_G <= g_in when video_active_i = '1' else (others => '0');
     VGA_B <= b_in when video_active_i = '1' else (others => '0');

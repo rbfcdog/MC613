@@ -1,6 +1,6 @@
 Analysis & Elaboration report for dinossaur_game
-Sat Apr 25 19:02:53 2026
-Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+Sun Apr 26 16:43:21 2026
+Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
 ---------------------
@@ -23,9 +23,9 @@ Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 2017  Intel Corporation. All rights reserved.
+Copyright (C) 2020  Intel Corporation. All rights reserved.
 Your use of Intel Corporation's design tools, logic functions 
-and other software and tools, and its AMPP partner logic 
+and other software and tools, and any partner logic 
 functions, and any output files from any of the foregoing 
 (including device programming or simulation files), and any 
 associated documentation or information are expressly subject 
@@ -35,15 +35,16 @@ the Intel FPGA IP License Agreement, or other applicable license
 agreement, including, without limitation, that your use is for
 the sole purpose of programming logic devices manufactured by
 Intel and sold by Intel or its authorized distributors.  Please
-refer to the applicable agreement for further details.
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
 
 
 
 +-----------------------------------------------------------------------------+
 ; Analysis & Elaboration Summary                                              ;
 +-------------------------------+---------------------------------------------+
-; Analysis & Elaboration Status ; Successful - Sat Apr 25 19:02:53 2026       ;
-; Quartus Prime Version         ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
+; Analysis & Elaboration Status ; Successful - Sun Apr 26 16:43:21 2026       ;
+; Quartus Prime Version         ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                 ; dinossaur_game                              ;
 ; Top-level Entity Name         ; dinossaur_game                              ;
 ; Family                        ; Cyclone V                                   ;
@@ -62,8 +63,8 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 20          ;
-; Maximum allowed            ; 14          ;
+; Number detected on machine ; 16          ;
+; Maximum allowed            ; 16          ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
 ; Maximum used               ; 1           ;
@@ -338,7 +339,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Top-level entity name                                                           ; dinossaur_game     ; dinossaur_game     ;
 ; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
 ; Use smart compilation                                                           ; Off                ; Off                ;
-; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation      ; On                 ; On                 ;
+; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
 ; Enable compact report table                                                     ; Off                ; Off                ;
 ; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
 ; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
@@ -458,50 +459,50 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------------------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Elaboration
-    Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
-    Info: Processing started: Sat Apr 25 19:02:48 2026
+    Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
+    Info: Processing started: Sun Apr 26 16:43:17 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off dinossaur_game -c dinossaur_game --analysis_and_elaboration
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 14 of the 14 processors detected
+Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file pll.vhd
-    Info (12022): Found design unit 1: pll-rtl File: /home/f-ec2024/ra281315/Documents/MC613/lab2/pll.vhd Line: 20
-    Info (12023): Found entity 1: pll File: /home/f-ec2024/ra281315/Documents/MC613/lab2/pll.vhd Line: 11
+    Info (12022): Found design unit 1: pll-rtl File: /home/estrela/Documents/MC613/lab2/pll.vhd Line: 20
+    Info (12023): Found entity 1: pll File: /home/estrela/Documents/MC613/lab2/pll.vhd Line: 11
 Info (12021): Found 2 design units, including 1 entities, in source file tb_VGA.vhd
-    Info (12022): Found design unit 1: tb_VGA-tb File: /home/f-ec2024/ra281315/Documents/MC613/lab2/tb_VGA.vhd Line: 7
-    Info (12023): Found entity 1: tb_VGA File: /home/f-ec2024/ra281315/Documents/MC613/lab2/tb_VGA.vhd Line: 4
+    Info (12022): Found design unit 1: tb_VGA-tb File: /home/estrela/Documents/MC613/lab2/tb_VGA.vhd Line: 7
+    Info (12023): Found entity 1: tb_VGA File: /home/estrela/Documents/MC613/lab2/tb_VGA.vhd Line: 4
 Info (12021): Found 2 design units, including 1 entities, in source file tb_game_controller.vhd
-    Info (12022): Found design unit 1: tb_game_controller-test File: /home/f-ec2024/ra281315/Documents/MC613/lab2/tb_game_controller.vhd Line: 9
-    Info (12023): Found entity 1: tb_game_controller File: /home/f-ec2024/ra281315/Documents/MC613/lab2/tb_game_controller.vhd Line: 6
+    Info (12022): Found design unit 1: tb_game_controller-tb File: /home/estrela/Documents/MC613/lab2/tb_game_controller.vhd Line: 8
+    Info (12023): Found entity 1: tb_game_controller File: /home/estrela/Documents/MC613/lab2/tb_game_controller.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file sprite_renderer.vhd
-    Info (12022): Found design unit 1: sprite_renderer-behavioral File: /home/f-ec2024/ra281315/Documents/MC613/lab2/sprite_renderer.vhd Line: 23
-    Info (12023): Found entity 1: sprite_renderer File: /home/f-ec2024/ra281315/Documents/MC613/lab2/sprite_renderer.vhd Line: 5
+    Info (12022): Found design unit 1: sprite_renderer-behavioral File: /home/estrela/Documents/MC613/lab2/sprite_renderer.vhd Line: 23
+    Info (12023): Found entity 1: sprite_renderer File: /home/estrela/Documents/MC613/lab2/sprite_renderer.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file ram.vhd
-    Info (12022): Found design unit 1: ram-behavioral File: /home/f-ec2024/ra281315/Documents/MC613/lab2/ram.vhd Line: 15
-    Info (12023): Found entity 1: ram File: /home/f-ec2024/ra281315/Documents/MC613/lab2/ram.vhd Line: 5
+    Info (12022): Found design unit 1: ram-behavioral File: /home/estrela/Documents/MC613/lab2/ram.vhd Line: 15
+    Info (12023): Found entity 1: ram File: /home/estrela/Documents/MC613/lab2/ram.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file game_controller.vhd
-    Info (12022): Found design unit 1: game_controller-behavioral File: /home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd Line: 18
-    Info (12023): Found entity 1: game_controller File: /home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd Line: 5
+    Info (12022): Found design unit 1: game_controller-behavioral File: /home/estrela/Documents/MC613/lab2/game_controller.vhd Line: 18
+    Info (12023): Found entity 1: game_controller File: /home/estrela/Documents/MC613/lab2/game_controller.vhd Line: 5
 Info (12021): Found 1 design units, including 1 entities, in source file pll/pll_0002.v
-    Info (12023): Found entity 1: pll_0002 File: /home/f-ec2024/ra281315/Documents/MC613/lab2/pll/pll_0002.v Line: 2
+    Info (12023): Found entity 1: pll_0002 File: /home/estrela/Documents/MC613/lab2/pll/pll_0002.v Line: 2
 Info (12021): Found 2 design units, including 1 entities, in source file PPU.vhd
-    Info (12022): Found design unit 1: PPU-rtl File: /home/f-ec2024/ra281315/Documents/MC613/lab2/PPU.vhd Line: 20
-    Info (12023): Found entity 1: PPU File: /home/f-ec2024/ra281315/Documents/MC613/lab2/PPU.vhd Line: 5
+    Info (12022): Found design unit 1: PPU-rtl File: /home/estrela/Documents/MC613/lab2/PPU.vhd Line: 20
+    Info (12023): Found entity 1: PPU File: /home/estrela/Documents/MC613/lab2/PPU.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file VGA.vhd
-    Info (12022): Found design unit 1: VGA-rtl File: /home/f-ec2024/ra281315/Documents/MC613/lab2/VGA.vhd Line: 26
-    Info (12023): Found entity 1: VGA File: /home/f-ec2024/ra281315/Documents/MC613/lab2/VGA.vhd Line: 5
+    Info (12022): Found design unit 1: VGA-rtl File: /home/estrela/Documents/MC613/lab2/VGA.vhd Line: 26
+    Info (12023): Found entity 1: VGA File: /home/estrela/Documents/MC613/lab2/VGA.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file dinossaur_game.vhd
-    Info (12022): Found design unit 1: dinossaur_game-rtl File: /home/f-ec2024/ra281315/Documents/MC613/lab2/dinossaur_game.vhd Line: 22
-    Info (12023): Found entity 1: dinossaur_game File: /home/f-ec2024/ra281315/Documents/MC613/lab2/dinossaur_game.vhd Line: 5
+    Info (12022): Found design unit 1: dinossaur_game-rtl File: /home/estrela/Documents/MC613/lab2/dinossaur_game.vhd Line: 22
+    Info (12023): Found entity 1: dinossaur_game File: /home/estrela/Documents/MC613/lab2/dinossaur_game.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file rom.vhd
-    Info (12022): Found design unit 1: rom-behavioral File: /home/f-ec2024/ra281315/Documents/MC613/lab2/rom.vhd Line: 12
-    Info (12023): Found entity 1: rom File: /home/f-ec2024/ra281315/Documents/MC613/lab2/rom.vhd Line: 5
+    Info (12022): Found design unit 1: rom-behavioral File: /home/estrela/Documents/MC613/lab2/rom.vhd Line: 12
+    Info (12023): Found entity 1: rom File: /home/estrela/Documents/MC613/lab2/rom.vhd Line: 5
 Info (12127): Elaborating entity "dinossaur_game" for the top level hierarchy
-Info (12128): Elaborating entity "pll" for hierarchy "pll:clk" File: /home/f-ec2024/ra281315/Documents/MC613/lab2/dinossaur_game.vhd Line: 124
-Info (12128): Elaborating entity "pll_0002" for hierarchy "pll:clk|pll_0002:pll_inst" File: /home/f-ec2024/ra281315/Documents/MC613/lab2/pll.vhd Line: 32
-Info (12128): Elaborating entity "altera_pll" for hierarchy "pll:clk|pll_0002:pll_inst|altera_pll:altera_pll_i" File: /home/f-ec2024/ra281315/Documents/MC613/lab2/pll/pll_0002.v Line: 85
+Info (12128): Elaborating entity "pll" for hierarchy "pll:clk" File: /home/estrela/Documents/MC613/lab2/dinossaur_game.vhd Line: 124
+Info (12128): Elaborating entity "pll_0002" for hierarchy "pll:clk|pll_0002:pll_inst" File: /home/estrela/Documents/MC613/lab2/pll.vhd Line: 32
+Info (12128): Elaborating entity "altera_pll" for hierarchy "pll:clk|pll_0002:pll_inst|altera_pll:altera_pll_i" File: /home/estrela/Documents/MC613/lab2/pll/pll_0002.v Line: 85
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "wire_to_nowhere_64" into its bus
-Info (12130): Elaborated megafunction instantiation "pll:clk|pll_0002:pll_inst|altera_pll:altera_pll_i" File: /home/f-ec2024/ra281315/Documents/MC613/lab2/pll/pll_0002.v Line: 85
-Info (12133): Instantiated megafunction "pll:clk|pll_0002:pll_inst|altera_pll:altera_pll_i" with the following parameter: File: /home/f-ec2024/ra281315/Documents/MC613/lab2/pll/pll_0002.v Line: 85
+Info (12130): Elaborated megafunction instantiation "pll:clk|pll_0002:pll_inst|altera_pll:altera_pll_i" File: /home/estrela/Documents/MC613/lab2/pll/pll_0002.v Line: 85
+Info (12133): Instantiated megafunction "pll:clk|pll_0002:pll_inst|altera_pll:altera_pll_i" with the following parameter: File: /home/estrela/Documents/MC613/lab2/pll/pll_0002.v Line: 85
     Info (12134): Parameter "fractional_vco_multiplier" = "false"
     Info (12134): Parameter "reference_clock_frequency" = "50.0 MHz"
     Info (12134): Parameter "operation_mode" = "direct"
@@ -562,34 +563,34 @@ Info (12133): Instantiated megafunction "pll:clk|pll_0002:pll_inst|altera_pll:al
     Info (12134): Parameter "duty_cycle17" = "50"
     Info (12134): Parameter "pll_type" = "General"
     Info (12134): Parameter "pll_subtype" = "General"
-Info (12128): Elaborating entity "PPU" for hierarchy "PPU:ppu_inst" File: /home/f-ec2024/ra281315/Documents/MC613/lab2/dinossaur_game.vhd Line: 135
-Info (12128): Elaborating entity "ram" for hierarchy "PPU:ppu_inst|ram:map_ram" File: /home/f-ec2024/ra281315/Documents/MC613/lab2/PPU.vhd Line: 56
-Info (12128): Elaborating entity "rom" for hierarchy "PPU:ppu_inst|rom:tile_rom" File: /home/f-ec2024/ra281315/Documents/MC613/lab2/PPU.vhd Line: 65
-Info (12128): Elaborating entity "game_controller" for hierarchy "game_controller:game_ctrl" File: /home/f-ec2024/ra281315/Documents/MC613/lab2/dinossaur_game.vhd Line: 149
-Warning (10631): VHDL Process Statement warning at game_controller.vhd(48): inferring latch(es) for signal or variable "dino_x_reg", which holds its previous value in one or more paths through the process File: /home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd Line: 48
-Warning (10631): VHDL Process Statement warning at game_controller.vhd(48): inferring latch(es) for signal or variable "cactus_y_reg", which holds its previous value in one or more paths through the process File: /home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd Line: 48
-Info (10041): Inferred latch for "cactus_y_reg[0]" at game_controller.vhd(48) File: /home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd Line: 48
-Info (10041): Inferred latch for "cactus_y_reg[1]" at game_controller.vhd(48) File: /home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd Line: 48
-Info (10041): Inferred latch for "cactus_y_reg[2]" at game_controller.vhd(48) File: /home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd Line: 48
-Info (10041): Inferred latch for "cactus_y_reg[3]" at game_controller.vhd(48) File: /home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd Line: 48
-Info (10041): Inferred latch for "cactus_y_reg[4]" at game_controller.vhd(48) File: /home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd Line: 48
-Info (10041): Inferred latch for "cactus_y_reg[5]" at game_controller.vhd(48) File: /home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd Line: 48
-Info (10041): Inferred latch for "cactus_y_reg[6]" at game_controller.vhd(48) File: /home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd Line: 48
-Info (10041): Inferred latch for "cactus_y_reg[7]" at game_controller.vhd(48) File: /home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd Line: 48
-Info (10041): Inferred latch for "cactus_y_reg[8]" at game_controller.vhd(48) File: /home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd Line: 48
-Info (10041): Inferred latch for "cactus_y_reg[9]" at game_controller.vhd(48) File: /home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd Line: 48
-Info (10041): Inferred latch for "dino_x_reg[0]" at game_controller.vhd(48) File: /home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd Line: 48
-Info (10041): Inferred latch for "dino_x_reg[1]" at game_controller.vhd(48) File: /home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd Line: 48
-Info (10041): Inferred latch for "dino_x_reg[2]" at game_controller.vhd(48) File: /home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd Line: 48
-Info (10041): Inferred latch for "dino_x_reg[3]" at game_controller.vhd(48) File: /home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd Line: 48
-Info (10041): Inferred latch for "dino_x_reg[4]" at game_controller.vhd(48) File: /home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd Line: 48
-Info (10041): Inferred latch for "dino_x_reg[5]" at game_controller.vhd(48) File: /home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd Line: 48
-Info (10041): Inferred latch for "dino_x_reg[6]" at game_controller.vhd(48) File: /home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd Line: 48
-Info (10041): Inferred latch for "dino_x_reg[7]" at game_controller.vhd(48) File: /home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd Line: 48
-Info (10041): Inferred latch for "dino_x_reg[8]" at game_controller.vhd(48) File: /home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd Line: 48
-Info (10041): Inferred latch for "dino_x_reg[9]" at game_controller.vhd(48) File: /home/f-ec2024/ra281315/Documents/MC613/lab2/game_controller.vhd Line: 48
-Info (12128): Elaborating entity "sprite_renderer" for hierarchy "sprite_renderer:sprite_rend" File: /home/f-ec2024/ra281315/Documents/MC613/lab2/dinossaur_game.vhd Line: 161
-Info (12128): Elaborating entity "VGA" for hierarchy "VGA:vga_inst" File: /home/f-ec2024/ra281315/Documents/MC613/lab2/dinossaur_game.vhd Line: 178
+Info (12128): Elaborating entity "PPU" for hierarchy "PPU:ppu_inst" File: /home/estrela/Documents/MC613/lab2/dinossaur_game.vhd Line: 135
+Info (12128): Elaborating entity "ram" for hierarchy "PPU:ppu_inst|ram:map_ram" File: /home/estrela/Documents/MC613/lab2/PPU.vhd Line: 56
+Info (12128): Elaborating entity "rom" for hierarchy "PPU:ppu_inst|rom:tile_rom" File: /home/estrela/Documents/MC613/lab2/PPU.vhd Line: 65
+Info (12128): Elaborating entity "game_controller" for hierarchy "game_controller:game_ctrl" File: /home/estrela/Documents/MC613/lab2/dinossaur_game.vhd Line: 149
+Warning (10631): VHDL Process Statement warning at game_controller.vhd(48): inferring latch(es) for signal or variable "dino_x_reg", which holds its previous value in one or more paths through the process File: /home/estrela/Documents/MC613/lab2/game_controller.vhd Line: 48
+Warning (10631): VHDL Process Statement warning at game_controller.vhd(48): inferring latch(es) for signal or variable "cactus_y_reg", which holds its previous value in one or more paths through the process File: /home/estrela/Documents/MC613/lab2/game_controller.vhd Line: 48
+Info (10041): Inferred latch for "cactus_y_reg[0]" at game_controller.vhd(48) File: /home/estrela/Documents/MC613/lab2/game_controller.vhd Line: 48
+Info (10041): Inferred latch for "cactus_y_reg[1]" at game_controller.vhd(48) File: /home/estrela/Documents/MC613/lab2/game_controller.vhd Line: 48
+Info (10041): Inferred latch for "cactus_y_reg[2]" at game_controller.vhd(48) File: /home/estrela/Documents/MC613/lab2/game_controller.vhd Line: 48
+Info (10041): Inferred latch for "cactus_y_reg[3]" at game_controller.vhd(48) File: /home/estrela/Documents/MC613/lab2/game_controller.vhd Line: 48
+Info (10041): Inferred latch for "cactus_y_reg[4]" at game_controller.vhd(48) File: /home/estrela/Documents/MC613/lab2/game_controller.vhd Line: 48
+Info (10041): Inferred latch for "cactus_y_reg[5]" at game_controller.vhd(48) File: /home/estrela/Documents/MC613/lab2/game_controller.vhd Line: 48
+Info (10041): Inferred latch for "cactus_y_reg[6]" at game_controller.vhd(48) File: /home/estrela/Documents/MC613/lab2/game_controller.vhd Line: 48
+Info (10041): Inferred latch for "cactus_y_reg[7]" at game_controller.vhd(48) File: /home/estrela/Documents/MC613/lab2/game_controller.vhd Line: 48
+Info (10041): Inferred latch for "cactus_y_reg[8]" at game_controller.vhd(48) File: /home/estrela/Documents/MC613/lab2/game_controller.vhd Line: 48
+Info (10041): Inferred latch for "cactus_y_reg[9]" at game_controller.vhd(48) File: /home/estrela/Documents/MC613/lab2/game_controller.vhd Line: 48
+Info (10041): Inferred latch for "dino_x_reg[0]" at game_controller.vhd(48) File: /home/estrela/Documents/MC613/lab2/game_controller.vhd Line: 48
+Info (10041): Inferred latch for "dino_x_reg[1]" at game_controller.vhd(48) File: /home/estrela/Documents/MC613/lab2/game_controller.vhd Line: 48
+Info (10041): Inferred latch for "dino_x_reg[2]" at game_controller.vhd(48) File: /home/estrela/Documents/MC613/lab2/game_controller.vhd Line: 48
+Info (10041): Inferred latch for "dino_x_reg[3]" at game_controller.vhd(48) File: /home/estrela/Documents/MC613/lab2/game_controller.vhd Line: 48
+Info (10041): Inferred latch for "dino_x_reg[4]" at game_controller.vhd(48) File: /home/estrela/Documents/MC613/lab2/game_controller.vhd Line: 48
+Info (10041): Inferred latch for "dino_x_reg[5]" at game_controller.vhd(48) File: /home/estrela/Documents/MC613/lab2/game_controller.vhd Line: 48
+Info (10041): Inferred latch for "dino_x_reg[6]" at game_controller.vhd(48) File: /home/estrela/Documents/MC613/lab2/game_controller.vhd Line: 48
+Info (10041): Inferred latch for "dino_x_reg[7]" at game_controller.vhd(48) File: /home/estrela/Documents/MC613/lab2/game_controller.vhd Line: 48
+Info (10041): Inferred latch for "dino_x_reg[8]" at game_controller.vhd(48) File: /home/estrela/Documents/MC613/lab2/game_controller.vhd Line: 48
+Info (10041): Inferred latch for "dino_x_reg[9]" at game_controller.vhd(48) File: /home/estrela/Documents/MC613/lab2/game_controller.vhd Line: 48
+Info (12128): Elaborating entity "sprite_renderer" for hierarchy "sprite_renderer:sprite_rend" File: /home/estrela/Documents/MC613/lab2/dinossaur_game.vhd Line: 161
+Info (12128): Elaborating entity "VGA" for hierarchy "VGA:vga_inst" File: /home/estrela/Documents/MC613/lab2/dinossaur_game.vhd Line: 178
 Warning (20013): Ignored 571 assignments for entity "DE1_SoC" -- entity does not exist in design
     Warning (20014): Assignment for entity set_instance_assignment -name PACKAGE_SKEW_COMPENSATION OFF -to HPS_DDR3_ADDR[0] -entity DE1_SoC was ignored
     Warning (20014): Assignment for entity set_instance_assignment -name PACKAGE_SKEW_COMPENSATION OFF -to HPS_DDR3_ADDR[10] -entity DE1_SoC was ignored
@@ -1163,9 +1164,9 @@ Warning (20013): Ignored 571 assignments for entity "DE1_SoC" -- entity does not
     Warning (20014): Assignment for entity set_instance_assignment -name D5_DELAY 2 -to HPS_DDR3_CK_N -entity DE1_SoC was ignored
     Warning (20014): Assignment for entity set_instance_assignment -name D5_DELAY 2 -to HPS_DDR3_CK_P -entity DE1_SoC was ignored
 Info: Quartus Prime Analysis & Elaboration was successful. 0 errors, 575 warnings
-    Info: Peak virtual memory: 1542 megabytes
-    Info: Processing ended: Sat Apr 25 19:02:53 2026
-    Info: Elapsed time: 00:00:05
-    Info: Total CPU time (on all processors): 00:00:13
+    Info: Peak virtual memory: 800 megabytes
+    Info: Processing ended: Sun Apr 26 16:43:21 2026
+    Info: Elapsed time: 00:00:04
+    Info: Total CPU time (on all processors): 00:00:12
 
 

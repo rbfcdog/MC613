@@ -42,7 +42,7 @@ set_global_assignment -name DEVICE 5CSEMA5F31C6
 set_global_assignment -name TOP_LEVEL_ENTITY dinossaur_game
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 20.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "16:35:27  MARCH 30, 2026"
-set_global_assignment -name LAST_QUARTUS_VERSION "17.1.0 Lite Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "20.1.0 Lite Edition"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name BOARD "DE1-SoC Board"
 set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
@@ -889,7 +889,7 @@ set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
-set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH tb_game_controller -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH tb_PPU -section_id eda_simulation
 set_global_assignment -name EDA_TEST_BENCH_NAME tb_VGA -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_VGA
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_VGA -section_id tb_VGA
@@ -909,8 +909,18 @@ set_global_assignment -name VHDL_FILE rom.vhd
 set_global_assignment -name EDA_TEST_BENCH_NAME tb_game_controller -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_game_controller
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_game_controller -section_id tb_game_controller
+set_global_assignment -name EDA_TEST_BENCH_NAME tb_sprite_renderer -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_sprite_renderer
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_sprite_renderer -section_id tb_sprite_renderer
 set_global_assignment -name EDA_TEST_BENCH_FILE VGA.vhd -section_id tb_VGA
 set_global_assignment -name EDA_TEST_BENCH_FILE tb_VGA.vhd -section_id tb_VGA
 set_global_assignment -name EDA_TEST_BENCH_FILE tb_game_controller.vhd -section_id tb_game_controller
 set_global_assignment -name EDA_TEST_BENCH_FILE game_controller.vhd -section_id tb_game_controller
+set_global_assignment -name EDA_TEST_BENCH_FILE tb_sprite_renderer.vhd -section_id tb_sprite_renderer
+set_global_assignment -name EDA_TEST_BENCH_FILE sprite_renderer.vhd -section_id tb_sprite_renderer
+set_global_assignment -name EDA_TEST_BENCH_NAME tb_PPU -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_PPU
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_PPU -section_id tb_PPU
+set_global_assignment -name EDA_TEST_BENCH_FILE PPU.vhd -section_id tb_PPU
+set_global_assignment -name EDA_TEST_BENCH_FILE tb_PPU.vhd -section_id tb_PPU
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

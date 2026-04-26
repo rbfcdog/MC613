@@ -1,12 +1,12 @@
 Info: Start Nativelink Simulation process
-executing command line: ip-make-simscript --nativelink-mode --output-directory=dinossaur_game_iputf_input --spd=/home/f-ec2024/ra281315/Documents/MC613/lab2/pll.spd 
+executing command line: ip-make-simscript --nativelink-mode --output-directory=dinossaur_game_iputf_input --spd=/home/estrela/Documents/MC613/lab2/pll.spd 
 
 ========= EDA Simulation Settings =====================
 
 Sim Mode              :  RTL
 Family                :  cyclonev
-Quartus root          :  /opt/altera/17.1/quartus/linux64/
-Quartus sim root      :  /opt/altera/17.1/quartus/eda/sim_lib
+Quartus root          :  /home/estrela/intelFPGA_lite/20.1/quartus/linux64/
+Quartus sim root      :  /home/estrela/intelFPGA_lite/20.1/quartus/eda/sim_lib
 Simulation Tool       :  modelsim-altera
 Simulation Language   :  vhdl
 Version               :  93
@@ -18,7 +18,7 @@ Sim dir               :  simulation/modelsim
 =======================================================
 
 Info: Starting NativeLink simulation with ModelSim-Altera software
-Sourced NativeLink script /opt/altera/17.1/quartus/common/tcl/internal/nativelink/modelsim.tcl
+Sourced NativeLink script /home/estrela/intelFPGA_lite/20.1/quartus/common/tcl/internal/nativelink/modelsim.tcl
 Warning: File dinossaur_game_run_msim_rtl_vhdl.do already exists - backing up current file as dinossaur_game_run_msim_rtl_vhdl.do.bak11
 Info: Spawning ModelSim-Altera Simulation software 
 Info: NativeLink simulation flow was successful

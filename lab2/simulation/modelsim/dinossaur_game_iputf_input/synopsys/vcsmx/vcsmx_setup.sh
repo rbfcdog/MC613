@@ -1,3 +1,3 @@
 
 
-vhdlan -xlrm "/home/f-ec2024/ra281315/Documents/MC613/lab2/pll_sim/pll.vho"
+vhdlan -xlrm "/home/estrela/Documents/MC613/lab2/pll_sim/pll.vho"
