@@ -1,105 +1,96 @@
-LIBRARY IEEE;
-USE IEEE.STD_LOGIC_1164.ALL;
-USE IEEE.NUMERIC_STD.ALL;
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
--- Testbench para o game_controller
-ENTITY tb_game_controller IS
-END tb_game_controller;
+entity tb_game_controller is
+end entity;
 
-ARCHITECTURE test OF tb_game_controller IS
-  SIGNAL clk          : STD_LOGIC := '0';
-  SIGNAL reset_n      : STD_LOGIC := '0';
-  SIGNAL KEY          : STD_LOGIC_VECTOR(0 DOWNTO 0) := (OTHERS => '1');
-  SIGNAL dino_x       : UNSIGNED(9 DOWNTO 0);
-  SIGNAL dino_y       : UNSIGNED(9 DOWNTO 0);
-  SIGNAL cactus_x     : UNSIGNED(9 DOWNTO 0);
-  SIGNAL cactus_y     : UNSIGNED(9 DOWNTO 0);
-  SIGNAL collision    : STD_LOGIC;
+architecture tb of tb_game_controller is
+    -- Entradas de Controle
+    signal clk          : std_logic := '0';
+    signal reset_n      : std_logic := '0';
+    signal KEY          : std_logic_vector(0 downto 0) := "1";
 
-  COMPONENT game_controller IS
-    PORT (
-      clk          : IN  STD_LOGIC;
-      reset_n      : IN  STD_LOGIC;
-      KEY          : IN  STD_LOGIC_VECTOR(0 DOWNTO 0);
-      dino_x       : OUT UNSIGNED(9 DOWNTO 0);
-      dino_y       : OUT UNSIGNED(9 DOWNTO 0);
-      cactus_x     : OUT UNSIGNED(9 DOWNTO 0);
-      cactus_y     : OUT UNSIGNED(9 DOWNTO 0);
-      collision    : OUT STD_LOGIC
-    );
-  END COMPONENT;
+    -- Saídas do Controller
+    signal dino_x       : unsigned(9 downto 0);
+    signal dino_y       : unsigned(9 downto 0);
+    signal cactus_x     : unsigned(9 downto 0);
+    signal cactus_y     : unsigned(9 downto 0);
+    signal collision    : std_logic;
 
-  -- Clock de 50 MHz (20ns period)
-  CONSTANT CLK_PERIOD : TIME := 20 ns;
+    -- Controle de Simulação
+    constant CLK_PERIOD : time := 39.72 ns; -- Clock de ~25.175 MHz baseado no tb_VGA
+    constant FRAME_CYCLES : integer := 600000; -- Referente à constante FRAME_DIVISOR do controller
+    signal sim_done     : boolean := false;
 
-BEGIN
-  -- Instanciar o módulo a testar
-  uut : game_controller
-    PORT MAP(
-      clk       => clk,
-      reset_n   => reset_n,
-      KEY       => KEY,
-      dino_x    => dino_x,
-      dino_y    => dino_y,
-      cactus_x  => cactus_x,
-      cactus_y  => cactus_y,
-      collision => collision
+begin
+    -- Instanciando o DUT (Device Under Test)
+    dut: entity work.game_controller
+    port map(
+        clk          => clk,
+        reset_n      => reset_n,
+        KEY          => KEY,
+        dino_x       => dino_x,
+        dino_y       => dino_y,
+        cactus_x     => cactus_x,
+        cactus_y     => cactus_y,
+        collision    => collision
     );
 
-  -- Gerador de clock
-  PROCESS
-  BEGIN
-    clk <= '0';
-    WAIT FOR CLK_PERIOD / 2;
-    clk <= '1';
-    WAIT FOR CLK_PERIOD / 2;
-  END PROCESS;
+    -- Gerador de Clock (idêntico ao modelo do tb_VGA)
+    clk_gen: process
+    begin
+        while not sim_done loop
+            clk <= '0';
+            wait for CLK_PERIOD / 2;
+            clk <= '1';
+            wait for CLK_PERIOD / 2;
+        end loop;
+        wait;
+    end process;
 
-  -- Estímulos de teste
-  PROCESS
-  BEGIN
-    -- Inicialização
-    reset_n <= '0';
-    KEY <= (OTHERS => '1');
-    WAIT FOR 100 ns;
+    -- Processo de Estímulos
+    stim: process
+    begin
+        -- 1. Aplicar Reset
+        reset_n <= '0';
+        KEY(0) <= '1';
+        wait for CLK_PERIOD * 10;
 
-    -- Liberar reset
-    reset_n <= '1';
-    WAIT FOR 100 ns;
+        -- Liberar o Reset (Posições devem inicializar: dino=200x380, cacto=640x370)
+        reset_n <= '1';
+        wait for CLK_PERIOD * 10;
 
-    REPORT "=== Teste 1: Posição Inicial ===" SEVERITY NOTE;
-    REPORT "Dinossauro X: " & INTEGER'IMAGE(TO_INTEGER(dino_x)) SEVERITY NOTE;
-    REPORT "Dinossauro Y: " & INTEGER'IMAGE(TO_INTEGER(dino_y)) SEVERITY NOTE;
-    REPORT "Cacto X: " & INTEGER'IMAGE(TO_INTEGER(cactus_x)) SEVERITY NOTE;
-    REPORT "Cacto Y: " & INTEGER'IMAGE(TO_INTEGER(cactus_y)) SEVERITY NOTE;
+        -- 2. Simular pulo do dinossauro
+        -- O controller detecta o pulo na borda de descida de KEY(0)
+        KEY(0) <= '0';
+        wait for CLK_PERIOD * 5; -- Mantém pressionado por alguns ciclos
+        KEY(0) <= '1';
 
-    WAIT FOR 1 us;
+        wait for CLK_PERIOD * FRAME_CYCLES * 20;
+        -- confere se ele não tem bugs se gerar 2 estimulos um atrás do outro
+        KEY(0) <= '0';
+        wait for CLK_PERIOD * 5; -- Mantém pressionado por alguns ciclos
+        KEY(0) <= '1';
 
-    -- Teste 2: Simular pulo (borda de descida em KEY[0])
-    REPORT "=== Teste 2: Acionando Pulo (Debounce) ===" SEVERITY NOTE;
-    KEY(0) <= '0';  -- Pressionar botão (borda de descida)
-    WAIT FOR CLK_PERIOD;
-    KEY(0) <= '1';  -- Soltar botão
-    WAIT FOR 5 us;
+        -- 3. Observar a dinâmica ao longo do tempo
+        -- Como FRAME_DIVISOR = 600000, aguardamos múltiplos de FRAME_CYCLES
+        -- para observar os ciclos de atualização (gravidade, movimento e colisão).
+        -- 80 frames garantem tempo suficiente para o pulo completo e colisão.
+        wait for CLK_PERIOD * FRAME_CYCLES * 60;
 
-    REPORT "Após pulo - Dinossauro Y: " & INTEGER'IMAGE(TO_INTEGER(dino_y)) SEVERITY NOTE;
+        -- 4. Simular Reset/Restart após o Game Over
+        -- Pressionar novamente deve fazer o game_state voltar a '0'
+        KEY(0) <= '0';
+        wait for CLK_PERIOD * 5;
+        KEY(0) <= '1';
+        
+        -- Aguarda mais alguns frames para garantir que reiniciou
+        wait for CLK_PERIOD * FRAME_CYCLES * 5;
 
-    -- Aguardar o dinossauro cair e voltar ao chão
-    WAIT FOR 50 us;
+        -- Fim da simulação
+        sim_done <= true;
+        wait;
+    end process;
 
-    REPORT "Após queda - Dinossauro Y: " & INTEGER'IMAGE(TO_INTEGER(dino_y)) SEVERITY NOTE;
-
-    -- Teste 3: Simular colisão (posicionar cacto próximo)
-    REPORT "=== Teste 3: Observando Movimento do Cacto ===" SEVERITY NOTE;
-    WAIT FOR 100 us;
-
-    REPORT "Cacto X após tempo: " & INTEGER'IMAGE(TO_INTEGER(cactus_x)) SEVERITY NOTE;
-    REPORT "Colisão Detectada: " & STD_LOGIC'IMAGE(collision) SEVERITY NOTE;
-
-    WAIT FOR 100 us;
-
-    REPORT "=== Teste Finalizado ===" SEVERITY NOTE;
-    WAIT;
-  END PROCESS;
-
-END test;
+end architecture tb;

@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 start_full_compilation:s
 start_assembler:s-start_full_compilation
 start_timing_analyzer:s-start_full_compilation
 start_eda_netlist_writer:s-start_full_compilation
+=======
+start_analysis_elaboration:s:00:00:04
+start_eda_rtl_simulation:s:00:00:15
+>>>>>>> 880fed0efcf91bc244515f1bec8cc5a16b469aa7

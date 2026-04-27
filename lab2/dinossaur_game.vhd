@@ -44,6 +44,7 @@ architecture rtl of dinossaur_game is
   signal reset_n      : std_logic;
   signal buttons      : std_logic_vector(3 downto 0);
   
+  -- PLL gera clock de 25 MHz para video
   component pll is
 		port (
 			refclk   : in  std_logic := 'X';
@@ -195,6 +196,7 @@ begin
       VGA_CLK      => VGA_CLK
     );
 
+  -- Pisca LEDR (9) quando game_over = '1'
   PROCESS(clk25, reset_n)
     VARIABLE counter : INTEGER;
   BEGIN

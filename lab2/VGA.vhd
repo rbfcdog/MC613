@@ -15,10 +15,10 @@ entity VGA is
     VGA_R        : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
     VGA_G        : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
     VGA_B        : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
-    VGA_HS       : OUT STD_LOGIC;
-    VGA_VS       : OUT STD_LOGIC;
-    VGA_BLANK_N  : OUT STD_LOGIC;
-    VGA_SYNC_N   : OUT STD_LOGIC;
+    VGA_HS       : OUT STD_LOGIC :='1';
+    VGA_VS       : OUT STD_LOGIC :='1';
+    VGA_BLANK_N  : OUT STD_LOGIC :='0';
+    VGA_SYNC_N   : OUT STD_LOGIC :='1';
     VGA_CLK      : OUT STD_LOGIC
   );
 end VGA;
@@ -39,37 +39,40 @@ begin
             
         elsif rising_edge(pixel_clk) then
         
-            if count_y < 2 then
+            -- Y Sync and Porches (640x480@60Hz: 480/10/2/33)
+            if count_y < 2 then -- V sync
                 VGA_VS <= '0';
                 y_act  <= '0';
-            elsif count_y < 33 then
+            elsif count_y < 33 then -- back porch (2 + 31)
                 VGA_VS <= '1';
                 y_act  <= '0';
-            elsif count_y < 513 then
+            elsif count_y < 513 then -- active (33 + 480)
                 VGA_VS <= '1';
                 y_act  <= '1';
-            else
+            else -- front porch y
                 VGA_VS <= '1';
                 y_act  <= '0';
             end if;
                 
-            if count_x < 96 then
+            if count_x < 96 then --H sync
                 VGA_HS <= '0';
                 x_act  <= '0';
-            elsif count_x < 144 then
+            elsif count_x < 144 then --back porch X
                 VGA_HS <= '1';
                 x_act  <= '0';
-            elsif count_x < 784 then
+            elsif count_x < 784 then  --x active
                 VGA_HS <= '1';
                 x_act  <= '1';
-            else
+            else -- front porch x
                 VGA_HS <= '1';
                 x_act  <= '0';
             end if;
 
+            -- Coordinate Counters
             if count_x = 799 then 
-                count_x <= 0;
+                count_x <= 0;     -- Wrap X back to 0
                 
+                --Y only increments when a full X line is drawn
                 if count_y = 523 then 
                     count_y <= 0;
                 else
@@ -83,14 +86,13 @@ begin
         end if;
     end process;
 
-    pixel_x <= std_logic_vector(to_unsigned(count_x - 144, 10)) when count_x >= 144 else (others => '0');
-    pixel_y <= std_logic_vector(to_unsigned(count_y - 33, 10)) when count_y >= 33 else (others => '0');
+    -- Map internal signals to outputs using numeric_std conversion
+    pixel_x <= std_logic_vector(to_unsigned(count_x, 10));
+    pixel_y <= std_logic_vector(to_unsigned(count_y, 10));
 
     VGA_CLK<=pixel_clk;
-    VGA_SYNC_N<='1';
     video_active_i <= x_act and y_act;
     video_active <= video_active_i;
-    VGA_BLANK_N <= video_active_i;
     VGA_R <= r_in when video_active_i = '1' else (others => '0');
     VGA_G <= g_in when video_active_i = '1' else (others => '0');
     VGA_B <= b_in when video_active_i = '1' else (others => '0');

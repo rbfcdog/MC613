@@ -295,7 +295,17 @@ Testbenches implementados no projeto:
 - Instanciacao do DUT confirmada.
 - Sinais de saida VGA_HS, VGA_VS, VGA_BLANK_N, pixel_x, pixel_y e video_active disponiveis para inspecao em waveform.
 
+<<<<<<< HEAD
 \section{Analise de Execucao}
+=======
+
+## Test Benches
+
+### VGA:
+![oieee](testbench_vga.png)
+
+## Analise de Execucao
+>>>>>>> 880fed0efcf91bc244515f1bec8cc5a16b469aa7
 
 Apesar do funcionamento bem-sucedido na placa DE1-SoC, a validacao do projeto em simulacao ainda apresenta algumas limitacoes praticas. O comportamento em hardware e consistente, mas o ciclo completo do jogo depende de temporizacoes relativamente longas quando comparadas ao clock de 50 MHz, o que torna a observacao de eventos em tempo real mais dificil em testbench.
 
