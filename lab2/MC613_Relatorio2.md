@@ -1,89 +1,99 @@
-# MC613 - Relatorio 2
+\section{Analise de Execucao}
 
-## Planejamento
+Apesar do funcionamento bem-sucedido na placa DE1-SoC, a validacao do projeto em simulacao ainda apresenta algumas limitacoes praticas. O comportamento em hardware e consistente, mas o ciclo completo do jogo depende de temporizacoes relativamente longas quando comparadas ao clock de 50 MHz, o que torna a observacao de eventos em tempo real mais dificil em testbench.
 
-- Definir pipeline de video para VGA 640x480 @ 60 Hz com clock de pixel de 25 MHz.
-- Separar arquitetura em modulos independentes: geracao de timing, cenario (tiles), logica de jogo e composicao final.
-- Implementar mecanica basica no estilo Dino Runner:
-  1. Dinossauro com pulo
-  2. Cacto movendo da direita para a esquerda
-  3. Deteccao de colisao
-  4. Estado de game over com indicacao visual em LED
-- Garantir integracao em top-level para uso direto na placa DE1-SoC.
-- Criar testbenches para validar pelo menos os blocos criticos de timing e controle de jogo.
+\subsection{Problemas Observados}
 
-## Estrutura do codigo e Implementacao
+\begin{table}[h]
+  \centering
+  \caption{Problemas observados na execucao e validacao}
+  \begin{tabular}{@{}p{4.1cm}p{5.1cm}p{5.1cm}@{}}
+    \hline
+    {\bfseries Problema} & {\bfseries Impacto} & {\bfseries Solucao / Mitigacao} \\
+    \hline
+    Validacao de video pouco automatizada & O testbench de VGA e estrutural e nao percorre um quadro completo com checagens formais dos sinais de sincronismo. & Criar um testbench auto-verificavel, com assertions para HS, VS, blanking e contagem de pixels em uma janela completa. \\
+    Dinamica lenta no game loop & O \verb|FRAME_DIVISOR| faz com que os movimentos ocorram em escala muito maior que os waits normalmente usados em simulacao. & Reduzir o divisor apenas para simulacao ou parametrizar o modulo com generics distintos para FPGA e testbench. \\
+    Acionamento repetido do botao & Pressionamentos longos podem gerar multiplos eventos se a entrada for lida como nivel e nao como evento. & Manter a deteccao de borda sincronizada e, se necessario, adicionar debounce de software ou hardware. \\
+    Colisao sensivel a dimensoes dos sprites & Pequenas diferencas entre bounding box e sprite real podem gerar colisao antecipada ou tardia. & Ajustar as dimensoes efetivas e introduzir margens de tolerancia para dino e cacto. \\
+    Reset dependente do lock do PLL & Se o lock ainda nao estiver estabilizado, alguns sinais podem iniciar em estados intermediarios. & Garantir reset sincrono liberado apenas apos lock e, se necessario, registrar o estado inicial por mais de um ciclo. \\
+    Verificacao limitada da renderizacao de sprites & Erros de sobreposicao podem passar despercebidos se a analise considerar apenas os sinais de controle. & Adicionar verificacao por coordenadas e amostras de cor em pixels-chave da tela. \\
+    \hline
+  \end{tabular}
+\end{table}
 
-O projeto e organizado em modulos VHDL hierarquicos, onde cada componente possui uma responsabilidade especifica:
+\subsection{Problemas Potenciais}
 
-- dinossaur_game (top-level)
-- pll (geracao de clock de 25 MHz)
-- VGA (controlador de temporizacao e sinais VGA)
-- PPU (renderizacao de fundo baseada em tiles)
-- rom (dados de tiles e mapa base)
-- ram (mapa de tiles inicializavel)
-- game_controller (fisica do pulo, movimento do obstaculo e colisao)
-- sprite_renderer (sobreposicao dos sprites do dinossauro e cacto)
+Mesmo quando o circuito sintetiza e roda corretamente na placa, alguns problemas adicionais podem aparecer durante a evolucao do projeto:
 
-## Modulo Principal: dinossaur_game
+\begin{itemize}
+  \item \textbf{Desalinhamento entre clock de video e logica de jogo:} se o PPU, o controlador do jogo e o renderer nao trabalharem com a mesma referencia temporal, podem surgir artefatos visuais ou atualizacoes fora de fase.
+  \item \textbf{Dependencia excessiva de constantes fixas:} valores como \verb|FRAME_DIVISOR|, \verb|JUMP_SPEED| e \verb|GRAVITY| podem exigir ajuste manual quando a frequencia de clock ou a taxa de quadro mudar.
+  \item \textbf{Falta de cobertura de casos extremos:} o testbench pode validar apenas o cenario feliz, deixando de fora colisao imediata, reinicio durante queda e repeticao de salto em frames consecutivos.
+  \item \textbf{Saturacao ou overflow em registradores:} coordenadas e velocidades armazenadas em poucos bits podem causar wrap-around se limites de faixa nao forem respeitados.
+  \item \textbf{Comportamento nao reproduzivel entre simulacao e hardware:} tempos de espera, inicializacao de memoria e leitura de botao podem divergir entre ambiente virtual e FPGA real.
+\end{itemize}
 
-O arquivo principal integra todos os componentes e conecta entradas/saidas fisicas da placa.
+\subsection{Solucoes Adotadas e Propostas}
 
-### Portas de entrada
+\begin{table}[h]
+  \centering
+  \caption{Solucoes adotadas e melhorias possiveis}
+  \begin{tabular}{@{}p{4.3cm}p{5.0cm}p{5.0cm}@{}}
+    \hline
+    {\bfseries Cenario} & {\bfseries Efeito Esperado} & {\bfseries Solucao} \\
+    \hline
+    Entrada de botao por nivel & Multiplo disparo por uma unica pressao & Usar deteccao de borda sincronizada com armazenamento do valor anterior do KEY(0). \\
+    Simulacao lenta do jogo & Dificulta observar pulo, colisao e reinicio em tempo aceitavel & Reduzir o divisor de frame em simulacao e manter o valor original apenas para FPGA. \\
+    Testes de VGA limitados & Falhas de temporizacao podem nao ser detectadas & Inserir assertions para periodos de sincronismo, video\_active e limites de pixel\_x/pixel\_y. \\
+    Colisao pouco intuitiva & Jogo pode parecer injusto ao usuario & Ajustar a bounding box dos sprites e, se necessario, desacoplar a colisao da forma grafica exata. \\
+    Reinicio durante game over & Estado pode permanecer inconsistente se a ordem de reset nao for bem definida & Centralizar a maquina de estados com reset sincrono e liberar o jogo somente apos o lock do PLL. \\
+    Validacao manual excessiva & Erros sutis passam despercebidos & Criar um conjunto de testes com sequencias repetiveis para salto, colisao, fim de jogo e reinicio. \\
+    \hline
+  \end{tabular}
+\end{table}
 
-- CLOCK_50: Clock de 50 MHz da placa
-- KEY[0]: Botao de pulo/restart (ativo em nivel baixo)
-- SW[9:0]: Chaves (conectadas a PPU, reservadas para expansao)
+\subsection{Solucao de Entrada de Botao}
 
-### Portas de saida
+A deteccao de borda sincrona resolveu o problema de multiplos acionamentos indesejados, garantindo que cada pressao gere apenas um evento logico.
 
-- VGA_SYNC_N, VGA_BLANK_N, VGA_HS, VGA_VS, VGA_CLK
-- VGA_R[7:0], VGA_G[7:0], VGA_B[7:0]
-- LEDR[9:0] (LEDR9 usado para indicar game over piscando)
+\begin{verbatim}
+IF key_0_prev = '1' AND KEY(0) = '0' THEN
+  pulse_jump <= '1';
+ELSE
+  pulse_jump <= '0';
+END IF;
+key_0_prev <= KEY(0);
+\end{verbatim}
 
-### Funcionamento Principal
+\subsubsection{Como Funciona}
 
-```vhdl
--- PLL gera clock de 25MHz para video
-clk : pll
-port map(
-  refclk   => CLOCK_50,
-  rst      => '0',
-  outclk_0 => clk25,
-  locked   => lock
-);
+\begin{itemize}
+  \item \verb|key_0_prev| armazena o estado do ciclo anterior.
+  \item \verb|KEY(0)| representa a entrada atual do botao, ativo em nivel baixo.
+  \item A transicao de \verb|'1'| para \verb|'0'| detecta a borda de descida do pressionamento.
+  \item \verb|pulse_jump| permanece em \verb|'1'| por um unico ciclo de clock, acionando exatamente um pulo ou reinicio.
+\end{itemize}
 
-reset_n <= lock;
-```
+\subsubsection{Beneficios}
 
-```vhdl
--- Pisca LEDR(9) quando game_over = '1'
-PROCESS(clk25, reset_n)
-  VARIABLE counter : INTEGER;
-BEGIN
-  IF reset_n = '0' THEN
-    game_over <= '0';
-    counter := 0;
-  ELSIF RISING_EDGE(clk25) THEN
-    IF collision = '1' THEN
-      game_over <= '1';
-    END IF;
+\begin{table}[h]
+  \centering
+  \caption{Beneficios da logica de borda}
+  \begin{tabular}{@{}ll@{}}
+    \hline
+    {\bfseries Caracteristica} & {\bfseries Motivo} \\
+    \hline
+    Sincrona & Evita logica assincrona no caminho principal. \\
+    Pulso unico & Impede multiplos disparos por uma mesma pressao. \\
+    Simplicidade & Baixo custo em hardware e depuracao mais direta. \\
+    Deterministica & Comportamento repetivel em FPGA e simulacao. \\
+    \hline
+  \end{tabular}
+\end{table}
 
-    counter := counter + 1;
-    IF counter > 25000000 THEN
-      counter := 0;
-    END IF;
+\subsubsection{Conclusao Parcial}
 
-    IF game_over = '1' THEN
-      IF counter > 12500000 THEN
-        LEDR(9) <= '1';
-      ELSE
-        LEDR(9) <= '0';
-      END IF;
-    ELSE
-      LEDR(9) <= '0';
-    END IF;
-  END IF;
+A solucao de borda nao apenas corrige o acionamento repetido do botao, como tambem melhora a previsibilidade do fluxo do jogo. Em conjunto com a parametrizacao dos tempos de simulacao, ela torna a validacao do projeto mais confiavel e facilita a evolucao futura do sistema.
 END PROCESS;
 ```
 
@@ -285,50 +295,99 @@ Testbenches implementados no projeto:
 - Instanciacao do DUT confirmada.
 - Sinais de saida VGA_HS, VGA_VS, VGA_BLANK_N, pixel_x, pixel_y e video_active disponiveis para inspecao em waveform.
 
-## Analise de Execucao
+\section{Analise de Execucao}
 
-Apesar do sistema funcionar na placa e a arquitetura estar modularizada, surgiram pontos importantes:
+Apesar do funcionamento bem-sucedido na placa DE1-SoC, a validacao do projeto em simulacao ainda apresenta algumas limitacoes praticas. O comportamento em hardware e consistente, mas o ciclo completo do jogo depende de temporizacoes relativamente longas quando comparadas ao clock de 50 MHz, o que torna a observacao de eventos em tempo real mais dificil em testbench.
 
-### Problema 1
+\subsection{Problemas Observados}
 
-Validacao funcional ainda limitada no bloco de video. O testbench de VGA e estrutural e nao exercita o fluxo completo de temporizacao, o que reduz a verificacao automatica dos sinais de sincronismo e da janela ativa ao longo de um quadro inteiro.
+\begin{table}[h]
+    \centering
+    \caption{Problemas observados na execucao e validacao}
+    \begin{tabular}{@{}p{4.1cm}p{5.1cm}p{5.1cm}@{}}
+      \hline
+      {\bfseries Problema} & {\bfseries Impacto} & {\bfseries Solucao / Mitigacao} \\
+      \hline
+        Validacao de video pouco automatizada & O testbench de VGA e estrutural e nao percorre um quadro completo com checagens formais dos sinais de sincronismo. & Criar um testbench auto-verificavel, com assertions para HS, VS, blanking e contagem de pixels em uma janela completa. \\ 
+        Dinamica lenta no game loop & O FRAME\_DIVISOR faz com que os movimentos ocorram em escala muito maior que os waits normalmente usados em simulacao. & Reduzir o divisor apenas para simulacao ou parametrizar o modulo com generics distintos para FPGA e testbench. \\ 
+        Acionamento repetido do botao & Pressionamentos longos podem gerar multiplos eventos se a entrada for lida como nivel e nao como evento. & Manter a deteccao de borda sincronizada e, se necessario, adicionar debounce de software/hardware. \\ 
+        Colisao sensivel a dimensoes dos sprites & Pequenas diferencas entre bounding box e sprite real podem gerar colisao antecipada ou tardia. & Ajustar as dimensoes efetivas e introduzir margens de tolerancia para dino e cacto. \\ 
+        Reset dependente do lock do PLL & Se o lock ainda nao estiver estabilizado, alguns sinais podem iniciar em estados intermediarios. & Garantir reset sincrono liberado apenas apos lock e, se necessario, registrar o estado inicial por mais de um ciclo. \\ 
+        Verificacao limitada da renderizacao de sprites & Erros de sobreposicao podem passar despercebidos se a analise considerar apenas os sinais de controle. & Adicionar verificacao por coordenadas e amostras de cor em pixels-chave da tela. \\
+        \hline
+    \end{tabular}
+\end{table}
 
-### Problema 2
+\subsection{Problemas Potenciais}
 
-Janela temporal curta no tb_game_controller para observar dinamica lenta. Com FRAME_DIVISOR=600000 e clock de 50 MHz, updates completos de movimento ocorrem em escala de milissegundos, enquanto parte dos waits usados esta em microssegundos.
+Mesmo quando o circuito sintetiza e roda corretamente na placa, alguns problemas adicionais podem aparecer durante a evolucao do projeto:
 
-### Solucao (adotada no projeto para entrada de botao)
+\begin{itemize}
+    \item \textbf{Desalinhamento entre clock de video e logica de jogo:} se o PPU, o controlador do jogo e o renderer nao trabalharem com a mesma referencia temporal, podem surgir artefatos visuais ou atualizacoes fora de fase.
+    \item \textbf{Dependencia excessiva de constantes fixas:} valores como \texttt{FRAME\_DIVISOR}, \texttt{JUMP\_SPEED} e \texttt{GRAVITY} podem exigir ajuste manual quando a frequencia de clock ou a taxa de quadro mudar.
+    \item \textbf{Falta de cobertura de casos extremos:} o testbench pode validar apenas o cenario feliz, deixando de fora colisao imediata, reinicio durante queda e repeticao de salto em frames consecutivos.
+    \item \textbf{Saturacao ou overflow em registradores:} coordenadas e velocidades armazenadas em poucos bits podem causar wrap-around se limites de faixa nao forem respeitados.
+    \item \textbf{Comportamento nao reproduzivel entre simulacao e hardware:} tempos de espera, inicializacao de memoria e leitura de botao podem divergir entre ambiente virtual e FPGA real.
+\end{itemize}
 
-Deteccao de borda com memoria de estado no KEY(0), gerando pulso de um ciclo e evitando multiplos acionamentos por pressao continua.
+\subsection{Solucoes Adotadas e Propostas}
 
-```vhdl
+\begin{table}[h]
+    \centering
+    \caption{Solucoes adotadas e melhorias possiveis}
+    \begin{tabular}{@{}p{4.3cm}p{5.0cm}p{5.0cm}@{}}
+      \hline
+      {\bfseries Cenario} & {\bfseries Efeito Esperado} & {\bfseries Solucao} \\
+      \hline
+        Entrada de botao por nivel & Multiplo disparo por uma unica pressao & Usar deteccao de borda sincronizada com armazenamento do valor anterior do KEY(0). \\ 
+        Simulacao lenta do jogo & Dificulta observar pulo, colisao e reinicio em tempo aceitavel & Reduzir o divisor de frame em simulacao e manter o valor original apenas para FPGA. \\ 
+        Testes de VGA limitados & Falhas de temporizacao podem nao ser detectadas & Inserir assertions para periodos de sincronismo, video\_active e limites de pixel\_x/pixel\_y. \\ 
+        Colisao pouco intuitiva & Jogo pode parecer injusto ao usuario & Ajustar a bounding box dos sprites e, se necessario, desacoplar a colisao da forma grafica exata. \\ 
+        Reinicio durante game over & Estado pode permanecer inconsistente se a ordem de reset nao for bem definida & Centralizar a maquina de estados com reset sincrono e liberar o jogo somente apos o lock do PLL. \\ 
+        Validacao manual excessiva & Erros sutis passam despercebidos & Criar um conjunto de testes com sequencias repetiveis para salto, colisao, fim de jogo e reinicio. \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Solucao de Entrada de Botao}
+
+A deteccao de borda sincrona resolveu o problema de multiplos acionamentos indesejados, garantindo que cada pressao gere apenas um evento logico.
+
+\begin{verbatim}
 IF key_0_prev = '1' AND KEY(0) = '0' THEN
   pulse_jump <= '1';
 ELSE
   pulse_jump <= '0';
 END IF;
 key_0_prev <= KEY(0);
-```
+\end{verbatim}
 
-### Como Funciona
+\subsubsection{Como Funciona}
 
-- key_0_prev guarda o valor do ciclo anterior.
-- KEY(0) e a entrada atual do botao (ativo em nivel baixo).
-- Condicao key_0_prev='1' e KEY(0)='0' detecta pressionamento (borda de descida).
-- pulse_jump fica em '1' por um ciclo de clock e aciona exatamente um evento de pulo/restart.
+\begin{itemize}
+    \item \texttt{key\_0\_prev} armazena o estado do ciclo anterior.
+    \item \texttt{KEY(0)} representa a entrada atual do botao, ativo em nivel baixo.
+    \item A transicao de \texttt{'1'} para \texttt{'0'} detecta a borda de descida do pressionamento.
+    \item \texttt{pulse\_jump} permanece em \texttt{'1'} por um unico ciclo de clock, acionando exatamente um pulo ou reinicio.
+\end{itemize}
 
-### Principais Beneficios
+\subsubsection{Beneficios}
 
-O Que | Por Que
----|---
-Sincrona | Sem logica assincrona adicional no caminho principal.
-Pulso de ciclo unico | Evita multiplos disparos por mesma pressao.
-Logica simples | Baixo custo em hardware e facil depuracao.
-Deterministica | Comportamento repetivel em FPGA e simulacao.
+\begin{table}[h]
+    \centering
+    \caption{Beneficios da logica de borda}
+    \begin{tabular}{@{}ll@{}}
+      \hline
+      {\bfseries Caracteristica} & {\bfseries Motivo} \\
+      \hline
+        Sincrona & Evita logica assincrona no caminho principal. \\
+        Pulso unico & Impede multiplos disparos por uma mesma pressao. \\
+        Simplicidade & Baixo custo em hardware e depuracao mais direta. \\
+        Deterministica & Comportamento repetivel em FPGA e simulacao. \\
+        \hline
+    \end{tabular}
+\end{table}
 
-### Por Que Isso Resolveu o Problema
+\subsubsection{Conclusao Parcial}
 
-- Estabilidade da logica de entrada para controle de pulo/reinicio
-- Menor chance de eventos duplicados por acionamento manual
-- Comportamento previsivel da logica de jogo
-- Integracao direta com a atualizacao sincrona do game_controller
+A solucao de borda nao apenas corrige o acionamento repetido do botao, como tambem melhora a previsibilidade do fluxo do jogo. Em conjunto com a parametrizacao dos tempos de simulacao, ela torna a validacao do projeto mais confiavel e facilita a evolucao futura do sistema.
