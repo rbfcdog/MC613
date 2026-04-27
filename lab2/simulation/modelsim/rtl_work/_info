@@ -24,9 +24,9 @@ VY3WN9TZCH5O6AHCHd=0]I1
 !s100 XoX6=Poo`]4<<78:]J>``0
 Z7 OV;C;2020.1;71
 31
-Z8 !s110 1777257341
+Z8 !s110 1777260208
 !i10b 1
-Z9 !s108 1777257341.000000
+Z9 !s108 1777260208.000000
 Z10 !s90 -reportprogress|300|-93|-work|work|/home/estrela/Documents/MC613/lab2/dinossaur_game.vhd|
 Z11 !s107 /home/estrela/Documents/MC613/lab2/dinossaur_game.vhd|
 !i113 1
@@ -137,7 +137,7 @@ R24
 !i113 1
 R13
 Eppu
-Z25 w1777257329
+Z25 w1777260183
 R2
 R3
 R4
@@ -165,10 +165,10 @@ R3
 R4
 Z30 DEx4 work 3 ppu 0 22 V0`[j]F`4aLfj[AK[Hf_U2
 !i122 8
-l49
-L20 105
-VM:70KOPzGGCzUaNkfCMSg3
-!s100 `J:?I?`94eHWHY]XaL0HI3
+l38
+L20 91
+V]JZVMg[zzPekFM`18A^V<3
+!s100 L3EWkREg2go0gM:=0QT9>0
 R7
 31
 R8
@@ -309,7 +309,7 @@ R44
 R12
 R13
 Etb_ppu
-Z45 w1777257099
+Z45 w1777258915
 R2
 R3
 R4

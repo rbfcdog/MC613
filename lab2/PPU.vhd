@@ -30,24 +30,13 @@ ARCHITECTURE rtl OF PPU IS
     );
   END COMPONENT;
 
-  -- RAM component kept for structural compatibility, though logic is bypassed
-  COMPONENT ram IS
-    PORT (
-      clock    : IN STD_LOGIC;
-      addr     : IN STD_LOGIC_VECTOR (7 DOWNTO 0);
-      data_in  : IN STD_LOGIC_VECTOR (7 DOWNTO 0);
-      wr_en    : IN STD_LOGIC;
-      data_out : OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
-    );
-  END COMPONENT;
-
   SIGNAL tile_addr : STD_LOGIC_VECTOR(12 DOWNTO 0);
   SIGNAL tile_data : STD_LOGIC_VECTOR(7 DOWNTO 0);
   SIGNAL pixel_x_u : UNSIGNED(9 DOWNTO 0);
   SIGNAL pixel_y_u : UNSIGNED(9 DOWNTO 0);
 
 BEGIN
-  -- Component Instantiation
+  -- ROM contains the 8x8 bitmap patterns for tiles
   tile_rom : rom
     PORT MAP(
       addr     => tile_addr,
@@ -67,13 +56,14 @@ BEGIN
     VARIABLE pixel_on   : STD_LOGIC;
   BEGIN
     -- 1. Calculate Grid Positions (Each tile is 8x8 pixels)
+    -- Using bits 9 downto 3 effectively divides coordinate by 8
     tile_x_raw := TO_INTEGER(pixel_x_u(9 DOWNTO 3)); 
     tile_y_raw := TO_INTEGER(pixel_y_u(9 DOWNTO 3)); 
-    row := TO_INTEGER(pixel_y_u(2 DOWNTO 0));        -- Line inside the tile
-    col := TO_INTEGER(pixel_x_u(2 DOWNTO 0));        -- Bit inside the row
+    row := TO_INTEGER(pixel_y_u(2 DOWNTO 0));        -- Scanline within the 8x8 tile
+    col := TO_INTEGER(pixel_x_u(2 DOWNTO 0));        -- Pixel within the 8x8 tile row
 
-    -- 2. TILE SELECTION LOGIC (Hardcoded to match ROM Map)
-    -- This replaces the map_ram lookup
+    -- 2. BACKGROUND TILE SELECTION LOGIC
+    -- Hardcoded map logic (replaces the old RAM-based tilemap)
     IF ((tile_y_raw = 9 OR tile_y_raw = 10) AND (tile_x_raw = 5 OR tile_x_raw = 6)) OR     -- Cloud 1
        ((tile_y_raw = 11 OR tile_y_raw = 12) AND (tile_x_raw = 35 OR tile_x_raw = 36)) OR  -- Cloud 2
        ((tile_y_raw = 7 OR tile_y_raw = 8) AND (tile_x_raw = 60 OR tile_x_raw = 61)) THEN  -- Cloud 3
@@ -81,42 +71,38 @@ BEGIN
     ELSIF tile_y_raw >= 50 AND tile_y_raw <= 59 THEN
         tile_id := 4; -- Grass
     ELSE
-        tile_id := 0; -- Background / Sky
+        tile_id := 0; -- Empty Sky
     END IF;
 
-    -- 3. ROM Addressing
-    -- Calculate specific address in ROM for the chosen tile and row
+    -- 3. ROM Addressing logic
     tile_index := TILE_BASE + (tile_id * TILE_BYTES) + row;
     tile_addr <= STD_LOGIC_VECTOR(TO_UNSIGNED(tile_index, 13));
 
-    -- Get the bit (pixel) for the current column
+    -- Determine if the specific pixel in the current tile row is active
     pixel_on := tile_data(7 - col);
 
-    -- 4. Color Generation
+    -- 4. Color Generation (Output to Sprite Renderer)
     IF video_active = '0' THEN
       r <= (OTHERS => '0');
       g <= (OTHERS => '0');
       b <= (OTHERS => '0');
     ELSE
-      -- Ground Plane (Solid Color)
+      -- Draw solid Ground at the bottom
       IF pixel_y_u >= TO_UNSIGNED(GROUND_PIXEL_Y, 10) THEN
         r <= x"20"; g <= x"A0"; b <= x"20";
       
-      -- Tile Rendering
+      -- If pixel within a tile is 'on', use specific tile colors
       ELSIF pixel_on = '1' THEN
-        IF tile_id = 1 THEN          -- Cactus
-          r <= x"00"; g <= x"FF"; b <= x"00";
-        ELSIF tile_id = 2 THEN      -- Dino
-          r <= x"00"; g <= x"00"; b <= x"00";
-        ELSIF tile_id = 3 THEN      -- Cloud (White)
-          r <= x"FF"; g <= x"FF"; b <= x"FF";
-        ELSIF tile_id = 4 THEN      -- Grass Tile
-          r <= x"20"; g <= x"A0"; b <= x"20";
-        ELSE                        -- Default Sky
-          r <= x"70"; g <= x"C0"; b <= x"FF";
-        END IF;
+        CASE tile_id IS
+          WHEN 3 =>      -- Cloud (White)
+            r <= x"FF"; g <= x"FF"; b <= x"FF";
+          WHEN 4 =>      -- Grass (Greenish)
+            r <= x"20"; g <= x"A0"; b <= x"20";
+          WHEN OTHERS => -- Default Sky
+            r <= x"70"; g <= x"C0"; b <= x"FF";
+        END CASE;
       ELSE
-        -- Background Pixel (Sky Color)
+        -- Default Sky Background
         r <= x"70"; g <= x"C0"; b <= x"FF";
       END IF;
     END IF;
