@@ -24,9 +24,9 @@ VY3WN9TZCH5O6AHCHd=0]I1
 !s100 XoX6=Poo`]4<<78:]J>``0
 Z7 OV;C;2020.1;71
 31
-Z8 !s110 1777246701
+Z8 !s110 1777257341
 !i10b 1
-Z9 !s108 1777246701.000000
+Z9 !s108 1777257341.000000
 Z10 !s90 -reportprogress|300|-93|-work|work|/home/estrela/Documents/MC613/lab2/dinossaur_game.vhd|
 Z11 !s107 /home/estrela/Documents/MC613/lab2/dinossaur_game.vhd|
 !i113 1
@@ -137,14 +137,14 @@ R24
 !i113 1
 R13
 Eppu
-R14
+Z25 w1777257329
 R2
 R3
 R4
 !i122 8
 R0
-Z25 8/home/estrela/Documents/MC613/lab2/PPU.vhd
-Z26 F/home/estrela/Documents/MC613/lab2/PPU.vhd
+Z26 8/home/estrela/Documents/MC613/lab2/PPU.vhd
+Z27 F/home/estrela/Documents/MC613/lab2/PPU.vhd
 l0
 L5 1
 VV0`[j]F`4aLfj[AK[Hf_U2
@@ -154,8 +154,8 @@ R7
 R8
 !i10b 1
 R9
-Z27 !s90 -reportprogress|300|-93|-work|work|/home/estrela/Documents/MC613/lab2/PPU.vhd|
-Z28 !s107 /home/estrela/Documents/MC613/lab2/PPU.vhd|
+Z28 !s90 -reportprogress|300|-93|-work|work|/home/estrela/Documents/MC613/lab2/PPU.vhd|
+Z29 !s107 /home/estrela/Documents/MC613/lab2/PPU.vhd|
 !i113 1
 R12
 R13
@@ -163,31 +163,31 @@ Artl
 R2
 R3
 R4
-Z29 DEx4 work 3 ppu 0 22 V0`[j]F`4aLfj[AK[Hf_U2
+Z30 DEx4 work 3 ppu 0 22 V0`[j]F`4aLfj[AK[Hf_U2
 !i122 8
-l55
-L20 129
-VLKDVNE]G8AaL53R=MNLfT2
-!s100 <4?5R^ASjYnFP[d]9MM<03
+l49
+L20 105
+VM:70KOPzGGCzUaNkfCMSg3
+!s100 `J:?I?`94eHWHY]XaL0HI3
 R7
 31
 R8
 !i10b 1
 R9
-R27
 R28
+R29
 !i113 1
 R12
 R13
 Eram
-R14
+Z31 w1777249410
 R2
 R3
 R4
 !i122 2
 R0
-Z30 8/home/estrela/Documents/MC613/lab2/ram.vhd
-Z31 F/home/estrela/Documents/MC613/lab2/ram.vhd
+Z32 8/home/estrela/Documents/MC613/lab2/ram.vhd
+Z33 F/home/estrela/Documents/MC613/lab2/ram.vhd
 l0
 L5 1
 VnIBA7E_n8L^b2kQTD@1Fc2
@@ -197,8 +197,8 @@ R7
 R8
 !i10b 1
 R9
-Z32 !s90 -reportprogress|300|-93|-work|work|/home/estrela/Documents/MC613/lab2/ram.vhd|
-Z33 !s107 /home/estrela/Documents/MC613/lab2/ram.vhd|
+Z34 !s90 -reportprogress|300|-93|-work|work|/home/estrela/Documents/MC613/lab2/ram.vhd|
+Z35 !s107 /home/estrela/Documents/MC613/lab2/ram.vhd|
 !i113 1
 R12
 R13
@@ -217,8 +217,8 @@ R7
 R8
 !i10b 1
 R9
-R32
-R33
+R34
+R35
 !i113 1
 R12
 R13
@@ -229,8 +229,8 @@ R3
 R4
 !i122 7
 R0
-Z34 8/home/estrela/Documents/MC613/lab2/rom.vhd
-Z35 F/home/estrela/Documents/MC613/lab2/rom.vhd
+Z36 8/home/estrela/Documents/MC613/lab2/rom.vhd
+Z37 F/home/estrela/Documents/MC613/lab2/rom.vhd
 l0
 L5 1
 V6FNajdAQn8Mj;^<OE]5Em0
@@ -240,8 +240,8 @@ R7
 R8
 !i10b 1
 R9
-Z36 !s90 -reportprogress|300|-93|-work|work|/home/estrela/Documents/MC613/lab2/rom.vhd|
-Z37 !s107 /home/estrela/Documents/MC613/lab2/rom.vhd|
+Z38 !s90 -reportprogress|300|-93|-work|work|/home/estrela/Documents/MC613/lab2/rom.vhd|
+Z39 !s107 /home/estrela/Documents/MC613/lab2/rom.vhd|
 !i113 1
 R12
 R13
@@ -260,20 +260,20 @@ R7
 R8
 !i10b 1
 R9
-R36
-R37
+R38
+R39
 !i113 1
 R12
 R13
 Esprite_renderer
-Z38 w1777234416
+Z40 w1777234416
 R2
 R3
 R4
 !i122 1
 R0
-Z39 8/home/estrela/Documents/MC613/lab2/sprite_renderer.vhd
-Z40 F/home/estrela/Documents/MC613/lab2/sprite_renderer.vhd
+Z41 8/home/estrela/Documents/MC613/lab2/sprite_renderer.vhd
+Z42 F/home/estrela/Documents/MC613/lab2/sprite_renderer.vhd
 l0
 L5 1
 Vd@8oBnOoW_=4[FlahTJ<O0
@@ -283,8 +283,8 @@ R7
 R8
 !i10b 1
 R9
-Z41 !s90 -reportprogress|300|-93|-work|work|/home/estrela/Documents/MC613/lab2/sprite_renderer.vhd|
-Z42 !s107 /home/estrela/Documents/MC613/lab2/sprite_renderer.vhd|
+Z43 !s90 -reportprogress|300|-93|-work|work|/home/estrela/Documents/MC613/lab2/sprite_renderer.vhd|
+Z44 !s107 /home/estrela/Documents/MC613/lab2/sprite_renderer.vhd|
 !i113 1
 R12
 R13
@@ -303,64 +303,64 @@ R7
 R8
 !i10b 1
 R9
-R41
-R42
+R43
+R44
 !i113 1
 R12
 R13
 Etb_ppu
-Z43 w1777246502
+Z45 w1777257099
 R2
 R3
 R4
 !i122 9
 R0
-Z44 8/home/estrela/Documents/MC613/lab2/tb_PPU.vhd
-Z45 F/home/estrela/Documents/MC613/lab2/tb_PPU.vhd
+Z46 8/home/estrela/Documents/MC613/lab2/tb_PPU.vhd
+Z47 F/home/estrela/Documents/MC613/lab2/tb_PPU.vhd
 l0
 L5 1
-VGPIdkdD2Ji:;jIN[Zl2]a2
-!s100 Q]d4@_cc^cLAS45nBU3AW1
+Vg8UhILZ0ZHl4HEj>7=ial2
+!s100 bER<dPBImQV_cARK_5HWQ1
 R7
 31
 R8
 !i10b 1
 R9
-Z46 !s90 -reportprogress|300|-93|-work|work|/home/estrela/Documents/MC613/lab2/tb_PPU.vhd|
+Z48 !s90 -reportprogress|300|-93|-work|work|/home/estrela/Documents/MC613/lab2/tb_PPU.vhd|
 !s107 /home/estrela/Documents/MC613/lab2/tb_PPU.vhd|
 !i113 1
 R12
 R13
 Atb
-R29
+R30
 R2
 R3
 R4
-DEx4 work 6 tb_ppu 0 22 GPIdkdD2Ji:;jIN[Zl2]a2
+DEx4 work 6 tb_ppu 0 22 g8UhILZ0ZHl4HEj>7=ial2
 !i122 9
 l27
-L8 98
-V@Gb0F3h[17Uj2Tm3@3IYM3
-!s100 jVjk[aLQEGAh_g<?DV75K2
+L8 116
+VPI>Lo4c2V16G1V2P[RmEc0
+!s100 lTaDbMG?DAU;o68g076Vg2
 R7
 31
 R8
 !i10b 1
 R9
-R46
-Z47 !s107 /home/estrela/Documents/MC613/lab2/tb_PPU.vhd|
+R48
+Z49 !s107 /home/estrela/Documents/MC613/lab2/tb_PPU.vhd|
 !i113 1
 R12
 R13
 Evga
-Z48 w1777246684
+Z50 w1777246684
 R2
 R3
 R4
 !i122 5
 R0
-Z49 8/home/estrela/Documents/MC613/lab2/VGA.vhd
-Z50 F/home/estrela/Documents/MC613/lab2/VGA.vhd
+Z51 8/home/estrela/Documents/MC613/lab2/VGA.vhd
+Z52 F/home/estrela/Documents/MC613/lab2/VGA.vhd
 l0
 L5 1
 Vb1>i@>@EOEC2GNTB1`J5M3
@@ -370,8 +370,8 @@ R7
 R8
 !i10b 1
 R9
-Z51 !s90 -reportprogress|300|-93|-work|work|/home/estrela/Documents/MC613/lab2/VGA.vhd|
-Z52 !s107 /home/estrela/Documents/MC613/lab2/VGA.vhd|
+Z53 !s90 -reportprogress|300|-93|-work|work|/home/estrela/Documents/MC613/lab2/VGA.vhd|
+Z54 !s107 /home/estrela/Documents/MC613/lab2/VGA.vhd|
 !i113 1
 R12
 R13
@@ -390,8 +390,8 @@ R7
 R8
 !i10b 1
 R9
-R51
-R52
+R53
+R54
 !i113 1
 R12
 R13

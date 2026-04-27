@@ -20,7 +20,7 @@
 # 
 # vcom "/home/estrela/Documents/MC613/lab2/pll_sim/pll.vho"
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 20:38:21 on Apr 26,2026
+# Start time: 23:35:41 on Apr 26,2026
 # vcom -reportprogress 300 /home/estrela/Documents/MC613/lab2/pll_sim/pll.vho 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -28,12 +28,12 @@
 # -- Loading package altera_lnsim_components
 # -- Compiling entity pll
 # -- Compiling architecture RTL of pll
-# End time: 20:38:21 on Apr 26,2026, Elapsed time: 0:00:00
+# End time: 23:35:41 on Apr 26,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vcom -93 -work work {/home/estrela/Documents/MC613/lab2/sprite_renderer.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 20:38:21 on Apr 26,2026
+# Start time: 23:35:41 on Apr 26,2026
 # vcom -reportprogress 300 -93 -work work /home/estrela/Documents/MC613/lab2/sprite_renderer.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -41,11 +41,11 @@
 # -- Loading package NUMERIC_STD
 # -- Compiling entity sprite_renderer
 # -- Compiling architecture behavioral of sprite_renderer
-# End time: 20:38:21 on Apr 26,2026, Elapsed time: 0:00:00
+# End time: 23:35:41 on Apr 26,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vcom -93 -work work {/home/estrela/Documents/MC613/lab2/ram.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 20:38:21 on Apr 26,2026
+# Start time: 23:35:41 on Apr 26,2026
 # vcom -reportprogress 300 -93 -work work /home/estrela/Documents/MC613/lab2/ram.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -53,11 +53,11 @@
 # -- Loading package NUMERIC_STD
 # -- Compiling entity ram
 # -- Compiling architecture behavioral of ram
-# End time: 20:38:21 on Apr 26,2026, Elapsed time: 0:00:00
+# End time: 23:35:41 on Apr 26,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vcom -93 -work work {/home/estrela/Documents/MC613/lab2/game_controller.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 20:38:21 on Apr 26,2026
+# Start time: 23:35:41 on Apr 26,2026
 # vcom -reportprogress 300 -93 -work work /home/estrela/Documents/MC613/lab2/game_controller.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -65,11 +65,11 @@
 # -- Loading package NUMERIC_STD
 # -- Compiling entity game_controller
 # -- Compiling architecture behavioral of game_controller
-# End time: 20:38:21 on Apr 26,2026, Elapsed time: 0:00:00
+# End time: 23:35:41 on Apr 26,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vcom -93 -work work {/home/estrela/Documents/MC613/lab2/PPU.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 20:38:21 on Apr 26,2026
+# Start time: 23:35:41 on Apr 26,2026
 # vcom -reportprogress 300 -93 -work work /home/estrela/Documents/MC613/lab2/PPU.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -77,11 +77,11 @@
 # -- Loading package NUMERIC_STD
 # -- Compiling entity PPU
 # -- Compiling architecture rtl of PPU
-# End time: 20:38:21 on Apr 26,2026, Elapsed time: 0:00:00
+# End time: 23:35:41 on Apr 26,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vcom -93 -work work {/home/estrela/Documents/MC613/lab2/VGA.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 20:38:21 on Apr 26,2026
+# Start time: 23:35:41 on Apr 26,2026
 # vcom -reportprogress 300 -93 -work work /home/estrela/Documents/MC613/lab2/VGA.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -89,11 +89,11 @@
 # -- Loading package NUMERIC_STD
 # -- Compiling entity VGA
 # -- Compiling architecture rtl of VGA
-# End time: 20:38:21 on Apr 26,2026, Elapsed time: 0:00:00
+# End time: 23:35:41 on Apr 26,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vcom -93 -work work {/home/estrela/Documents/MC613/lab2/dinossaur_game.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 20:38:21 on Apr 26,2026
+# Start time: 23:35:41 on Apr 26,2026
 # vcom -reportprogress 300 -93 -work work /home/estrela/Documents/MC613/lab2/dinossaur_game.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -101,11 +101,11 @@
 # -- Loading package NUMERIC_STD
 # -- Compiling entity dinossaur_game
 # -- Compiling architecture rtl of dinossaur_game
-# End time: 20:38:21 on Apr 26,2026, Elapsed time: 0:00:00
+# End time: 23:35:41 on Apr 26,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vcom -93 -work work {/home/estrela/Documents/MC613/lab2/rom.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 20:38:21 on Apr 26,2026
+# Start time: 23:35:41 on Apr 26,2026
 # vcom -reportprogress 300 -93 -work work /home/estrela/Documents/MC613/lab2/rom.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -113,12 +113,12 @@
 # -- Loading package NUMERIC_STD
 # -- Compiling entity rom
 # -- Compiling architecture behavioral of rom
-# End time: 20:38:21 on Apr 26,2026, Elapsed time: 0:00:00
+# End time: 23:35:41 on Apr 26,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vcom -93 -work work {/home/estrela/Documents/MC613/lab2/PPU.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 20:38:21 on Apr 26,2026
+# Start time: 23:35:41 on Apr 26,2026
 # vcom -reportprogress 300 -93 -work work /home/estrela/Documents/MC613/lab2/PPU.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -126,32 +126,31 @@
 # -- Loading package NUMERIC_STD
 # -- Compiling entity PPU
 # -- Compiling architecture rtl of PPU
-# End time: 20:38:21 on Apr 26,2026, Elapsed time: 0:00:00
+# End time: 23:35:41 on Apr 26,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vcom -93 -work work {/home/estrela/Documents/MC613/lab2/tb_PPU.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 20:38:21 on Apr 26,2026
+# Start time: 23:35:41 on Apr 26,2026
 # vcom -reportprogress 300 -93 -work work /home/estrela/Documents/MC613/lab2/tb_PPU.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
 # -- Loading package std_logic_1164
 # -- Loading package NUMERIC_STD
-# -- Compiling entity tb_ppu
-# -- Compiling architecture tb of tb_ppu
+# -- Compiling entity tb_PPU
+# -- Compiling architecture tb of tb_PPU
 # -- Loading entity PPU
-# End time: 20:38:21 on Apr 26,2026, Elapsed time: 0:00:00
+# End time: 23:35:41 on Apr 26,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs="+acc"  tb_PPU
 # vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs=""+acc"" tb_PPU 
-# Start time: 20:38:21 on Apr 26,2026
+# Start time: 23:35:41 on Apr 26,2026
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
 # Loading ieee.numeric_std(body)
 # Loading work.tb_ppu(tb)
 # Loading work.ppu(rtl)
-# Loading work.ram(behavioral)
 # Loading work.rom(behavioral)
 # 
 # add wave *
@@ -169,8 +168,4 @@
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
 #    Time: 0 ps  Iteration: 0  Instance: /tb_ppu/dut
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /tb_ppu/dut
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
 #    Time: 0 ps  Iteration: 0  Instance: /tb_ppu/dut/tile_rom
-# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /tb_ppu/dut/map_ram

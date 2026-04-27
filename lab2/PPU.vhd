@@ -18,14 +18,9 @@ ENTITY PPU IS
 END PPU;
 
 ARCHITECTURE rtl OF PPU IS
-  CONSTANT TILE_W     : INTEGER := 8;
-  CONSTANT TILE_H     : INTEGER := 8;
-  CONSTANT TILE_BYTES : INTEGER := TILE_H;
-  CONSTANT TILE_BASE  : INTEGER := 0;
-  CONSTANT MAP_W      : INTEGER := 16;
-  CONSTANT MAP_H      : INTEGER := 16;
-  CONSTANT ACTIVE_TILE_W : INTEGER := 80;
-  CONSTANT ACTIVE_TILE_H : INTEGER := 60;
+  CONSTANT TILE_H         : INTEGER := 8;
+  CONSTANT TILE_BYTES     : INTEGER := TILE_H;
+  CONSTANT TILE_BASE      : INTEGER := 0;
   CONSTANT GROUND_PIXEL_Y : INTEGER := 400;
 
   COMPONENT rom IS
@@ -35,6 +30,7 @@ ARCHITECTURE rtl OF PPU IS
     );
   END COMPONENT;
 
+  -- RAM component kept for structural compatibility, though logic is bypassed
   COMPONENT ram IS
     PORT (
       clock    : IN STD_LOGIC;
@@ -45,23 +41,13 @@ ARCHITECTURE rtl OF PPU IS
     );
   END COMPONENT;
 
-  SIGNAL map_addr  : STD_LOGIC_VECTOR(7 DOWNTO 0);
   SIGNAL tile_addr : STD_LOGIC_VECTOR(12 DOWNTO 0);
-  SIGNAL map_data  : STD_LOGIC_VECTOR(7 DOWNTO 0);
   SIGNAL tile_data : STD_LOGIC_VECTOR(7 DOWNTO 0);
-
   SIGNAL pixel_x_u : UNSIGNED(9 DOWNTO 0);
   SIGNAL pixel_y_u : UNSIGNED(9 DOWNTO 0);
-BEGIN
-  map_ram : ram
-    PORT MAP(
-      clock    => clk,
-      addr     => map_addr,
-      data_in  => (OTHERS => '0'),
-      wr_en    => '0',
-      data_out => map_data
-    );
 
+BEGIN
+  -- Component Instantiation
   tile_rom : rom
     PORT MAP(
       addr     => tile_addr,
@@ -71,77 +57,67 @@ BEGIN
   pixel_x_u <= UNSIGNED(pixel_x);
   pixel_y_u <= UNSIGNED(pixel_y);
 
-  PROCESS(pixel_x_u, pixel_y_u, video_active, map_data, tile_data)
+  PROCESS(pixel_x_u, pixel_y_u, video_active, tile_data)
     VARIABLE tile_x_raw : INTEGER;
     VARIABLE tile_y_raw : INTEGER;
-    VARIABLE tile_x     : INTEGER;
-    VARIABLE tile_y     : INTEGER;
     VARIABLE row        : INTEGER;
     VARIABLE col        : INTEGER;
-    VARIABLE map_index  : INTEGER;
     VARIABLE tile_id    : INTEGER;
     VARIABLE tile_index : INTEGER;
     VARIABLE pixel_on   : STD_LOGIC;
   BEGIN
-    tile_x_raw := TO_INTEGER(pixel_x_u(9 DOWNTO 3));
-    tile_y_raw := TO_INTEGER(pixel_y_u(9 DOWNTO 3));
-    row := TO_INTEGER(pixel_y_u(2 DOWNTO 0));
-    col := TO_INTEGER(pixel_x_u(2 DOWNTO 0));
+    -- 1. Calculate Grid Positions (Each tile is 8x8 pixels)
+    tile_x_raw := TO_INTEGER(pixel_x_u(9 DOWNTO 3)); 
+    tile_y_raw := TO_INTEGER(pixel_y_u(9 DOWNTO 3)); 
+    row := TO_INTEGER(pixel_y_u(2 DOWNTO 0));        -- Line inside the tile
+    col := TO_INTEGER(pixel_x_u(2 DOWNTO 0));        -- Bit inside the row
 
-    tile_x := (tile_x_raw * MAP_W) / ACTIVE_TILE_W;
-    tile_y := (tile_y_raw * MAP_H) / ACTIVE_TILE_H;
-
-    IF tile_x >= MAP_W THEN
-      tile_x := MAP_W - 1;
+    -- 2. TILE SELECTION LOGIC (Hardcoded to match ROM Map)
+    -- This replaces the map_ram lookup
+    IF ((tile_y_raw = 9 OR tile_y_raw = 10) AND (tile_x_raw = 5 OR tile_x_raw = 6)) OR     -- Cloud 1
+       ((tile_y_raw = 11 OR tile_y_raw = 12) AND (tile_x_raw = 35 OR tile_x_raw = 36)) OR  -- Cloud 2
+       ((tile_y_raw = 7 OR tile_y_raw = 8) AND (tile_x_raw = 60 OR tile_x_raw = 61)) THEN  -- Cloud 3
+        tile_id := 3; -- Cloud
+    ELSIF tile_y_raw >= 50 AND tile_y_raw <= 59 THEN
+        tile_id := 4; -- Grass
+    ELSE
+        tile_id := 0; -- Background / Sky
     END IF;
-    IF tile_y >= MAP_H THEN
-      tile_y := MAP_H - 1;
-    END IF;
 
-    map_index := (tile_y * MAP_W) + tile_x;
-    map_addr <= STD_LOGIC_VECTOR(TO_UNSIGNED(map_index, 8));
-
-    tile_id := TO_INTEGER(UNSIGNED(map_data));
+    -- 3. ROM Addressing
+    -- Calculate specific address in ROM for the chosen tile and row
     tile_index := TILE_BASE + (tile_id * TILE_BYTES) + row;
     tile_addr <= STD_LOGIC_VECTOR(TO_UNSIGNED(tile_index, 13));
 
+    -- Get the bit (pixel) for the current column
     pixel_on := tile_data(7 - col);
 
+    -- 4. Color Generation
     IF video_active = '0' THEN
       r <= (OTHERS => '0');
       g <= (OTHERS => '0');
       b <= (OTHERS => '0');
     ELSE
+      -- Ground Plane (Solid Color)
       IF pixel_y_u >= TO_UNSIGNED(GROUND_PIXEL_Y, 10) THEN
-        r <= x"20";
-        g <= x"A0";
-        b <= x"20";
+        r <= x"20"; g <= x"A0"; b <= x"20";
+      
+      -- Tile Rendering
       ELSIF pixel_on = '1' THEN
-        IF tile_id = 1 THEN
-          r <= x"00";
-          g <= x"FF";
-          b <= x"00";
-        ELSIF tile_id = 2 THEN
-          r <= x"00";
-          g <= x"00";
-          b <= x"00";
-        ELSIF tile_id = 3 THEN
-          r <= x"FF";
-          g <= x"FF";
-          b <= x"FF";
-        ELSIF tile_id = 4 THEN
-          r <= x"20";
-          g <= x"A0";
-          b <= x"20";
-        ELSE
-          r <= x"70";
-          g <= x"C0";
-          b <= x"FF";
+        IF tile_id = 1 THEN          -- Cactus
+          r <= x"00"; g <= x"FF"; b <= x"00";
+        ELSIF tile_id = 2 THEN      -- Dino
+          r <= x"00"; g <= x"00"; b <= x"00";
+        ELSIF tile_id = 3 THEN      -- Cloud (White)
+          r <= x"FF"; g <= x"FF"; b <= x"FF";
+        ELSIF tile_id = 4 THEN      -- Grass Tile
+          r <= x"20"; g <= x"A0"; b <= x"20";
+        ELSE                        -- Default Sky
+          r <= x"70"; g <= x"C0"; b <= x"FF";
         END IF;
       ELSE
-        r <= x"70";
-        g <= x"C0";
-        b <= x"FF";
+        -- Background Pixel (Sky Color)
+        r <= x"70"; g <= x"C0"; b <= x"FF";
       END IF;
     END IF;
   END PROCESS;
