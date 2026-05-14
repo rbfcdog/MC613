@@ -78,26 +78,26 @@ begin
       ready      => ready
     );
 
-  -- controller_i : entity work.dram_controller
-  --   port map (
-  --     clk         => pll_clk,
-  --     rst         => rst,
-  --     address     => address,
-  --     write_data  => write_data,
-  --     read_data   => read_data,
-  --     req         => req,
-  --     wEn         => wEn,
-  --     ready       => ready,
-  --     DRAM_ADDR   => DRAM_ADDR,
-  --     DRAM_BA     => DRAM_BA,
-  --     DRAM_CAS_N  => DRAM_CAS_N,
-  --     DRAM_CKE    => DRAM_CKE,
-  --     DRAM_CLK    => DRAM_CLK,
-  --     DRAM_CS_N   => DRAM_CS_N,
-  --     DRAM_DQ     => DRAM_DQ,
-  --     DRAM_LDQM   => DRAM_LDQM,
-  --     DRAM_RAS_N  => DRAM_RAS_N,
-  --     DRAM_UDQM   => DRAM_UDQM,
-  --     DRAM_WE_N   => DRAM_WE_N
-  --   );
+  controller_i : entity work.dram_controller
+    port map (
+      clk         => pll_clk,
+      rst         => rst,
+      address     => address,
+      write_data  => write_data,
+      read_data   => read_data,
+      req         => req,
+      wEn         => wEn,
+      ready       => ready,
+      DRAM_ADDR   => DRAM_ADDR,
+      DRAM_BA     => DRAM_BA,
+      DRAM_CAS_N  => DRAM_CAS_N,
+      DRAM_CKE    => DRAM_CKE,
+      DRAM_CLK    => DRAM_CLK,
+      DRAM_CS_N   => DRAM_CS_N,
+      DRAM_DQ     => DRAM_DQ,
+      DRAM_LDQM   => DRAM_LDQM,
+      DRAM_RAS_N  => DRAM_RAS_N,
+      DRAM_UDQM   => DRAM_UDQM,
+      DRAM_WE_N   => DRAM_WE_N
+    );
 end rtl;

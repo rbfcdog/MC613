@@ -1,0 +1,250 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\geometry{margin=2.5cm}
+
+\lstdefinelanguage{VHDL}{
+  morekeywords={library,use,entity,is,port,in,out,inout,architecture,of,begin,end,signal,process,if,then,else,elsif,case,when,others,downto,to,constant,variable,function,return,wait,until,rising_edge,generic,map,type},
+  sensitive=true,
+  morecomment=[l]--,
+  morestring=[b]"
+}
+
+\lstset{
+  language=VHDL,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue!70!black},
+  commentstyle=\color{green!40!black},
+  numbers=left,
+  numberstyle=\tiny,
+  breaklines=true,
+  frame=single,
+  showstringspaces=false
+}
+
+\title{MC613 -- Relatório 3\\Projeto: Controlador DRAM}
+\author{Rodrigo Banin Ferraz de Camargo (238257)}
+\date{Maio de 2026}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Planejamento}
+O planejamento foi orientado pelos requisitos da entrega final: implementar um controlador DRAM funcional, integrar com a interface da placa e validar por simulação os fluxos obrigatórios (INIT, READ, WRITE, REFRESH e WRITE seguido de READ automático).
+
+A arquitetura foi dividida em camadas para reduzir complexidade:
+\begin{itemize}
+  \item \texttt{dram\_iface}: camada de interação com usuário (SW/KEY/HEX), que transforma ações em requisições de leitura/escrita.
+  \item \texttt{dram\_controller}: camada de protocolo DRAM, responsável por comandos e temporização.
+\end{itemize}
+
+Essa separação permitiu evolução incremental: primeiro validar emissão de requisições da interface, depois validar temporização do controlador, e por fim validar integração entre os dois.
+
+\subsection{Diagramas da etapa inicial}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{dram_iface.png}
+  \caption{Diagrama de estados do módulo \texttt{dram\_iface}.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{controller.png}
+  \caption{Diagrama de estados do módulo \texttt{dram\_controller}.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{init_commands.png}
+  \caption{Sequência de inicialização da SDRAM.}
+\end{figure}
+
+\section{Estrutura do Código}
+\subsection{Arquivos principais}
+\begin{itemize}
+  \item \texttt{dram\_iface.vhd}
+  \item \texttt{reader.vhd}
+  \item \texttt{dram\_controller.vhd}
+  \item \texttt{dram\_top\_level.vhd}
+\end{itemize}
+
+\subsection{Arquivos de validação}
+\begin{itemize}
+  \item \texttt{tb\_dram\_iface.vhd}: valida apenas a FSM de interface.
+  \item \texttt{tb\_reader.vhd}: valida o buffer de comandos entre interface e controlador.
+  \item \texttt{tb\_dram\_controller.vhd}: valida apenas o protocolo e temporização do controlador.
+  \item \texttt{tb\_dram\_system.vhd}: valida integração \texttt{dram\_iface + dram\_controller} com modelo de memória.
+\end{itemize}
+
+\subsection{Descrição dos componentes}
+\textbf{\texttt{dram\_iface}:}
+responsável por gerar \texttt{req/wEn}, detectar escrita por borda de \texttt{KEY[3]}, disparar leitura por mudança de endereço e fazer leitura automática pós-escrita.
+
+\textbf{\texttt{reader}:}
+responsável por capturar uma requisição de comando, manter endereço/dado/modo de escrita estáveis e liberar a FSM principal apenas quando o controlador confirma consumo por \texttt{cmd\_ack}.
+
+\textbf{\texttt{dram\_controller}:}
+responsável por consumir comandos bufferizados pelo \texttt{reader}, executar comandos SDRAM (ACTIVATE, READ, WRITE, PRECHARGE, AUTO REFRESH, MRS), aplicar tempos de espera e controlar o barramento \texttt{DRAM\_DQ} bidirecional.
+
+\textbf{\texttt{dram\_top\_level}:}
+responsável pela integração com PLL, interface de usuário e pinos físicos da SDRAM na DE1-SoC.
+
+\section{Implementação}
+\subsection{Decisões centrais de implementação}
+As decisões técnicas mais importantes foram:
+\begin{itemize}
+  \item uso de FSM refinada com estados intermediários de espera para cada tempo crítico;
+  \item uso do \texttt{reader} como registrador de comando entre interface e FSM de SDRAM;
+  \item codificação explícita de comandos DRAM por constantes;
+  \item parametrização de temporização por genéricos (reuso de RTL com ajuste de latência);
+  \item controle explícito de direção do barramento \texttt{DRAM\_DQ} em escrita.
+\end{itemize}
+
+\subsection{Trechos essenciais de código}
+\subsubsection{Buffer de comando no \texttt{reader}}
+\begin{lstlisting}[caption={Captura de comando ate o acknowledge do controlador.}]
+if cmd_ack = '1' then
+  pending_reg <= '0';
+end if;
+
+if req_in = '1' and (pending_reg = '0' or cmd_ack = '1') then
+  pending_reg <= '1';
+  wEn_reg     <= wEn_in;
+  addr_reg    <= addr_in;
+  data_reg    <= data_in;
+end if;
+\end{lstlisting}
+
+\subsubsection{Arbitragem no estado READY do controlador}
+\begin{lstlisting}[caption={Refresh tem prioridade antes de nova requisição externa.}]
+when ST_READY =>
+  if refresh_pending = '1' then
+    refresh_pending <= '0';
+    state <= ST_REFRESH_CMD;
+  elsif buffered_req = '1' then
+    cmd_ack <= '1';
+    if buffered_wEn = '1' then
+      state <= ST_WRITE_ACT;
+    else
+      state <= ST_READ_ACT;
+    end if;
+  end if;
+\end{lstlisting}
+
+\subsubsection{Escrita com habilitação do barramento de dados}
+\begin{lstlisting}[caption={No WRITE, o controlador dirige DRAM\_DQ apenas no ciclo correto.}]
+when ST_WRITE_TRCD =>
+  if wait_counter = 0 then
+    ras_n_reg <= CMD_WRITE_RAS_N;
+    cas_n_reg <= CMD_WRITE_CAS_N;
+    we_n_reg  <= CMD_WRITE_WE_N;
+    dq_out(7 downto 0)  <= latched_wdata;
+    dq_out(15 downto 8) <= (others => '0');
+    dq_oe <= '1';
+    state <= ST_WRITE_TDPL;
+  end if;
+\end{lstlisting}
+
+\subsubsection{Leitura automática pós-escrita no \texttt{dram\_iface}}
+\begin{lstlisting}[caption={Ao fim da escrita, o próprio iface dispara READ de confirmação.}]
+when WAIT_WRITE_ST =>
+  if ready = '1' then
+    req_reg <= '1';
+    wen_reg <= '0';
+    state   <= REQ_READ_ST;
+  end if;
+\end{lstlisting}
+
+\subsubsection{Integração ativa no top-level}
+\begin{lstlisting}[caption={Instância real do controlador no projeto sintetizável.}]
+controller_i : entity work.dram_controller
+  port map (
+    clk => pll_clk, rst => rst,
+    address => address, write_data => write_data, read_data => read_data,
+    req => req, wEn => wEn, ready => ready,
+    DRAM_ADDR => DRAM_ADDR, DRAM_BA => DRAM_BA, DRAM_DQ => DRAM_DQ,
+    DRAM_CS_N => DRAM_CS_N, DRAM_RAS_N => DRAM_RAS_N,
+    DRAM_CAS_N => DRAM_CAS_N, DRAM_WE_N => DRAM_WE_N
+  );
+\end{lstlisting}
+
+\section{Validação (Testes)}
+A estratégia de validação foi dividida em quatro níveis: componente de interface, buffer de comandos, componente de controle e integração de sistema.
+
+\subsection{Teste de componente: \texttt{tb\_dram\_iface.vhd}}
+\textbf{Objetivo:} validar a FSM de interface isoladamente.
+
+\textbf{Cenários cobertos:}
+\begin{itemize}
+  \item leitura inicial automática;
+  \item leitura ao detectar mudança de endereço;
+  \item escrita ao detectar borda de descida em \texttt{KEY[3]};
+  \item leitura automática após conclusão da escrita.
+\end{itemize}
+
+\textbf{Critério de aprovação:}
+asserts verificam combinações corretas de \texttt{req/wEn} em cada transição esperada.
+
+\subsection{Teste de componente: \texttt{tb\_reader.vhd}}
+\textbf{Objetivo:} validar o armazenamento temporário de comandos entre a interface e o controlador.
+
+\textbf{Cenários cobertos:}
+\begin{itemize}
+  \item captura de requisição com endereço, dado e modo de escrita;
+  \item manutenção do comando pendente até \texttt{cmd\_ack};
+  \item limpeza após acknowledge;
+  \item captura de novo comando no mesmo ciclo em que o anterior é reconhecido.
+\end{itemize}
+
+\textbf{Critério de aprovação:}
+asserts verificam \texttt{req\_pending}, \texttt{wEn\_out}, \texttt{addr\_out} e \texttt{data\_out} antes e depois do acknowledge.
+
+\subsection{Teste de componente: \texttt{tb\_dram\_controller.vhd}}
+\textbf{Objetivo:} validar protocolo DRAM e temporização sem dependência da interface de usuário.
+
+\textbf{Cenários cobertos:}
+\begin{itemize}
+  \item inicialização completa até \texttt{ready};
+  \item escrita unitária e leitura de retorno no mesmo endereço;
+  \item refresh automático por temporizador interno.
+\end{itemize}
+
+\textbf{Critério de aprovação:}
+asserts confirmam fim da inicialização, consistência do dado lido após escrita e ocorrência de refresh automático.
+
+\subsection{Teste de integração: \texttt{tb\_dram\_system.vhd}}
+\textbf{Objetivo:} validar o comportamento completo do sistema no fluxo real \texttt{iface $\rightarrow$ reader $\rightarrow$ controller $\rightarrow$ DRAM}.
+
+\textbf{Cenários cobertos (exigidos no enunciado):}
+\begin{itemize}
+  \item INIT: sequência de inicialização e subida de \texttt{ready};
+  \item READ: ACTIVATE/READ com latência;
+  \item WRITE: ACTIVATE/WRITE/PRECHARGE com espera;
+  \item REFRESH: emissão automática e retorno ao READY;
+  \item WRITE seguido de READ automático.
+\end{itemize}
+
+\textbf{Critério de aprovação:}
+ordem de comandos, intervalos de temporização e valores de dados são verificados por asserts.
+
+\section{Análise de Execução}
+\subsection{Temporização da FSM}
+O ponto mais crítico do projeto foi garantir que cada comando DRAM fosse emitido com espaçamento correto. A solução foi usar estados intermediários de espera dedicados, evitando compressão indevida entre ACTIVATE, READ/WRITE, PRECHARGE e REFRESH.
+
+\subsection{Controle do barramento \texttt{DRAM\_DQ}}
+Outro ponto central foi o barramento bidirecional de dados. A separação entre \texttt{dq\_out} e \texttt{dq\_oe} foi essencial para garantir que o controlador só dirija o barramento no instante de escrita, eliminando risco de contenção.
+
+\subsection{Integração interface-controlador}
+A leitura automática após escrita foi o comportamento de integração mais relevante para a demonstração final. Esse mecanismo tornou a confirmação de dado imediata e reduziu erros operacionais durante os testes práticos.
+
+\end{document}
