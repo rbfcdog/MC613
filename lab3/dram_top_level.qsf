@@ -883,6 +883,7 @@ set_instance_assignment -name PACKAGE_SKEW_COMPENSATION OFF -to HPS_DDR3_CK_P -e
 set_instance_assignment -name PACKAGE_SKEW_COMPENSATION OFF -to HPS_DDR3_CK_N -entity DE1_SoC
 set_global_assignment -name VHDL_FILE dram_top_level.vhd
 set_global_assignment -name VHDL_FILE dram_iface.vhd
+set_global_assignment -name VHDL_FILE reader.vhd
 set_global_assignment -name VHDL_FILE dram_controller.vhd
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
