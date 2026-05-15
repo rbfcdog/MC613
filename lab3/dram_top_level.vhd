@@ -95,10 +95,6 @@ begin
   LEDR(2) <= ready_sig;
   LEDR(9 downto 3) <= iface_address(25 downto 19);
 
-  -- =========================================================
-  -- SDRAM PHYSICAL PIN MAPPING
-  -- =========================================================
-  -- Decoding the 26-bit 'dram_cmd' output from dram_controller
   DRAM_ADDR   <= dram_cmd(12 downto 0);
   DRAM_BA     <= dram_cmd(14 downto 13);
   DRAM_WE_N   <= dram_cmd(15);
@@ -117,9 +113,6 @@ begin
   DRAM_DQ <= (x"00" & iface_write_data) when (dram_cmd(18) = '0' and dram_cmd(17) = '1' and dram_cmd(16) = '0' and dram_cmd(15) = '0') else (others => 'Z');
 
 
-  -- =========================================================
-  -- MODULE INSTANTIATIONS
-  -- =========================================================
   iface_i : entity work.dram_iface
     port map (
       clk        => pll_clk,
