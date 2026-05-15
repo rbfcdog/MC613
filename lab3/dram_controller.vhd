@@ -4,20 +4,23 @@ use ieee.numeric_std.all;
 
 entity dram_controller is
     port(
-        clk : IN std_logic;
-        rst : IN std_logic;
-        SW : IN std_logic_vector (9 downto 0);
-        KEY : IN std_logic_vector (3 downto 0);
+        clk     : IN std_logic;
+        rst     : IN std_logic;
+        SW      : IN std_logic_vector (9 downto 0);
+        KEY     : IN std_logic_vector (3 downto 0);
         data_in : IN std_logic_vector (7 downto 0);
         data_out : OUT std_logic_vector (7 downto 0);
-        HEX0 : OUT std_logic_vector (6 downto 0);
-        HEX1 : OUT std_logic_vector (6 downto 0);
-        HEX4 : OUT std_logic_vector (6 downto 0);
-        HEX5 : OUT std_logic_vector (6 downto 0);
-        adress : OUT std_logic_vector (25 downto 0);
-        req : OUT std_logic;
-        wEn : OUT std_logic;
-        ready : OUT std_logic;
+        HEX0    : OUT std_logic_vector (6 downto 0);
+        HEX1    : OUT std_logic_vector (6 downto 0);
+        HEX4    : OUT std_logic_vector (6 downto 0);
+        HEX5    : OUT std_logic_vector (6 downto 0);
+        adress  : OUT std_logic_vector (25 downto 0);
+        req     : OUT std_logic;
+        wEn     : OUT std_logic;
+        addr_in  : IN std_logic_vector (25 downto 0);
+        req      : IN std_logic;
+        wEn      : IN std_logic;
+        ready   : OUT std_logic;
     )
 
 architecture rtl of dram_controller is
