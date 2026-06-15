@@ -20,8 +20,9 @@ entity dram_controller is
         addr_in  : IN std_logic_vector (25 downto 0);
         req      : IN std_logic;
         wEn      : IN std_logic;
-        ready   : OUT std_logic;
-    )
+        ready   : OUT std_logic
+    );
+end dram_controller;
 
 architecture rtl of dram_controller is
     type state is (init, rdy, act, read, write, prech, refresh);
