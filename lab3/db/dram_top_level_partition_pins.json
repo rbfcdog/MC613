@@ -92,10 +92,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "HEX5[1]",
-					"strict" : false
-				},
-				{
 					"name" : "HEX5[2]",
 					"strict" : false
 				},
@@ -224,11 +220,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "KEY[0]",
+					"name" : "SW[0]",
 					"strict" : false
 				},
 				{
-					"name" : "SW[0]",
+					"name" : "KEY[0]",
 					"strict" : false
 				},
 				{
@@ -260,11 +256,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "SW[8]",
+					"name" : "SW[9]",
 					"strict" : false
 				},
 				{
-					"name" : "SW[9]",
+					"name" : "SW[8]",
 					"strict" : false
 				},
 				{

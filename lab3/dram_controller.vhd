@@ -135,9 +135,11 @@ begin
     -- falls BETWEEN the system clock's rising edges, so a rising-edge capture
     -- samples the bus while it is still in high-impedance and reads 0xFF.
     -- The falling edge lands inside the valid window.
-    dq_capture : process(clk)
+    dq_capture : process(clk, rst)
     begin
-        if falling_edge(clk) then
+        if rst = '1' then
+            dq_in_reg <= (others => '0');
+        elsif falling_edge(clk) then
             dq_in_reg <= data_in;
         end if;
     end process;

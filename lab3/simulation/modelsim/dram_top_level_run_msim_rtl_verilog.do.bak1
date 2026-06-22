@@ -1,0 +1,23 @@
+transcript on
+if ![file isdirectory dram_top_level_iputf_libs] {
+	file mkdir dram_top_level_iputf_libs
+}
+
+if {[file exists rtl_work]} {
+	vdel -lib rtl_work -all
+}
+vlib rtl_work
+vmap work rtl_work
+
+###### Libraries for IPUTF cores 
+###### End libraries for IPUTF cores 
+###### MIF file copy and HDL compilation commands for IPUTF cores 
+
+
+vcom "/home/rodrigodog/MC613/lab3/pll_sim/pll.vho"
+
+vcom -93 -work work {/home/rodrigodog/MC613/lab3/dram_iface.vhd}
+vcom -93 -work work {/home/rodrigodog/MC613/lab3/reader.vhd}
+vcom -93 -work work {/home/rodrigodog/MC613/lab3/dram_top_level.vhd}
+vcom -93 -work work {/home/rodrigodog/MC613/lab3/dram_controller.vhd}
+

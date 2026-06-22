@@ -46,6 +46,11 @@ architecture rtl of dram_iface is
   signal key_meta  : std_logic_vector(3 downto 0) := (others => '1');
   signal key_sync  : std_logic_vector(3 downto 0) := (others => '1');
 
+  -- Set by reset: the first thing the iface does after a reset is write 0 to
+  -- the currently selected address, so that "reset" actually zeroes the value
+  -- at the current address instead of re-reading whatever the SDRAM still holds.
+  signal startup_clear : std_logic := '1';
+
   function hex_to_7seg(value : std_logic_vector(3 downto 0)) return std_logic_vector is
   begin
     case value is
@@ -85,8 +90,13 @@ begin
 
   HEX0 <= hex_to_7seg(sw_sync(3 downto 0));
   HEX1 <= hex_to_7seg(read_latch(3 downto 0));
+  -- Address SW[9:4] shown as a 6-bit value across two hex digits:
+  --   HEX4 = low nibble  = SW7 SW6 SW5 SW4  (weights 8 4 2 1)
+  --   HEX5 = high nibble = SW9 SW8          (weights 32 16)
+  -- The old HEX5 also OR-ed in SW6, double-counting it (SW6 wrongly bumped
+  -- the high digit), which is why the third switch read 0x14 instead of 0x04.
   HEX4 <= hex_to_7seg(sw_sync(7 downto 4));
-  HEX5 <= hex_to_7seg("0" & sw_sync(9 downto 8) & sw_sync(6));
+  HEX5 <= hex_to_7seg("00" & sw_sync(9 downto 8));
 
   process(clk, rst)
     variable write_edge_v : boolean;
@@ -110,6 +120,7 @@ begin
       sw_sync           <= (others => '0');
       key_meta          <= (others => '1');
       key_sync          <= (others => '1');
+      startup_clear     <= '1';
     elsif rising_edge(clk) then
       -- Synchronize the asynchronous board inputs (two flip-flop stages).
       sw_meta  <= SW;
@@ -132,7 +143,17 @@ begin
       case state is
         when READY_ST =>
           if ready = '1' then
-            if pending_write = '1' or write_edge_v then
+            if startup_clear = '1' then
+              -- First action after reset: zero the currently selected cell.
+              address_reg       <= current_address;
+              write_data_reg    <= (others => '0');
+              last_address      <= current_address;
+              last_address_seen <= '1';
+              startup_clear     <= '0';
+              req_reg           <= '1';
+              wen_reg           <= '1';
+              state             <= REQ_WRITE_ST;
+            elsif pending_write = '1' or write_edge_v then
               if write_edge_v then
                 write_addr_v := current_address;
                 write_data_v := "0000" & sw_sync(3 downto 0);

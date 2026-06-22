@@ -1,7 +1,6 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
-library pll;
 
 entity dram_top_level is
   port (
@@ -32,6 +31,8 @@ end dram_top_level;
 
 architecture rtl of dram_top_level is
   signal board_rst   : std_logic;
+  signal async_rst   : std_logic;
+  signal rst_sync    : std_logic_vector(1 downto 0) := "11";
   signal rst         : std_logic;
   signal pll_clk     : std_logic;
   signal pll_locked  : std_logic;
@@ -79,12 +80,32 @@ architecture rtl of dram_top_level is
 
 begin
   board_rst <= not KEY(0);
-  rst       <= board_rst or not pll_locked;
+  async_rst <= board_rst or not pll_locked;
 
-  pll_i : entity pll.pll
+  -- Reset synchronizer: assert reset immediately (asynchronously) on the
+  -- button press or PLL unlock, but RELEASE it synchronously with pll_clk so
+  -- every flip-flop in both state machines leaves reset on the same edge and
+  -- comes up in a clean, identical initial state. Releasing an async reset
+  -- near a clock edge can otherwise drop an FSM into an undefined state that
+  -- stays wedged until the next reset.
+  reset_sync : process(pll_clk, async_rst)
+  begin
+    if async_rst = '1' then
+      rst_sync <= "11";
+    elsif rising_edge(pll_clk) then
+      rst_sync <= rst_sync(0) & '0';
+    end if;
+  end process;
+  rst <= rst_sync(1);
+
+  -- The PLL free-runs: it is NOT reset by the user button. Resetting it on
+  -- KEY0 would stop pll_clk and force a slow re-lock on every press, which
+  -- made reset unreliable. The button only resets the logic (via async_rst);
+  -- the PLL just keeps the clock running.
+  pll_i : entity work.pll
     port map (
       refclk   => CLOCK_50,
-      rst      => board_rst,
+      rst      => '0',
       outclk_0 => pll_clk,
       locked   => pll_locked
     );

@@ -1,0 +1,270 @@
+m255
+K4
+z2
+!s11e vcom 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/rodrigodog/MC613/lab3/simulation/modelsim
+Edram_controller
+Z1 w1782156539
+Z2 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z4 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 4
+R0
+Z5 8/home/rodrigodog/MC613/lab3/dram_controller.vhd
+Z6 F/home/rodrigodog/MC613/lab3/dram_controller.vhd
+l0
+L5 1
+V6EeZeYXkBzT45S[I;Q4OT2
+!s100 9NX2<e[8Yg^Y7n[4GMn9F3
+Z7 OV;C;2020.1;71
+31
+Z8 !s110 1782159113
+!i10b 1
+Z9 !s108 1782159113.000000
+Z10 !s90 -reportprogress|300|-93|-work|work|/home/rodrigodog/MC613/lab3/dram_controller.vhd|
+Z11 !s107 /home/rodrigodog/MC613/lab3/dram_controller.vhd|
+!i113 1
+Z12 o-93 -work work
+Z13 tExplicit 1 CvgOpt 0
+Artl
+Z14 DEx4 work 6 reader 0 22 _OhYO0^V8PkM_ehnj314U2
+R2
+R3
+R4
+DEx4 work 15 dram_controller 0 22 6EeZeYXkBzT45S[I;Q4OT2
+!i122 4
+l131
+L27 346
+VD4D20nUR9@2Ym=gjNL;WF1
+!s100 ^8NZdgJm<eI;I_Hlj3lJ13
+R7
+31
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Edram_iface
+Z15 w1782157315
+R2
+R3
+R4
+!i122 5
+R0
+Z16 8/home/rodrigodog/MC613/lab3/dram_iface.vhd
+Z17 F/home/rodrigodog/MC613/lab3/dram_iface.vhd
+l0
+L5 1
+V@=THl2E@lPUB0Vj`LmnIX0
+!s100 NI6I9LAZ]K^gYV`_d^>@P1
+R7
+31
+R8
+!i10b 1
+R9
+Z18 !s90 -reportprogress|300|-93|-work|work|/home/rodrigodog/MC613/lab3/dram_iface.vhd|
+Z19 !s107 /home/rodrigodog/MC613/lab3/dram_iface.vhd|
+!i113 1
+R12
+R13
+Artl
+R2
+R3
+R4
+Z20 DEx4 work 10 dram_iface 0 22 @=THl2E@lPUB0Vj`LmnIX0
+!i122 5
+l75
+L24 192
+V@;^mPGCdggER@6^b`43l`2
+!s100 KoG94j<Y0:Z4X9;J^jcYT2
+R7
+31
+R8
+!i10b 1
+R9
+R18
+R19
+!i113 1
+R12
+R13
+Edram_top_level
+Z21 w1782158690
+R2
+R3
+R4
+!i122 3
+R0
+Z22 8/home/rodrigodog/MC613/lab3/dram_top_level.vhd
+Z23 F/home/rodrigodog/MC613/lab3/dram_top_level.vhd
+l0
+L5 1
+V4Ok1KlzKm`G[NGa362J[`0
+!s100 QejkLSC@NbASQIlPO:UDj1
+R7
+31
+R8
+!i10b 1
+R9
+Z24 !s90 -reportprogress|300|-93|-work|work|/home/rodrigodog/MC613/lab3/dram_top_level.vhd|
+Z25 !s107 /home/rodrigodog/MC613/lab3/dram_top_level.vhd|
+!i113 1
+R12
+R13
+Artl
+R20
+Z26 DPx12 altera_lnsim 23 altera_lnsim_components 0 22 3dzZ?YU_4FC5UU0cTXRET1
+Z27 DEx4 work 3 pll 0 22 ZKDH44ijzD=A;QZV`a4KP1
+R2
+R3
+R4
+DEx4 work 14 dram_top_level 0 22 4Ok1KlzKm`G[NGa362J[`0
+!i122 3
+l81
+L32 145
+VefQP=dRe^anec=Q63Al^N1
+!s100 Y:RRdaJlXG7Ua=3@Pem[20
+R7
+31
+R8
+!i10b 1
+R9
+R24
+R25
+!i113 1
+R12
+R13
+Epll
+Z28 w1781550439
+R3
+R4
+R26
+!i122 0
+R0
+Z29 8/home/rodrigodog/MC613/lab3/pll_sim/pll.vho
+Z30 F/home/rodrigodog/MC613/lab3/pll_sim/pll.vho
+l0
+L34 1
+VZKDH44ijzD=A;QZV`a4KP1
+!s100 nVfWz_7DPL1?ZQM9mjKe70
+R7
+32
+R8
+!i10b 1
+R9
+Z31 !s90 -reportprogress|300|/home/rodrigodog/MC613/lab3/pll_sim/pll.vho|
+Z32 !s107 /home/rodrigodog/MC613/lab3/pll_sim/pll.vho|
+!i113 1
+R13
+Artl
+R3
+R4
+R26
+R27
+!i122 0
+l51
+L44 262
+Vh;n[cn@>ONkiX1RPAPMoN3
+!s100 DnV0J2fWb`?o[8;WE1Q0;2
+R7
+32
+R8
+!i10b 1
+R9
+R31
+R32
+!i113 1
+R13
+Ereader
+Z33 w1781544506
+R3
+R4
+!i122 2
+R0
+Z34 8/home/rodrigodog/MC613/lab3/reader.vhd
+Z35 F/home/rodrigodog/MC613/lab3/reader.vhd
+l0
+L4 1
+V_OhYO0^V8PkM_ehnj314U2
+!s100 6khl1Z<PY_M6:RWkm_@M52
+R7
+31
+R8
+!i10b 1
+R9
+Z36 !s90 -reportprogress|300|-93|-work|work|/home/rodrigodog/MC613/lab3/reader.vhd|
+Z37 !s107 /home/rodrigodog/MC613/lab3/reader.vhd|
+!i113 1
+R12
+R13
+Artl
+R3
+R4
+R14
+!i122 2
+l31
+L26 39
+VcTzm9AlW`iOL4G;F=00RJ1
+!s100 QL:88>VWQSWaK>D_RRJi43
+R7
+31
+R8
+!i10b 1
+R9
+R36
+R37
+!i113 1
+R12
+R13
+Etb_dram_iface
+Z38 w1778699543
+R2
+R3
+R4
+!i122 6
+R0
+Z39 8/home/rodrigodog/MC613/lab3/tb_dram_iface.vhd
+Z40 F/home/rodrigodog/MC613/lab3/tb_dram_iface.vhd
+l0
+L5 1
+Vc^Sk]=QhOXfA^d3CDQZkg1
+!s100 0lF0Sca9?gn_HGD<n^gW=1
+R7
+31
+R8
+!i10b 1
+R9
+Z41 !s90 -reportprogress|300|-93|-work|work|/home/rodrigodog/MC613/lab3/tb_dram_iface.vhd|
+!s107 /home/rodrigodog/MC613/lab3/tb_dram_iface.vhd|
+!i113 1
+R12
+R13
+Asim
+R20
+R2
+R3
+R4
+DEx4 work 13 tb_dram_iface 0 22 c^Sk]=QhOXfA^d3CDQZkg1
+!i122 6
+l25
+L8 89
+V7<CmUQQQbMR2A;_Qg_62[0
+!s100 lA`O;QV?9>nJSRM:JdUYc0
+R7
+31
+R8
+!i10b 1
+R9
+R41
+Z42 !s107 /home/rodrigodog/MC613/lab3/tb_dram_iface.vhd|
+!i113 1
+R12
+R13

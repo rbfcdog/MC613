@@ -1,17 +1,12 @@
-Analysis & Synthesis Status : Successful - Mon Jun 22 15:56:49 2026
+Analysis & Elaboration Status : Successful - Mon Jun 22 17:11:36 2026
 Quartus Prime Version : 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 Revision Name : dram_top_level
 Top-level Entity Name : dram_top_level
 Family : Cyclone V
-Logic utilization (in ALMs) : N/A
-Total registers : 162
-Total pins : 96
-Total virtual pins : 0
-Total block memory bits : 0
-Total DSP Blocks : 0
-Total HSSI RX PCSs : 0
-Total HSSI PMA RX Deserializers : 0
-Total HSSI TX PCSs : 0
-Total HSSI PMA TX Serializers : 0
-Total PLLs : 1
-Total DLLs : 0
+Logic utilization (in ALMs) : N/A until Partition Merge
+Total registers : N/A until Partition Merge
+Total pins : N/A until Partition Merge
+Total virtual pins : N/A until Partition Merge
+Total block memory bits : N/A until Partition Merge
+Total PLLs : N/A until Partition Merge
+Total DLLs : N/A until Partition Merge
