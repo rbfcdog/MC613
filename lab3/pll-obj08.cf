@@ -1,0 +1,5 @@
+v 4
+file / "/tmp/pll_stub.vhd" "121b5713d2bb64f353986059134723796982450a" "20260622182843.187":
+  package pll_pkg at 1( 0) + 0 on 11;
+  entity pll at 3( 75) + 0 on 12;
+  architecture s of pll at 5( 239) + 0 on 13;

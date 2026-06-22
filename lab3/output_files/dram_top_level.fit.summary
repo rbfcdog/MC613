@@ -1,13 +1,13 @@
-Fitter Status : Successful - Mon Jun 22 14:33:23 2026
+Fitter Status : Successful - Mon Jun 22 15:58:04 2026
 Quartus Prime Version : 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 Revision Name : dram_top_level
 Top-level Entity Name : dram_top_level
 Family : Cyclone V
 Device : 5CSEMA5F31C6
 Timing Models : Final
-Logic utilization (in ALMs) : 108 / 32,070 ( < 1 % )
-Total registers : 136
-Total pins : 106 / 457 ( 23 % )
+Logic utilization (in ALMs) : 128 / 32,070 ( < 1 % )
+Total registers : 184
+Total pins : 96 / 457 ( 21 % )
 Total virtual pins : 0
 Total block memory bits : 0 / 4,065,280 ( 0 % )
 Total RAM Blocks : 0 / 397 ( 0 % )

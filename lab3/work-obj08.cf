@@ -1,0 +1,28 @@
+v 4
+file . "tb_dram_switch.vhd" "ca2efd2f29d982e3ec5092eb2be2e5bec787f35c" "20260622185328.656":
+  entity tb_dram_switch at 1( 0) + 0 on 391;
+  architecture sim of tb_dram_switch at 13( 454) + 0 on 392;
+file . "dram_controller.vhd" "7782c8c1b53482e7a850918a6bb505ab5fc57e8f" "20260622185328.645":
+  entity dram_controller at 1( 0) + 0 on 387;
+  architecture rtl of dram_controller at 27( 942) + 0 on 388;
+file / "/tmp/tb_hw.vhd" "baee4b32620a199f663f617a5903c09bbdf24b07" "20260622182701.101":
+  entity tb_dram_demo_hw at 1( 0) + 0 on 327;
+  architecture sim of tb_dram_demo_hw at 13( 456) + 0 on 328;
+file . "tb_dram_demo.vhd" "ad1c3b0b0ef0562e31d26e480ba75d048e9b67bb" "20260622185256.352":
+  entity tb_dram_demo at 1( 0) + 0 on 375;
+  architecture sim of tb_dram_demo at 13( 450) + 0 on 376;
+file . "tb_dram_controller.vhd" "7c2cffbd3e814a02e6642f6882fbf12572f98ed1" "20260622185256.339":
+  entity tb_dram_controller at 1( 0) + 0 on 371;
+  architecture sim of tb_dram_controller at 8( 124) + 0 on 372;
+file . "reader.vhd" "d56e9bb387eaa92a580de5f4a55d569ab1601788" "20260622185328.631":
+  entity reader at 1( 0) + 0 on 385;
+  architecture rtl of reader at 26( 764) + 0 on 386;
+file . "dram_iface.vhd" "afe438079851073b70b4cab3a22ab83db20e2560" "20260622185328.649":
+  entity dram_iface at 1( 0) + 0 on 389;
+  architecture rtl of dram_iface at 24( 741) + 0 on 390;
+file . "tb_dram_system.vhd" "ff2447c9e26bcfe8631c1f5d882aaa4107d98227" "20260622185256.347":
+  entity tb_dram_system at 1( 0) + 0 on 373;
+  architecture sim of tb_dram_system at 8( 116) + 0 on 374;
+file . "dram_top_level.vhd" "b1f6495bf277fcffd059ea8f67ea5d603f3b3795" "20260622182843.217":
+  entity dram_top_level at 1( 0) + 0 on 347;
+  architecture rtl of dram_top_level at 33( 1061) + 0 on 348;

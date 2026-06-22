@@ -1,5 +1,5 @@
 EDA Netlist Writer report for dram_top_level
-Mon Jun 22 14:34:01 2026
+Mon Jun 22 15:58:43 2026
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -37,7 +37,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Mon Jun 22 14:34:01 2026 ;
+; EDA Netlist Writer Status ; Successful - Mon Jun 22 15:58:43 2026 ;
 ; Revision Name             ; dram_top_level                        ;
 ; Top-level Entity Name     ; dram_top_level                        ;
 ; Family                    ; Cyclone V                             ;
@@ -81,13 +81,13 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime EDA Netlist Writer
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Mon Jun 22 14:33:58 2026
+    Info: Processing started: Mon Jun 22 15:58:41 2026
 Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off dram -c dram_top_level
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (204019): Generated file dram_top_level.vo in folder "/home/rodrigodog/MC613/lab3/simulation/modelsim/" for EDA simulation tool
 Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 785 megabytes
-    Info: Processing ended: Mon Jun 22 14:34:01 2026
+    Info: Peak virtual memory: 787 megabytes
+    Info: Processing ended: Mon Jun 22 15:58:44 2026
     Info: Elapsed time: 00:00:03
     Info: Total CPU time (on all processors): 00:00:03
 

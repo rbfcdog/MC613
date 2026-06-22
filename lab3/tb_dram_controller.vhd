@@ -6,7 +6,7 @@ entity tb_dram_controller is
 end tb_dram_controller;
 
 architecture sim of tb_dram_controller is
-  constant CLK_PERIOD : time := 10 ns;
+  constant CLK_PERIOD : time := 7 ns;   -- ~143 MHz (board clock)
 
   constant C_INIT_WAIT : integer := 2;
   constant C_TRCD      : integer := 2;
@@ -92,7 +92,7 @@ begin
   DRAM_RAS_N <= dram_cmd(17);
   DRAM_CS_N  <= dram_cmd(18);
   DRAM_CKE   <= '1';
-  DRAM_CLK   <= clk;
+  DRAM_CLK   <= not clk;  -- model the board: SDRAM clock leads the system clock
   DRAM_UDQM  <= '0';
   DRAM_LDQM  <= '0';
 
@@ -117,19 +117,23 @@ begin
       ready    => ready
     );
 
-  mem_model : process(clk)
+  -- The SDRAM samples commands and launches read data on its own clock
+  -- (DRAM_CLK = not clk), which leads the controller's system clock. Clocking
+  -- the model on DRAM_CLK reproduces the real half-cycle relationship so the
+  -- read-capture latency verified here matches the hardware.
+  mem_model : process(DRAM_CLK)
     variable bank_i   : integer;
     variable idx      : integer;
     variable cmd      : std_logic_vector(3 downto 0);
     variable col_addr : std_logic_vector(12 downto 0);
   begin
-    if rising_edge(clk) then
+    if rising_edge(DRAM_CLK) then
       tb_dq_oe <= '0';
 
       if rd_pending > 0 then
         rd_pending <= rd_pending - 1;
         if rd_pending = 1 then
-          tb_dq_data <= rd_pending_data;
+          tb_dq_data <= rd_pending_data after 5400 ps;  -- model tAC (read access time)
           tb_dq_oe   <= '1';
         end if;
       end if;
@@ -185,9 +189,11 @@ begin
     req <= '0';
     wEn <= '0';
 
-    while ready = '0' loop
-      wait until rising_edge(clk);
-    end loop;
+    -- Wait for the controller to actually take the request (ready drops)
+    -- before waiting for completion (ready rises again). Checking only
+    -- "ready = '1'" races against the leftover ready from the idle state.
+    wait until ready = '0';
+    wait until ready = '1';
 
     -- READ unitario do mesmo endereco
     req <= '1';
@@ -195,9 +201,8 @@ begin
     wait until rising_edge(clk);
     req <= '0';
 
-    while ready = '0' loop
-      wait until rising_edge(clk);
-    end loop;
+    wait until ready = '0';
+    wait until ready = '1';
 
     assert read_data = x"0A"
       report "dram_controller: leitura nao retornou valor escrito" severity failure;

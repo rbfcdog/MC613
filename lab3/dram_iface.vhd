@@ -38,6 +38,14 @@ architecture rtl of dram_iface is
   signal pending_address   : std_logic_vector(25 downto 0) := (others => '0');
   signal pending_data      : std_logic_vector(7 downto 0) := (others => '0');
 
+  -- Two-stage synchronizers for the asynchronous board inputs. Sampling SW and
+  -- KEY directly with the 143 MHz clock lets a switch/button change near a
+  -- clock edge drive the FSM metastable, which can wedge it until reset.
+  signal sw_meta   : std_logic_vector(9 downto 0) := (others => '0');
+  signal sw_sync   : std_logic_vector(9 downto 0) := (others => '0');
+  signal key_meta  : std_logic_vector(3 downto 0) := (others => '1');
+  signal key_sync  : std_logic_vector(3 downto 0) := (others => '1');
+
   function hex_to_7seg(value : std_logic_vector(3 downto 0)) return std_logic_vector is
   begin
     case value is
@@ -61,12 +69,12 @@ architecture rtl of dram_iface is
   end function;
 begin
   current_address <= (
-    14 => SW(7),
-    13 => SW(6),
-    12 => SW(9),
-    11 => SW(8),
-    2  => SW(5),
-    1  => SW(4),
+    14 => sw_sync(7),
+    13 => sw_sync(6),
+    12 => sw_sync(9),
+    11 => sw_sync(8),
+    2  => sw_sync(5),
+    1  => sw_sync(4),
     others => '0'
   );
 
@@ -75,10 +83,10 @@ begin
   req        <= req_reg;
   wEn        <= wen_reg;
 
-  HEX0 <= hex_to_7seg(SW(3 downto 0));
+  HEX0 <= hex_to_7seg(sw_sync(3 downto 0));
   HEX1 <= hex_to_7seg(read_latch(3 downto 0));
-  HEX4 <= hex_to_7seg(SW(7 downto 4));
-  HEX5 <= hex_to_7seg("0" & SW(9 downto 8) & SW(6));
+  HEX4 <= hex_to_7seg(sw_sync(7 downto 4));
+  HEX5 <= hex_to_7seg("0" & sw_sync(9 downto 8) & sw_sync(6));
 
   process(clk, rst)
     variable write_edge_v : boolean;
@@ -98,17 +106,27 @@ begin
       pending_write     <= '0';
       pending_address   <= (others => '0');
       pending_data      <= (others => '0');
+      sw_meta           <= (others => '0');
+      sw_sync           <= (others => '0');
+      key_meta          <= (others => '1');
+      key_sync          <= (others => '1');
     elsif rising_edge(clk) then
-      write_edge_v := (key3_prev = '1' and KEY(3) = '0');
+      -- Synchronize the asynchronous board inputs (two flip-flop stages).
+      sw_meta  <= SW;
+      sw_sync  <= sw_meta;
+      key_meta <= KEY;
+      key_sync <= key_meta;
+
+      write_edge_v := (key3_prev = '1' and key_sync(3) = '0');
 
       req_reg <= '0';
       wen_reg <= '0';
-      key3_prev <= KEY(3);
+      key3_prev <= key_sync(3);
 
       if write_edge_v then
         pending_write   <= '1';
         pending_address <= current_address;
-        pending_data    <= "0000" & SW(3 downto 0);
+        pending_data    <= "0000" & sw_sync(3 downto 0);
       end if;
 
       case state is
@@ -117,7 +135,7 @@ begin
             if pending_write = '1' or write_edge_v then
               if write_edge_v then
                 write_addr_v := current_address;
-                write_data_v := "0000" & SW(3 downto 0);
+                write_data_v := "0000" & sw_sync(3 downto 0);
               else
                 write_addr_v := pending_address;
                 write_data_v := pending_data;
@@ -133,7 +151,7 @@ begin
               state             <= REQ_WRITE_ST;
             elsif last_address_seen = '0' or current_address /= last_address then
               address_reg <= current_address;
-              write_data_reg <= "0000" & SW(3 downto 0);
+              write_data_reg <= "0000" & sw_sync(3 downto 0);
               req_reg      <= '1';
               wen_reg      <= '0';
               last_address <= current_address;

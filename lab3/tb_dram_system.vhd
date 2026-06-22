@@ -6,7 +6,7 @@ entity tb_dram_system is
 end tb_dram_system;
 
 architecture sim of tb_dram_system is
-  constant CLK_PERIOD : time := 10 ns;
+  constant CLK_PERIOD : time := 7 ns;   -- ~143 MHz (board clock)
 
   constant C_INIT_WAIT : integer := 2;
   constant C_TRCD      : integer := 2;
@@ -100,7 +100,7 @@ begin
   DRAM_RAS_N <= dram_cmd(17);
   DRAM_CS_N  <= dram_cmd(18);
   DRAM_CKE   <= '1';
-  DRAM_CLK   <= clk;
+  DRAM_CLK   <= not clk;  -- model the board: SDRAM clock leads the system clock
   DRAM_UDQM  <= '0';
   DRAM_LDQM  <= '0';
 
@@ -143,19 +143,21 @@ begin
       ready    => ready
     );
 
-  mem_model : process(clk)
+  -- Clock the model on the SDRAM clock (leads the system clock) so the
+  -- verified read-capture latency matches the real board.
+  mem_model : process(DRAM_CLK)
     variable bank_i   : integer;
     variable idx      : integer;
     variable cmd      : std_logic_vector(3 downto 0);
     variable col_addr : std_logic_vector(12 downto 0);
   begin
-    if rising_edge(clk) then
+    if rising_edge(DRAM_CLK) then
       tb_dq_oe <= '0';
 
       if rd_pending > 0 then
         rd_pending <= rd_pending - 1;
         if rd_pending = 1 then
-          tb_dq_data <= rd_pending_data;
+          tb_dq_data <= rd_pending_data after 5400 ps;  -- model tAC (read access time)
           tb_dq_oe   <= '1';
         end if;
       end if;

@@ -1,11 +1,11 @@
-Analysis & Synthesis Status : Successful - Mon Jun 22 14:32:21 2026
+Analysis & Synthesis Status : Successful - Mon Jun 22 15:56:49 2026
 Quartus Prime Version : 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 Revision Name : dram_top_level
 Top-level Entity Name : dram_top_level
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
-Total registers : 123
-Total pins : 106
+Total registers : 162
+Total pins : 96
 Total virtual pins : 0
 Total block memory bits : 0
 Total DSP Blocks : 0

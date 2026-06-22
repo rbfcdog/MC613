@@ -66,7 +66,12 @@ architecture rtl of dram_controller is
     constant CMD_PREALL    : std_logic_vector(25 downto 0) := "11" & x"F10400";
     constant CMD_ACTIVATE  : std_logic_vector(25 downto 0) := "11" & x"F18000";
     constant CMD_REFRESH   : std_logic_vector(25 downto 0) := "11" & x"F88000";
-    constant CMD_MRS       : std_logic_vector(25 downto 0) := "00" & x"000220";
+    -- Mode Register opcode (A12..A0): burst length 1 (A2:A0=000),
+    -- sequential (A3=0), CAS latency 3 (A6:A4=011), standard mode (A8:A7=00),
+    -- single location write (A9=1) => 0x230. The previous value 0x220 set
+    -- A6:A4=010 = CAS latency 2, which mismatched READ_CAPTURE_CYCLES and made
+    -- every read sample the idle bus (0xFF). BA pins (bits 14:13) must be 00.
+    constant CMD_MRS       : std_logic_vector(25 downto 0) := "00" & x"000230";
     constant CMD_READ      : std_logic_vector(25 downto 0) := "11" & x"F28000";
     constant CMD_WRITE     : std_logic_vector(25 downto 0) := "11" & x"F20000";
 
@@ -74,12 +79,11 @@ architecture rtl of dram_controller is
     constant TRCD_WAIT_CYCLES       : integer := 3;
     constant TRP_WAIT_CYCLES        : integer := 3;
     constant WRITE_REC_WAIT_CYCLES  : integer := 3;
-    -- CAS Latency = 3: the DRAM drives valid read data 3 clocks after it
-    -- registers the READ command. With DRAM_CLK = not pll_clk (half-cycle
-    -- phase shift) the data is centered on the controller's sampling edge
-    -- when we wait the full CAS latency. The previous value (3) sampled the
-    -- still-idle bus and captured 0xFF.
-    constant READ_CAPTURE_CYCLES    : integer := 4;
+    -- CAS Latency = 3, plus the round-trip and the falling-edge capture
+    -- register (dq_in_reg). Verified in a 143 MHz / tAC-accurate simulation:
+    -- only 5 captures the read data inside the valid window (robust for
+    -- tAC = 2..6.5 ns). See dq_capture below.
+    constant READ_CAPTURE_CYCLES    : integer := 5;
     constant RFC_WAIT_CYCLES        : integer := 10;
     constant TMRD_WAIT_CYCLES       : integer := 2;
     constant REFRESH_INTERVAL_CYCLES : integer := 1117;
@@ -89,6 +93,7 @@ architecture rtl of dram_controller is
     signal buffered_addr : std_logic_vector(25 downto 0);
     signal buffered_data : std_logic_vector(7 downto 0);
     signal cmd_ack       : std_logic := '0';
+    signal dq_in_reg     : std_logic_vector(7 downto 0) := (others => '0');
 
     function row_address(logical_addr : std_logic_vector(25 downto 0))
         return std_logic_vector is
@@ -124,6 +129,19 @@ architecture rtl of dram_controller is
         return result;
     end function;
 begin
+    -- Capture read data on the FALLING edge of clk (= rising edge of the
+    -- SDRAM clock, since DRAM_CLK = not pll_clk). At 143 MHz the SDRAM
+    -- read-data valid window (data arrives ~tAC after the SDRAM clock edge)
+    -- falls BETWEEN the system clock's rising edges, so a rising-edge capture
+    -- samples the bus while it is still in high-impedance and reads 0xFF.
+    -- The falling edge lands inside the valid window.
+    dq_capture : process(clk)
+    begin
+        if falling_edge(clk) then
+            dq_in_reg <= data_in;
+        end if;
+    end process;
+
     HEX0 <= (others => '1');
     HEX1 <= (others => '1');
     HEX4 <= (others => '1');
@@ -312,7 +330,7 @@ begin
 
                 when st_read_wait =>
                     if timer_done = '1' then
-                        data_out <= data_in;
+                        data_out <= dq_in_reg;
                         adress <= CMD_PREALL;
                         timer_cycles <= TRP_WAIT_CYCLES;
                         timer_start <= '1';

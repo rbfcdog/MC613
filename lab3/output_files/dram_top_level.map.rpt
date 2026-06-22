@@ -1,5 +1,5 @@
 Analysis & Synthesis report for dram_top_level
-Mon Jun 22 14:32:22 2026
+Mon Jun 22 15:56:49 2026
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -53,14 +53,14 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Mon Jun 22 14:32:21 2026       ;
+; Analysis & Synthesis Status     ; Successful - Mon Jun 22 15:56:49 2026       ;
 ; Quartus Prime Version           ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                   ; dram_top_level                              ;
 ; Top-level Entity Name           ; dram_top_level                              ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 123                                         ;
-; Total pins                      ; 106                                         ;
+; Total registers                 ; 162                                         ;
+; Total pins                      ; 96                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
 ; Total DSP Blocks                ; 0                                           ;
@@ -197,18 +197,18 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+--------------------------------------------------------------------+
 ; Resource                                    ; Usage                                                              ;
 +---------------------------------------------+--------------------------------------------------------------------+
-; Estimate of Logic utilization (ALMs needed) ; 112                                                                ;
+; Estimate of Logic utilization (ALMs needed) ; 130                                                                ;
 ;                                             ;                                                                    ;
-; Combinational ALUT usage for logic          ; 176                                                                ;
+; Combinational ALUT usage for logic          ; 199                                                                ;
 ;     -- 7 input functions                    ; 1                                                                  ;
-;     -- 6 input functions                    ; 41                                                                 ;
-;     -- 5 input functions                    ; 27                                                                 ;
-;     -- 4 input functions                    ; 46                                                                 ;
-;     -- <=3 input functions                  ; 61                                                                 ;
+;     -- 6 input functions                    ; 40                                                                 ;
+;     -- 5 input functions                    ; 21                                                                 ;
+;     -- 4 input functions                    ; 42                                                                 ;
+;     -- <=3 input functions                  ; 95                                                                 ;
 ;                                             ;                                                                    ;
-; Dedicated logic registers                   ; 123                                                                ;
+; Dedicated logic registers                   ; 162                                                                ;
 ;                                             ;                                                                    ;
-; I/O pins                                    ; 106                                                                ;
+; I/O pins                                    ; 96                                                                 ;
 ;                                             ;                                                                    ;
 ; Total DSP Blocks                            ; 0                                                                  ;
 ;                                             ;                                                                    ;
@@ -216,9 +216,9 @@ https://fpgasoftware.intel.com/eula.
 ;     -- PLLs                                 ; 1                                                                  ;
 ;                                             ;                                                                    ;
 ; Maximum fan-out node                        ; pll:pll_i|pll_0002:pll_inst|altera_pll:altera_pll_i|outclk_wire[0] ;
-; Maximum fan-out                             ; 126                                                                ;
-; Total fan-out                               ; 1399                                                               ;
-; Average fan-out                             ; 2.65                                                               ;
+; Maximum fan-out                             ; 165                                                                ;
+; Total fan-out                               ; 1543                                                               ;
+; Average fan-out                             ; 2.71                                                               ;
 +---------------------------------------------+--------------------------------------------------------------------+
 
 
@@ -227,10 +227,10 @@ https://fpgasoftware.intel.com/eula.
 +------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------------------------------------+-----------------+--------------+
 ; Compilation Hierarchy Node         ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                 ; Entity Name     ; Library Name ;
 +------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------------------------------------+-----------------+--------------+
-; |dram_top_level                    ; 176 (2)             ; 123 (0)                   ; 0                 ; 0          ; 106  ; 0            ; |dram_top_level                                                     ; dram_top_level  ; work         ;
-;    |dram_controller:controller_i|  ; 117 (115)           ; 89 (77)                   ; 0                 ; 0          ; 0    ; 0            ; |dram_top_level|dram_controller:controller_i                        ; dram_controller ; work         ;
+; |dram_top_level                    ; 199 (2)             ; 162 (0)                   ; 0                 ; 0          ; 96   ; 0            ; |dram_top_level                                                     ; dram_top_level  ; work         ;
+;    |dram_controller:controller_i|  ; 140 (138)           ; 100 (88)                  ; 0                 ; 0          ; 0    ; 0            ; |dram_top_level|dram_controller:controller_i                        ; dram_controller ; work         ;
 ;       |reader:reader_inst|         ; 2 (2)               ; 12 (12)                   ; 0                 ; 0          ; 0    ; 0            ; |dram_top_level|dram_controller:controller_i|reader:reader_inst     ; reader          ; work         ;
-;    |dram_iface:iface_i|            ; 57 (57)             ; 34 (34)                   ; 0                 ; 0          ; 0    ; 0            ; |dram_top_level|dram_iface:iface_i                                  ; dram_iface      ; work         ;
+;    |dram_iface:iface_i|            ; 57 (57)             ; 62 (62)                   ; 0                 ; 0          ; 0    ; 0            ; |dram_top_level|dram_iface:iface_i                                  ; dram_iface      ; work         ;
 ;    |pll:pll_i|                     ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |dram_top_level|pll:pll_i                                           ; pll             ; pll          ;
 ;       |pll_0002:pll_inst|          ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |dram_top_level|pll:pll_i|pll_0002:pll_inst                         ; pll_0002        ; pll          ;
 ;          |altera_pll:altera_pll_i| ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |dram_top_level|pll:pll_i|pll_0002:pll_inst|altera_pll:altera_pll_i ; altera_pll      ; work         ;
@@ -283,57 +283,101 @@ Encoding Type:  One-Hot
 +---------------------+---------------------+--------------------+--------------------+-------------------+----------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                                                               ;
-+-----------------------------------------------------------------------+--------------------------------------------------------------------------+
-; Register name                                                         ; Reason for Removal                                                       ;
-+-----------------------------------------------------------------------+--------------------------------------------------------------------------+
-; dram_controller:controller_i|adress[18]                               ; Stuck at GND due to stuck port data_in                                   ;
-; dram_controller:controller_i|timer_cycles[4,5,7..9,11,13,14]          ; Merged with dram_controller:controller_i|timer_cycles[10]                ;
-; dram_controller:controller_i|timer_cycles[2,6]                        ; Merged with dram_controller:controller_i|timer_cycles[12]                ;
-; dram_iface:iface_i|address_reg[3..9,15..25]                           ; Merged with dram_iface:iface_i|address_reg[10]                           ;
-; dram_iface:iface_i|last_address[0,3..10,15..25]                       ; Merged with dram_iface:iface_i|address_reg[10]                           ;
-; dram_iface:iface_i|write_data_reg[4..7]                               ; Merged with dram_iface:iface_i|address_reg[10]                           ;
-; dram_iface:iface_i|last_address[14]                                   ; Merged with dram_iface:iface_i|address_reg[14]                           ;
-; dram_iface:iface_i|last_address[13]                                   ; Merged with dram_iface:iface_i|address_reg[13]                           ;
-; dram_iface:iface_i|last_address[12]                                   ; Merged with dram_iface:iface_i|address_reg[12]                           ;
-; dram_iface:iface_i|last_address[11]                                   ; Merged with dram_iface:iface_i|address_reg[11]                           ;
-; dram_iface:iface_i|last_address[2]                                    ; Merged with dram_iface:iface_i|address_reg[2]                            ;
-; dram_iface:iface_i|last_address[1]                                    ; Merged with dram_iface:iface_i|address_reg[1]                            ;
-; dram_controller:controller_i|reader:reader_inst|addr_reg[3..9,15..25] ; Merged with dram_controller:controller_i|reader:reader_inst|addr_reg[10] ;
-; dram_controller:controller_i|reader:reader_inst|data_reg[4..7]        ; Merged with dram_controller:controller_i|reader:reader_inst|addr_reg[10] ;
-; dram_controller:controller_i|active_addr[3..9]                        ; Merged with dram_controller:controller_i|active_addr[10]                 ;
-; dram_iface:iface_i|pending_address[3..10,15..25]                      ; Merged with dram_iface:iface_i|pending_address[0]                        ;
-; dram_iface:iface_i|pending_data[4..7]                                 ; Merged with dram_iface:iface_i|pending_address[0]                        ;
-; dram_iface:iface_i|pending_address[0]                                 ; Stuck at GND due to stuck port data_in                                   ;
-; dram_iface:iface_i|address_reg[10]                                    ; Stuck at GND due to stuck port data_in                                   ;
-; dram_controller:controller_i|reader:reader_inst|addr_reg[10]          ; Stuck at GND due to stuck port data_in                                   ;
-; dram_controller:controller_i|adress[11,12]                            ; Stuck at GND due to stuck port data_in                                   ;
-; dram_controller:controller_i|active_addr[10]                          ; Stuck at GND due to stuck port data_in                                   ;
-; dram_controller:controller_i|active_data[4..7]                        ; Stuck at GND due to stuck port data_in                                   ;
-; dram_controller:controller_i|adress[2..4,6..8]                        ; Stuck at GND due to stuck port data_in                                   ;
-; dram_controller:controller_i|timer_cycles[12]                         ; Stuck at GND due to stuck port data_in                                   ;
-; Total Number of Removed Registers = 128                               ;                                                                          ;
-+-----------------------------------------------------------------------+--------------------------------------------------------------------------+
++-----------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                              ;
++------------------------------------------------------------------------+----------------------------------------+
+; Register name                                                          ; Reason for Removal                     ;
++------------------------------------------------------------------------+----------------------------------------+
+; dram_controller:controller_i|adress[18]                                ; Stuck at GND due to stuck port data_in ;
+; dram_iface:iface_i|pending_address[0,3..10,15..25]                     ; Stuck at GND due to stuck port data_in ;
+; dram_iface:iface_i|pending_data[4..7]                                  ; Stuck at GND due to stuck port data_in ;
+; dram_iface:iface_i|address_reg[3..10,15..25]                           ; Stuck at GND due to stuck port data_in ;
+; dram_iface:iface_i|write_data_reg[4..7]                                ; Stuck at GND due to stuck port data_in ;
+; dram_iface:iface_i|last_address[0,3..10,15..25]                        ; Stuck at GND due to stuck port data_in ;
+; dram_controller:controller_i|reader:reader_inst|addr_reg[3..10,15..25] ; Stuck at GND due to stuck port data_in ;
+; dram_controller:controller_i|reader:reader_inst|data_reg[4..7]         ; Stuck at GND due to stuck port data_in ;
+; dram_controller:controller_i|adress[11,12]                             ; Stuck at GND due to stuck port data_in ;
+; dram_controller:controller_i|active_addr[3..10]                        ; Stuck at GND due to stuck port data_in ;
+; dram_controller:controller_i|active_data[4..7]                         ; Stuck at GND due to stuck port data_in ;
+; dram_controller:controller_i|adress[2,3,6..8]                          ; Stuck at GND due to stuck port data_in ;
+; dram_controller:controller_i|timer_cycles[6,12]                        ; Stuck at GND due to stuck port data_in ;
+; Total Number of Removed Registers = 112                                ;                                        ;
++------------------------------------------------------------------------+----------------------------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                                                           ;
-+---------------------------------------+---------------------------+-----------------------------------------------------------------------------------+
-; Register name                         ; Reason for Removal        ; Registers Removed due to This Register                                            ;
-+---------------------------------------+---------------------------+-----------------------------------------------------------------------------------+
-; dram_iface:iface_i|pending_address[0] ; Stuck at GND              ; dram_iface:iface_i|address_reg[10],                                               ;
-;                                       ; due to stuck port data_in ; dram_controller:controller_i|reader:reader_inst|addr_reg[10],                     ;
-;                                       ;                           ; dram_controller:controller_i|adress[12], dram_controller:controller_i|adress[11], ;
-;                                       ;                           ; dram_controller:controller_i|active_addr[10],                                     ;
-;                                       ;                           ; dram_controller:controller_i|active_data[7],                                      ;
-;                                       ;                           ; dram_controller:controller_i|active_data[6],                                      ;
-;                                       ;                           ; dram_controller:controller_i|active_data[5],                                      ;
-;                                       ;                           ; dram_controller:controller_i|active_data[4],                                      ;
-;                                       ;                           ; dram_controller:controller_i|adress[8], dram_controller:controller_i|adress[7],   ;
-;                                       ;                           ; dram_controller:controller_i|adress[6], dram_controller:controller_i|adress[4],   ;
-;                                       ;                           ; dram_controller:controller_i|adress[3], dram_controller:controller_i|adress[2]    ;
-+---------------------------------------+---------------------------+-----------------------------------------------------------------------------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                   ;
++----------------------------------------+---------------------------+--------------------------------------------------------------------------+
+; Register name                          ; Reason for Removal        ; Registers Removed due to This Register                                   ;
++----------------------------------------+---------------------------+--------------------------------------------------------------------------+
+; dram_iface:iface_i|pending_address[24] ; Stuck at GND              ; dram_iface:iface_i|address_reg[24], dram_iface:iface_i|last_address[24], ;
+;                                        ; due to stuck port data_in ; dram_controller:controller_i|reader:reader_inst|addr_reg[24],            ;
+;                                        ;                           ; dram_controller:controller_i|adress[11]                                  ;
+; dram_iface:iface_i|pending_address[3]  ; Stuck at GND              ; dram_iface:iface_i|address_reg[3], dram_iface:iface_i|last_address[3],   ;
+;                                        ; due to stuck port data_in ; dram_controller:controller_i|reader:reader_inst|addr_reg[3],             ;
+;                                        ;                           ; dram_controller:controller_i|active_addr[3]                              ;
+; dram_iface:iface_i|pending_address[4]  ; Stuck at GND              ; dram_iface:iface_i|address_reg[4], dram_iface:iface_i|last_address[4],   ;
+;                                        ; due to stuck port data_in ; dram_controller:controller_i|reader:reader_inst|addr_reg[4],             ;
+;                                        ;                           ; dram_controller:controller_i|active_addr[4]                              ;
+; dram_iface:iface_i|pending_address[5]  ; Stuck at GND              ; dram_iface:iface_i|address_reg[5], dram_iface:iface_i|last_address[5],   ;
+;                                        ; due to stuck port data_in ; dram_controller:controller_i|reader:reader_inst|addr_reg[5],             ;
+;                                        ;                           ; dram_controller:controller_i|active_addr[5]                              ;
+; dram_iface:iface_i|pending_address[6]  ; Stuck at GND              ; dram_iface:iface_i|address_reg[6], dram_iface:iface_i|last_address[6],   ;
+;                                        ; due to stuck port data_in ; dram_controller:controller_i|reader:reader_inst|addr_reg[6],             ;
+;                                        ;                           ; dram_controller:controller_i|active_addr[6]                              ;
+; dram_iface:iface_i|pending_address[7]  ; Stuck at GND              ; dram_iface:iface_i|address_reg[7], dram_iface:iface_i|last_address[7],   ;
+;                                        ; due to stuck port data_in ; dram_controller:controller_i|reader:reader_inst|addr_reg[7],             ;
+;                                        ;                           ; dram_controller:controller_i|active_addr[7]                              ;
+; dram_iface:iface_i|pending_address[8]  ; Stuck at GND              ; dram_iface:iface_i|address_reg[8], dram_iface:iface_i|last_address[8],   ;
+;                                        ; due to stuck port data_in ; dram_controller:controller_i|reader:reader_inst|addr_reg[8],             ;
+;                                        ;                           ; dram_controller:controller_i|active_addr[8]                              ;
+; dram_iface:iface_i|pending_address[9]  ; Stuck at GND              ; dram_iface:iface_i|address_reg[9], dram_iface:iface_i|last_address[9],   ;
+;                                        ; due to stuck port data_in ; dram_controller:controller_i|reader:reader_inst|addr_reg[9],             ;
+;                                        ;                           ; dram_controller:controller_i|active_addr[9]                              ;
+; dram_iface:iface_i|pending_address[10] ; Stuck at GND              ; dram_iface:iface_i|address_reg[10], dram_iface:iface_i|last_address[10], ;
+;                                        ; due to stuck port data_in ; dram_controller:controller_i|reader:reader_inst|addr_reg[10],            ;
+;                                        ;                           ; dram_controller:controller_i|active_addr[10]                             ;
+; dram_iface:iface_i|pending_address[15] ; Stuck at GND              ; dram_iface:iface_i|address_reg[15], dram_iface:iface_i|last_address[15], ;
+;                                        ; due to stuck port data_in ; dram_controller:controller_i|reader:reader_inst|addr_reg[15],            ;
+;                                        ;                           ; dram_controller:controller_i|adress[2]                                   ;
+; dram_iface:iface_i|pending_address[16] ; Stuck at GND              ; dram_iface:iface_i|address_reg[16], dram_iface:iface_i|last_address[16], ;
+;                                        ; due to stuck port data_in ; dram_controller:controller_i|reader:reader_inst|addr_reg[16],            ;
+;                                        ;                           ; dram_controller:controller_i|adress[3]                                   ;
+; dram_iface:iface_i|pending_address[19] ; Stuck at GND              ; dram_iface:iface_i|address_reg[19], dram_iface:iface_i|last_address[19], ;
+;                                        ; due to stuck port data_in ; dram_controller:controller_i|reader:reader_inst|addr_reg[19],            ;
+;                                        ;                           ; dram_controller:controller_i|adress[6]                                   ;
+; dram_iface:iface_i|pending_address[20] ; Stuck at GND              ; dram_iface:iface_i|address_reg[20], dram_iface:iface_i|last_address[20], ;
+;                                        ; due to stuck port data_in ; dram_controller:controller_i|reader:reader_inst|addr_reg[20],            ;
+;                                        ;                           ; dram_controller:controller_i|adress[7]                                   ;
+; dram_iface:iface_i|pending_address[21] ; Stuck at GND              ; dram_iface:iface_i|address_reg[21], dram_iface:iface_i|last_address[21], ;
+;                                        ; due to stuck port data_in ; dram_controller:controller_i|reader:reader_inst|addr_reg[21],            ;
+;                                        ;                           ; dram_controller:controller_i|adress[8]                                   ;
+; dram_iface:iface_i|pending_address[25] ; Stuck at GND              ; dram_iface:iface_i|address_reg[25], dram_iface:iface_i|last_address[25], ;
+;                                        ; due to stuck port data_in ; dram_controller:controller_i|reader:reader_inst|addr_reg[25],            ;
+;                                        ;                           ; dram_controller:controller_i|adress[12]                                  ;
+; dram_iface:iface_i|pending_address[17] ; Stuck at GND              ; dram_iface:iface_i|address_reg[17], dram_iface:iface_i|last_address[17], ;
+;                                        ; due to stuck port data_in ; dram_controller:controller_i|reader:reader_inst|addr_reg[17]             ;
+; dram_iface:iface_i|pending_address[18] ; Stuck at GND              ; dram_iface:iface_i|address_reg[18], dram_iface:iface_i|last_address[18], ;
+;                                        ; due to stuck port data_in ; dram_controller:controller_i|reader:reader_inst|addr_reg[18]             ;
+; dram_iface:iface_i|pending_address[22] ; Stuck at GND              ; dram_iface:iface_i|address_reg[22], dram_iface:iface_i|last_address[22], ;
+;                                        ; due to stuck port data_in ; dram_controller:controller_i|reader:reader_inst|addr_reg[22]             ;
+; dram_iface:iface_i|pending_address[23] ; Stuck at GND              ; dram_iface:iface_i|address_reg[23], dram_iface:iface_i|last_address[23], ;
+;                                        ; due to stuck port data_in ; dram_controller:controller_i|reader:reader_inst|addr_reg[23]             ;
+; dram_iface:iface_i|pending_data[7]     ; Stuck at GND              ; dram_iface:iface_i|write_data_reg[7],                                    ;
+;                                        ; due to stuck port data_in ; dram_controller:controller_i|reader:reader_inst|data_reg[7],             ;
+;                                        ;                           ; dram_controller:controller_i|active_data[7]                              ;
+; dram_iface:iface_i|pending_data[6]     ; Stuck at GND              ; dram_iface:iface_i|write_data_reg[6],                                    ;
+;                                        ; due to stuck port data_in ; dram_controller:controller_i|reader:reader_inst|data_reg[6],             ;
+;                                        ;                           ; dram_controller:controller_i|active_data[6]                              ;
+; dram_iface:iface_i|pending_data[5]     ; Stuck at GND              ; dram_iface:iface_i|write_data_reg[5],                                    ;
+;                                        ; due to stuck port data_in ; dram_controller:controller_i|reader:reader_inst|data_reg[5],             ;
+;                                        ;                           ; dram_controller:controller_i|active_data[5]                              ;
+; dram_iface:iface_i|pending_data[4]     ; Stuck at GND              ; dram_iface:iface_i|write_data_reg[4],                                    ;
+;                                        ; due to stuck port data_in ; dram_controller:controller_i|reader:reader_inst|data_reg[4],             ;
+;                                        ;                           ; dram_controller:controller_i|active_data[4]                              ;
+; dram_iface:iface_i|pending_address[0]  ; Stuck at GND              ; dram_iface:iface_i|last_address[0]                                       ;
+;                                        ; due to stuck port data_in ;                                                                          ;
++----------------------------------------+---------------------------+--------------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -341,12 +385,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 123   ;
-; Number of registers using Synchronous Clear  ; 29    ;
-; Number of registers using Synchronous Load   ; 10    ;
-; Number of registers using Asynchronous Clear ; 123   ;
+; Total registers                              ; 162   ;
+; Number of registers using Synchronous Clear  ; 36    ;
+; Number of registers using Synchronous Load   ; 16    ;
+; Number of registers using Asynchronous Clear ; 158   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 75    ;
+; Number of registers using Clock Enable       ; 85    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -359,8 +403,10 @@ Encoding Type:  One-Hot
 ; dram_controller:controller_i|adress[16] ; 2       ;
 ; dram_controller:controller_i|adress[17] ; 2       ;
 ; dram_controller:controller_i|adress[15] ; 2       ;
-; dram_iface:iface_i|key3_prev            ; 15      ;
-; Total number of inverted registers = 4  ;         ;
+; dram_iface:iface_i|key3_prev            ; 14      ;
+; dram_iface:iface_i|key_sync[3]          ; 15      ;
+; dram_iface:iface_i|key_meta[3]          ; 1       ;
+; Total number of inverted registers = 6  ;         ;
 +-----------------------------------------+---------+
 
 
@@ -369,12 +415,13 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                         ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------+
-; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |dram_top_level|dram_iface:iface_i|address_reg[1]                  ;
-; 3:1                ; 11 bits   ; 22 LEs        ; 0 LEs                ; 22 LEs                 ; Yes        ; |dram_top_level|dram_controller:controller_i|refresh_counter[6]    ;
-; 5:1                ; 15 bits   ; 45 LEs        ; 15 LEs               ; 30 LEs                 ; Yes        ; |dram_top_level|dram_controller:controller_i|timer_counter[6]      ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |dram_top_level|dram_iface:iface_i|last_address[2]                 ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 0 LEs                ; 22 LEs                 ; Yes        ; |dram_top_level|dram_controller:controller_i|refresh_counter[0]    ;
+; 5:1                ; 15 bits   ; 45 LEs        ; 15 LEs               ; 30 LEs                 ; Yes        ; |dram_top_level|dram_controller:controller_i|timer_counter[5]      ;
 ; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |dram_top_level|dram_controller:controller_i|init_refresh_count[2] ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |dram_top_level|dram_controller:controller_i|timer_cycles[6]       ;
 ; 11:1               ; 2 bits    ; 14 LEs        ; 6 LEs                ; 8 LEs                  ; Yes        ; |dram_top_level|dram_controller:controller_i|timer_cycles[3]       ;
-; 10:1               ; 2 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |dram_top_level|dram_controller:controller_i|timer_cycles[10]      ;
+; 10:1               ; 9 bits    ; 54 LEs        ; 0 LEs                ; 54 LEs                 ; Yes        ; |dram_top_level|dram_controller:controller_i|timer_cycles[11]      ;
 ; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |dram_top_level|dram_controller:controller_i|adress                ;
 ; 10:1               ; 2 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |dram_top_level|dram_iface:iface_i|Selector2                       ;
 ; 10:1               ; 2 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |dram_top_level|dram_iface:iface_i|Selector5                       ;
@@ -658,27 +705,29 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 123                         ;
-;     CLR               ; 45                          ;
-;     CLR SCLR          ; 3                           ;
-;     ENA CLR           ; 39                          ;
-;     ENA CLR SCLR      ; 26                          ;
-;     ENA CLR SLD       ; 10                          ;
+; arriav_ff             ; 162                         ;
+;     CLR               ; 72                          ;
+;     CLR SCLR          ; 1                           ;
+;     ENA CLR           ; 34                          ;
+;     ENA CLR SCLR      ; 35                          ;
+;     ENA CLR SLD       ; 16                          ;
+;     plain             ; 4                           ;
 ; arriav_io_obuf        ; 16                          ;
-; arriav_lcell_comb     ; 185                         ;
-;     arith             ; 26                          ;
-;         1 data inputs ; 26                          ;
+; arriav_lcell_comb     ; 208                         ;
+;     arith             ; 41                          ;
+;         0 data inputs ; 2                           ;
+;         1 data inputs ; 39                          ;
 ;     extend            ; 1                           ;
 ;         7 data inputs ; 1                           ;
-;     normal            ; 158                         ;
+;     normal            ; 166                         ;
 ;         0 data inputs ; 2                           ;
-;         1 data inputs ; 9                           ;
-;         2 data inputs ; 10                          ;
-;         3 data inputs ; 23                          ;
-;         4 data inputs ; 46                          ;
-;         5 data inputs ; 27                          ;
-;         6 data inputs ; 41                          ;
-; boundary_port         ; 106                         ;
+;         1 data inputs ; 8                           ;
+;         2 data inputs ; 14                          ;
+;         3 data inputs ; 39                          ;
+;         4 data inputs ; 42                          ;
+;         5 data inputs ; 21                          ;
+;         6 data inputs ; 40                          ;
+; boundary_port         ; 96                          ;
 ; generic_pll           ; 1                           ;
 ;                       ;                             ;
 ; Max LUT depth         ; 4.00                        ;
@@ -691,7 +740,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:02     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -701,7 +750,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Mon Jun 22 14:32:07 2026
+    Info: Processing started: Mon Jun 22 15:56:35 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off dram -c dram_top_level
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 10 of the 10 processors detected
@@ -718,7 +767,7 @@ Info (12021): Found 2 design units, including 1 entities, in source file tb_dram
     Info (12022): Found design unit 1: tb_dram_controller-sim File: /home/rodrigodog/MC613/lab3/tb_dram_controller.vhd Line: 8
     Info (12023): Found entity 1: tb_dram_controller File: /home/rodrigodog/MC613/lab3/tb_dram_controller.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file dram_top_level.vhd
-    Info (12022): Found design unit 1: dram_top_level-rtl File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 34
+    Info (12022): Found design unit 1: dram_top_level-rtl File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 33
     Info (12023): Found entity 1: dram_top_level File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 6
 Info (12021): Found 2 design units, including 1 entities, in source file dram_iface.vhd
     Info (12022): Found design unit 1: dram_iface-rtl File: /home/rodrigodog/MC613/lab3/dram_iface.vhd Line: 24
@@ -735,7 +784,7 @@ Info (12021): Found 2 design units, including 1 entities, in source file pll.vhd
 Info (12021): Found 1 design units, including 1 entities, in source file pll/pll_0002.v
     Info (12023): Found entity 1: pll_0002 File: /home/rodrigodog/MC613/lab3/pll/pll_0002.v Line: 2
 Info (12127): Elaborating entity "dram_top_level" for the top level hierarchy
-Info (12128): Elaborating entity "pll" for hierarchy "pll:pll_i" File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 85
+Info (12128): Elaborating entity "pll" for hierarchy "pll:pll_i" File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 84
 Info (12128): Elaborating entity "pll_0002" for hierarchy "pll:pll_i|pll_0002:pll_inst" File: /home/rodrigodog/MC613/lab3/pll.vhd Line: 32
 Info (12128): Elaborating entity "altera_pll" for hierarchy "pll:pll_i|pll_0002:pll_inst|altera_pll:altera_pll_i" File: /home/rodrigodog/MC613/lab3/pll/pll_0002.v Line: 85
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "wire_to_nowhere_64" into its bus
@@ -801,9 +850,9 @@ Info (12133): Instantiated megafunction "pll:pll_i|pll_0002:pll_inst|altera_pll:
     Info (12134): Parameter "duty_cycle17" = "50"
     Info (12134): Parameter "pll_type" = "General"
     Info (12134): Parameter "pll_subtype" = "General"
-Info (12128): Elaborating entity "dram_iface" for hierarchy "dram_iface:iface_i" File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 119
-Info (12128): Elaborating entity "dram_controller" for hierarchy "dram_controller:controller_i" File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 137
-Info (12128): Elaborating entity "reader" for hierarchy "dram_controller:controller_i|reader:reader_inst" File: /home/rodrigodog/MC613/lab3/dram_controller.vhd Line: 134
+Info (12128): Elaborating entity "dram_iface" for hierarchy "dram_iface:iface_i" File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 113
+Info (12128): Elaborating entity "dram_controller" for hierarchy "dram_controller:controller_i" File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 131
+Info (12128): Elaborating entity "reader" for hierarchy "dram_controller:controller_i|reader:reader_inst" File: /home/rodrigodog/MC613/lab3/dram_controller.vhd Line: 157
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "HEX2[0]" is stuck at VCC File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 13
     Warning (13410): Pin "HEX2[1]" is stuck at VCC File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 13
@@ -819,18 +868,17 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "HEX3[4]" is stuck at VCC File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 14
     Warning (13410): Pin "HEX3[5]" is stuck at VCC File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 14
     Warning (13410): Pin "HEX3[6]" is stuck at VCC File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 14
-    Warning (13410): Pin "DRAM_ADDR[2]" is stuck at GND File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 20
-    Warning (13410): Pin "DRAM_ADDR[3]" is stuck at GND File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 20
-    Warning (13410): Pin "DRAM_ADDR[4]" is stuck at GND File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 20
-    Warning (13410): Pin "DRAM_ADDR[6]" is stuck at GND File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 20
-    Warning (13410): Pin "DRAM_ADDR[7]" is stuck at GND File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 20
-    Warning (13410): Pin "DRAM_ADDR[8]" is stuck at GND File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 20
-    Warning (13410): Pin "DRAM_ADDR[11]" is stuck at GND File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 20
-    Warning (13410): Pin "DRAM_ADDR[12]" is stuck at GND File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 20
-    Warning (13410): Pin "DRAM_CKE" is stuck at VCC File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 23
-    Warning (13410): Pin "DRAM_CS_N" is stuck at GND File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 25
-    Warning (13410): Pin "DRAM_LDQM" is stuck at GND File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 27
-    Warning (13410): Pin "DRAM_UDQM" is stuck at VCC File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 29
+    Warning (13410): Pin "DRAM_ADDR[2]" is stuck at GND File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 19
+    Warning (13410): Pin "DRAM_ADDR[3]" is stuck at GND File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 19
+    Warning (13410): Pin "DRAM_ADDR[6]" is stuck at GND File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 19
+    Warning (13410): Pin "DRAM_ADDR[7]" is stuck at GND File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 19
+    Warning (13410): Pin "DRAM_ADDR[8]" is stuck at GND File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 19
+    Warning (13410): Pin "DRAM_ADDR[11]" is stuck at GND File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 19
+    Warning (13410): Pin "DRAM_ADDR[12]" is stuck at GND File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 19
+    Warning (13410): Pin "DRAM_CKE" is stuck at VCC File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 22
+    Warning (13410): Pin "DRAM_CS_N" is stuck at GND File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 24
+    Warning (13410): Pin "DRAM_LDQM" is stuck at GND File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 26
+    Warning (13410): Pin "DRAM_UDQM" is stuck at VCC File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 28
 Info (286030): Timing-Driven Synthesis is running
 Warning (20013): Ignored 571 assignments for entity "DE1_SoC" -- entity does not exist in design
     Warning (20014): Assignment for entity set_instance_assignment -name PACKAGE_SKEW_COMPENSATION OFF -to HPS_DDR3_ADDR[0] -entity DE1_SoC was ignored
@@ -1409,16 +1457,16 @@ Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
 Warning (21074): Design contains 2 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "KEY[1]" File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 10
     Warning (15610): No output dependent on input pin "KEY[2]" File: /home/rodrigodog/MC613/lab3/dram_top_level.vhd Line: 10
-Info (21057): Implemented 343 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 394 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 15 input pins
-    Info (21059): Implemented 75 output pins
+    Info (21059): Implemented 65 output pins
     Info (21060): Implemented 16 bidirectional pins
-    Info (21061): Implemented 236 logic cells
+    Info (21061): Implemented 297 logic cells
     Info (21065): Implemented 1 PLLs
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 603 warnings
-    Info: Peak virtual memory: 546 megabytes
-    Info: Processing ended: Mon Jun 22 14:32:22 2026
-    Info: Elapsed time: 00:00:15
-    Info: Total CPU time (on all processors): 00:00:41
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 602 warnings
+    Info: Peak virtual memory: 538 megabytes
+    Info: Processing ended: Mon Jun 22 15:56:49 2026
+    Info: Elapsed time: 00:00:14
+    Info: Total CPU time (on all processors): 00:00:46
 
 

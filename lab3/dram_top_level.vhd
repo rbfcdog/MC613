@@ -14,8 +14,7 @@ entity dram_top_level is
     HEX3       : out   std_logic_vector(6 downto 0);
     HEX4       : out   std_logic_vector(6 downto 0);
     HEX5       : out   std_logic_vector(6 downto 0);
-    LEDR       : out   std_logic_vector(9 downto 0);
-    
+
     -- Physical SDRAM Pins
     DRAM_ADDR  : out   std_logic_vector(12 downto 0);
     DRAM_BA    : out   std_logic_vector(1 downto 0);
@@ -92,11 +91,6 @@ begin
 
   HEX2 <= (others => '1');
   HEX3 <= (others => '1');
-
-  LEDR(0) <= req_sig;
-  LEDR(1) <= wen_sig;
-  LEDR(2) <= ready_sig;
-  LEDR(9 downto 3) <= controller_data_out(6 downto 0);
 
   DRAM_ADDR   <= dram_cmd(12 downto 0);
   DRAM_BA     <= dram_cmd(14 downto 13);
