@@ -1,0 +1,24 @@
+
+State Machine - |dram_top_level|dram_controller:controller_i|op_state
+Name op_state.st_refresh_wait op_state.st_refresh_trp op_state.st_precharge_wait op_state.st_write_wait op_state.st_read_wait op_state.st_activate_wait op_state.st_ready op_state.st_init_tmrd op_state.st_init_refresh_wait op_state.st_init_refresh_cmd op_state.st_init_trp op_state.st_init_wait op_state.st_init_wait_start 
+op_state.st_init_wait_start 0 0 0 0 0 0 0 0 0 0 0 0 0 
+op_state.st_init_wait 0 0 0 0 0 0 0 0 0 0 0 1 1 
+op_state.st_init_trp 0 0 0 0 0 0 0 0 0 0 1 0 1 
+op_state.st_init_refresh_cmd 0 0 0 0 0 0 0 0 0 1 0 0 1 
+op_state.st_init_refresh_wait 0 0 0 0 0 0 0 0 1 0 0 0 1 
+op_state.st_init_tmrd 0 0 0 0 0 0 0 1 0 0 0 0 1 
+op_state.st_ready 0 0 0 0 0 0 1 0 0 0 0 0 1 
+op_state.st_activate_wait 0 0 0 0 0 1 0 0 0 0 0 0 1 
+op_state.st_read_wait 0 0 0 0 1 0 0 0 0 0 0 0 1 
+op_state.st_write_wait 0 0 0 1 0 0 0 0 0 0 0 0 1 
+op_state.st_precharge_wait 0 0 1 0 0 0 0 0 0 0 0 0 1 
+op_state.st_refresh_trp 0 1 0 0 0 0 0 0 0 0 0 0 1 
+op_state.st_refresh_wait 1 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |dram_top_level|dram_iface:iface_i|state
+Name state.WAIT_WRITE_ST state.REQ_WRITE_ST state.WAIT_READ_ST state.REQ_READ_ST state.READY_ST 
+state.READY_ST 0 0 0 0 0 
+state.REQ_READ_ST 0 0 0 1 1 
+state.WAIT_READ_ST 0 0 1 0 1 
+state.REQ_WRITE_ST 0 1 0 0 1 
+state.WAIT_WRITE_ST 1 0 0 0 1 

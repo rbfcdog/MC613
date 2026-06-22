@@ -41,6 +41,7 @@ architecture rtl of dram_top_level is
   signal iface_address       : std_logic_vector(25 downto 0);
   signal iface_write_data    : std_logic_vector(7 downto 0);
   signal controller_data_out : std_logic_vector(7 downto 0);
+  signal controller_write_data : std_logic_vector(7 downto 0);
   signal req_sig             : std_logic;
   signal wen_sig             : std_logic;
   signal ready_sig           : std_logic;
@@ -57,20 +58,22 @@ architecture rtl of dram_top_level is
         SW       : in  std_logic_vector(9 downto 0);
         KEY      : in  std_logic_vector(3 downto 0);
         data_in  : in  std_logic_vector(7 downto 0);
+        write_data_in : in  std_logic_vector(7 downto 0);
         data_out : out std_logic_vector(7 downto 0);
         HEX0     : out std_logic_vector(6 downto 0);
         HEX1     : out std_logic_vector(6 downto 0);
         HEX4     : out std_logic_vector(6 downto 0);
         HEX5     : out std_logic_vector(6 downto 0);
         adress   : out std_logic_vector(25 downto 0);
-        
+
         -- These MUST be inputs from the user interface
         req      : in  std_logic;
         wEn      : in  std_logic;
-        
+
         -- Missing in original entity but required to pass user's address
         -- into the controller so it can combine it with the command
         addr_in  : in  std_logic_vector(25 downto 0);
+        write_data_out : out std_logic_vector(7 downto 0);
         ready    : out std_logic
     );
   end component;
@@ -93,7 +96,7 @@ begin
   LEDR(0) <= req_sig;
   LEDR(1) <= wen_sig;
   LEDR(2) <= ready_sig;
-  LEDR(9 downto 3) <= iface_address(25 downto 19);
+  LEDR(9 downto 3) <= controller_data_out(6 downto 0);
 
   DRAM_ADDR   <= dram_cmd(12 downto 0);
   DRAM_BA     <= dram_cmd(14 downto 13);
@@ -104,13 +107,13 @@ begin
   
   -- Static SDRAM controls
   DRAM_CKE    <= '1';         -- Clock Enable always high
-  DRAM_CLK    <= pll_clk;     -- Sync to PLL
-  DRAM_UDQM   <= '0';         -- Unmask upper byte
+  DRAM_CLK    <= not pll_clk; -- Give SDRAM setup margin from FPGA-launched controls
+  DRAM_UDQM   <= '1';         -- Upper byte unused in the 8-bit simplified interface
   DRAM_LDQM   <= '0';         -- Unmask lower byte
 
-  -- Tri-state logic for Bidirectional DQ bus: 
+  -- Tri-state logic for Bidirectional DQ bus:
   -- We ONLY drive data onto DRAM_DQ during a WRITE command (CS=0, RAS=1, CAS=0, WE=0)
-  DRAM_DQ <= (x"00" & iface_write_data) when (dram_cmd(18) = '0' and dram_cmd(17) = '1' and dram_cmd(16) = '0' and dram_cmd(15) = '0') else (others => 'Z');
+  DRAM_DQ <= (x"00" & controller_write_data) when (dram_cmd(18) = '0' and dram_cmd(17) = '1' and dram_cmd(16) = '0' and dram_cmd(15) = '0') else (others => 'Z');
 
 
   iface_i : entity work.dram_iface
@@ -138,6 +141,7 @@ begin
       SW          => SW,
       KEY         => KEY,
       data_in     => DRAM_DQ(7 downto 0),  -- Read data straight from physical pins
+      write_data_in => iface_write_data,
       data_out    => controller_data_out,  -- Latched data goes to iface
       
       -- Leave HEX ports open to prevent multiple-driver compilation errors
@@ -148,6 +152,7 @@ begin
       
       adress      => dram_cmd,             -- Outputs the merged command + address
       addr_in     => iface_address,        -- Receives the target address from interface
+      write_data_out => controller_write_data,
       req         => req_sig,
       wEn         => wen_sig,
       ready       => ready_sig

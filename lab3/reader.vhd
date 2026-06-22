@@ -1,7 +1,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
-entity command_reader is
+entity reader is
     port (
         clk          : in  std_logic;
         rst          : in  std_logic;
@@ -21,9 +21,9 @@ entity command_reader is
         -- Acknowledge from dram_controller to clear the buffer
         cmd_ack      : in  std_logic
     );
-end command_reader;
+end reader;
 
-architecture rtl of command_reader is
+architecture rtl of reader is
     signal pending_reg : std_logic := '0';
     signal wEn_reg     : std_logic := '0';
     signal addr_reg    : std_logic_vector(25 downto 0) := (others => '0');

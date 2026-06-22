@@ -31,6 +31,11 @@ architecture sim of tb_dram_controller is
   signal wEn         : std_logic := '0';
   signal ready       : std_logic;
 
+  signal SW_tie     : std_logic_vector(9 downto 0) := (others => '0');
+  signal KEY_tie    : std_logic_vector(3 downto 0) := (others => '1');
+  signal dram_cmd   : std_logic_vector(25 downto 0);
+  signal dram_write_data : std_logic_vector(7 downto 0);
+
   signal DRAM_ADDR   : std_logic_vector(12 downto 0);
   signal DRAM_BA     : std_logic_vector(1 downto 0);
   signal DRAM_CAS_N  : std_logic;
@@ -70,45 +75,46 @@ architecture sim of tb_dram_controller is
                    col  : std_logic_vector(12 downto 0)) return integer is
     variable idx_v : unsigned(9 downto 0);
   begin
-    idx_v := unsigned(bank & row(2 downto 0) & col(4 downto 0));
+    idx_v := unsigned(bank) & unsigned(row(2 downto 0)) & unsigned(col(4 downto 0));
     return to_integer(idx_v);
   end function;
 begin
   clk <= not clk after CLK_PERIOD / 2;
 
-  DRAM_DQ <= tb_dq_data when tb_dq_oe = '1' else (others => 'Z');
+  DRAM_DQ <= tb_dq_data when tb_dq_oe = '1' else
+             (x"00" & dram_write_data) when (dram_cmd(18) = '0' and dram_cmd(17) = '1' and dram_cmd(16) = '0' and dram_cmd(15) = '0') else
+             (others => 'Z');
+
+  DRAM_ADDR  <= dram_cmd(12 downto 0);
+  DRAM_BA    <= dram_cmd(14 downto 13);
+  DRAM_WE_N  <= dram_cmd(15);
+  DRAM_CAS_N <= dram_cmd(16);
+  DRAM_RAS_N <= dram_cmd(17);
+  DRAM_CS_N  <= dram_cmd(18);
+  DRAM_CKE   <= '1';
+  DRAM_CLK   <= clk;
+  DRAM_UDQM  <= '0';
+  DRAM_LDQM  <= '0';
 
   dut : entity work.dram_controller
-    generic map (
-      G_INIT_WAIT_CYCLES => C_INIT_WAIT,
-      G_TRCD_CYCLES      => C_TRCD,
-      G_TCAS_CYCLES      => C_TCAS,
-      G_TRP_CYCLES       => C_TRP,
-      G_TDPL_CYCLES      => C_TDPL,
-      G_TRC_CYCLES       => C_TRC,
-      G_TMRD_CYCLES      => C_TMRD,
-      G_TREFI_CYCLES     => C_TREFI
-    )
     port map (
-      clk         => clk,
-      rst         => rst,
-      address     => address,
-      write_data  => write_data,
-      read_data   => read_data,
-      req         => req,
-      wEn         => wEn,
-      ready       => ready,
-      DRAM_ADDR   => DRAM_ADDR,
-      DRAM_BA     => DRAM_BA,
-      DRAM_CAS_N  => DRAM_CAS_N,
-      DRAM_CKE    => DRAM_CKE,
-      DRAM_CLK    => DRAM_CLK,
-      DRAM_CS_N   => DRAM_CS_N,
-      DRAM_DQ     => DRAM_DQ,
-      DRAM_LDQM   => DRAM_LDQM,
-      DRAM_RAS_N  => DRAM_RAS_N,
-      DRAM_UDQM   => DRAM_UDQM,
-      DRAM_WE_N   => DRAM_WE_N
+      clk      => clk,
+      rst      => rst,
+      SW       => SW_tie,
+      KEY      => KEY_tie,
+      data_in  => DRAM_DQ(7 downto 0),
+      write_data_in => write_data,
+      data_out => read_data,
+      HEX0     => open,
+      HEX1     => open,
+      HEX4     => open,
+      HEX5     => open,
+      adress   => dram_cmd,
+      addr_in  => address,
+      write_data_out => dram_write_data,
+      req      => req,
+      wEn      => wEn,
+      ready    => ready
     );
 
   mem_model : process(clk)
@@ -167,7 +173,7 @@ begin
     while ready = '0' loop
       wait until rising_edge(clk);
       cycle := cycle + 1;
-      assert cycle < 200 report "dram_controller: timeout na inicializacao" severity failure;
+      assert cycle < 30000 report "dram_controller: timeout na inicializacao" severity failure;
     end loop;
 
     -- WRITE unitario
@@ -199,7 +205,7 @@ begin
     -- REFRESH automatico
     cycle := 0;
     refresh_at := -1;
-    while cycle < 200 loop
+    while cycle < 3000 loop
       wait until rising_edge(clk);
       cycle := cycle + 1;
       cmd := cmd_now(DRAM_CS_N, DRAM_RAS_N, DRAM_CAS_N, DRAM_WE_N);

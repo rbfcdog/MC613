@@ -249,7 +249,7 @@
 		output_clock_frequency7 => "0 MHz",
 		output_clock_frequency8 => "0 MHz",
 		output_clock_frequency9 => "0 MHz",
-		phase_shift0 => "0 ps",
+		phase_shift0 => "-2972 ps",
 		phase_shift1 => "0 ps",
 		phase_shift10 => "0 ps",
 		phase_shift11 => "0 ps",
@@ -291,7 +291,7 @@
 		pll_vco_div => 1,
 		pll_vcoph_div => 1,
 		refclk1_frequency => "0 MHz",
-		reference_clock_frequency => "100.0 MHz",
+		reference_clock_frequency => "50.0 MHz",
 		sim_additional_refclk_cycles_to_lock => 0
 	  )
 	  PORT MAP ( 

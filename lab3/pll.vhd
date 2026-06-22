@@ -71,7 +71,7 @@ end architecture rtl; -- of pll
 -- Retrieval info: 	<generic name="device" value="5CEBA2F17A7" />
 -- Retrieval info: 	<generic name="gui_device_speed_grade" value="1" />
 -- Retrieval info: 	<generic name="gui_pll_mode" value="Integer-N PLL" />
--- Retrieval info: 	<generic name="gui_reference_clock_frequency" value="100.0" />
+-- Retrieval info: 	<generic name="gui_reference_clock_frequency" value="50.0" />
 -- Retrieval info: 	<generic name="gui_channel_spacing" value="0.0" />
 -- Retrieval info: 	<generic name="gui_operation_mode" value="direct" />
 -- Retrieval info: 	<generic name="gui_feedback_clock" value="Global Clock" />
@@ -88,7 +88,7 @@ end architecture rtl; -- of pll
 -- Retrieval info: 	<generic name="gui_divide_factor_c0" value="1" />
 -- Retrieval info: 	<generic name="gui_actual_output_clock_frequency0" value="0 MHz" />
 -- Retrieval info: 	<generic name="gui_ps_units0" value="ps" />
--- Retrieval info: 	<generic name="gui_phase_shift0" value="0" />
+-- Retrieval info: 	<generic name="gui_phase_shift0" value="-3000" />
 -- Retrieval info: 	<generic name="gui_phase_shift_deg0" value="0.0" />
 -- Retrieval info: 	<generic name="gui_actual_phase_shift0" value="0" />
 -- Retrieval info: 	<generic name="gui_duty_cycle0" value="50" />
