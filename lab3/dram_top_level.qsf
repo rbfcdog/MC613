@@ -904,10 +904,25 @@ set_global_assignment -name SIP_FILE pll.sip
 set_global_assignment -name SDC_FILE dram_top_level.sdc
 
 set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
-set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH tb_dram_iface -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH tb_dram_top_level -section_id eda_simulation
 set_global_assignment -name EDA_TEST_BENCH_NAME tb_dram_iface -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_dram_iface
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_dram_iface -section_id tb_dram_iface
+set_global_assignment -name EDA_TEST_BENCH_NAME tb_dram_controller -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_dram_controller
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_dram_controller -section_id tb_dram_controller
+set_global_assignment -name EDA_TEST_BENCH_NAME tb_dram_top_level -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_dram_top_level
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_dram_top_level -section_id tb_dram_top_level
 set_global_assignment -name EDA_TEST_BENCH_FILE dram_iface.vhd -section_id tb_dram_iface
 set_global_assignment -name EDA_TEST_BENCH_FILE tb_dram_iface.vhd -section_id tb_dram_iface
+set_global_assignment -name EDA_TEST_BENCH_FILE reader.vhd -section_id tb_dram_controller
+set_global_assignment -name EDA_TEST_BENCH_FILE dram_controller.vhd -section_id tb_dram_controller
+set_global_assignment -name EDA_TEST_BENCH_FILE tb_dram_controller.vhd -section_id tb_dram_controller
+set_global_assignment -name EDA_TEST_BENCH_FILE reader.vhd -section_id tb_dram_top_level
+set_global_assignment -name EDA_TEST_BENCH_FILE dram_controller.vhd -section_id tb_dram_top_level
+set_global_assignment -name EDA_TEST_BENCH_FILE dram_iface.vhd -section_id tb_dram_top_level
+set_global_assignment -name EDA_TEST_BENCH_FILE pll_sim_stub.vhd -section_id tb_dram_top_level
+set_global_assignment -name EDA_TEST_BENCH_FILE dram_top_level.vhd -section_id tb_dram_top_level
+set_global_assignment -name EDA_TEST_BENCH_FILE tb_dram_top_level.vhd -section_id tb_dram_top_level
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

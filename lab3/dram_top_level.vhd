@@ -3,6 +3,12 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
 entity dram_top_level is
+  generic (
+    -- Forwarded to the controller's power-up wait. Default 28600 (~200 us at
+    -- 143 MHz) is the real chip requirement used in synthesis; a simulation
+    -- testbench may override it to make the waveform readable from t=0.
+    INIT_WAIT_CYCLES : integer := 28600
+  );
   port (
     CLOCK_50   : in    std_logic;
     SW         : in    std_logic_vector(9 downto 0);
@@ -52,6 +58,9 @@ architecture rtl of dram_top_level is
   -- We declare the component specifically to fix the port directions
   -- so that the compiler doesn't throw errors when wiring them up.
   component dram_controller is
+    generic (
+        INIT_WAIT_CYCLES : integer := 28600
+    );
     port(
         clk      : in  std_logic;
         rst      : in  std_logic;
@@ -150,6 +159,7 @@ begin
     );
 
   controller_i : dram_controller
+    generic map (INIT_WAIT_CYCLES => INIT_WAIT_CYCLES)
     port map (
       clk         => pll_clk,
       rst         => rst,

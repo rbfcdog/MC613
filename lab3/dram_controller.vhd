@@ -3,6 +3,14 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
 entity dram_controller is
+    generic (
+        -- SDRAM power-up wait, in controller clocks. Default 28600 (~200 us at
+        -- 143 MHz) is the value the real chip requires and is used in synthesis
+        -- and by the top level. A simulation testbench may override it with a
+        -- small value to shorten the otherwise-200 us init; this only changes
+        -- how long the controller holds NOP at power-up, nothing functional.
+        INIT_WAIT_CYCLES : integer := 28600
+    );
     port(
         clk     : IN std_logic;
         rst     : IN std_logic;
@@ -75,7 +83,7 @@ architecture rtl of dram_controller is
     constant CMD_READ      : std_logic_vector(25 downto 0) := "11" & x"F28000";
     constant CMD_WRITE     : std_logic_vector(25 downto 0) := "11" & x"F20000";
 
-    constant INIT_WAIT_CYCLES       : integer := 28600;
+    -- INIT_WAIT_CYCLES is now an entity generic (default 28600).
     constant TRCD_WAIT_CYCLES       : integer := 3;
     constant TRP_WAIT_CYCLES        : integer := 3;
     constant WRITE_REC_WAIT_CYCLES  : integer := 3;
